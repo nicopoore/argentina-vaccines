@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box, Hidden } from "@material-ui/core";
 import React, { memo } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
@@ -9,6 +9,9 @@ const Map = ({ setTooltipContent }): JSX.Element => {
   const size = 300;
   return (
     <Box>
+      <Hidden smUp>
+        <Box mt={3}></Box>
+      </Hidden>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ scale: 900, center: [-62, -40] }}

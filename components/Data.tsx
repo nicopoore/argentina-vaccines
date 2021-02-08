@@ -1,5 +1,11 @@
 import React from "react";
-import { Typography, Grid, CircularProgress } from "@material-ui/core";
+import {
+  Typography,
+  Grid,
+  CircularProgress,
+  Paper,
+  Card,
+} from "@material-ui/core";
 import useSWR from "swr";
 import { SputnikDataItem } from "./types";
 
