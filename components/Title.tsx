@@ -11,16 +11,16 @@ const Title: React.FC = (): JSX.Element => {
         Tocá o pasá el mouse por cada provincia para ver los datos
       </Typography>
       <Typography>
-        <Link href="/datos">Fuentes</Link>
-      </Typography>
-      <Typography>
         <Link
           href="https://github.com/nicopoore/argentina-vaccines"
           target="_blank"
           rel="noreferrer"
         >
-          Código
+          Creado por Nicolás Poore
         </Link>
+      </Typography>
+      <Typography>
+        <Link href="/datos">Fuentes</Link>
       </Typography>
     </Grid>
   );
