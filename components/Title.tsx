@@ -10,7 +10,18 @@ const Title: React.FC = (): JSX.Element => {
       <Typography variant="subtitle1">
         Tocá o pasá el mouse por cada provincia para ver los datos
       </Typography>
-      <Link href="/datos">Fuentes</Link>
+      <Typography>
+        <Link href="/datos">Fuentes</Link>
+      </Typography>
+      <Typography>
+        <Link
+          href="https://github.com/nicopoore/argentina-vaccines"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Código
+        </Link>
+      </Typography>
     </Grid>
   );
 };
