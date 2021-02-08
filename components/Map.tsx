@@ -10,7 +10,7 @@ const Map = ({ setTooltipContent }): JSX.Element => {
   return (
     <Box>
       <Hidden smUp>
-        <Box mt={3}></Box>
+        <Box mt={6}></Box>
       </Hidden>
       <ComposableMap
         projection="geoMercator"
