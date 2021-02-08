@@ -198,72 +198,67 @@ const Data: React.FC<{ content: string }> = (props): JSX.Element => {
     return result[0]["poblacion_estimada_2021"];
   };
 
+  const formatNumbers = (num: number, type: string): string => {
+    return type === "percentage"
+      ? num.toLocaleString(undefined, {
+          style: "percent",
+          minimumFractionDigits: 2,
+        })
+      : num.toLocaleString("de-DE");
+  };
+
+  const renderNumbers = (
+    type: "vaccine" | "population",
+    place: "province" | "country",
+    dose?: 1 | 2
+  ): string => {
+    if (place === "province") {
+      const provincePopulation = getProvincePopulation();
+      if (type === "vaccine") {
+        const provinceVaccines = getProvinceVaccines()[dose - 1];
+        return `${dose === 1 ? "1ra" : "2da"} dosis: ${formatNumbers(
+          provinceVaccines,
+          "number"
+        )} (${formatNumbers(
+          provinceVaccines / provincePopulation,
+          "percentage"
+        )})`;
+      } else if (type === "population") {
+        return `Población: ${formatNumbers(provincePopulation, "number")}`;
+      }
+    } else if (place === "country") {
+      if (type === "vaccine") {
+        const countryVaccines = getCountryVaccines()[dose - 1];
+        return `${dose === 1 ? "1ra" : "2da"} dosis: ${formatNumbers(
+          countryVaccines,
+          "number"
+        )} (${formatNumbers(
+          countryVaccines / countryPopulation,
+          "percentage"
+        )})`;
+      } else if (type === "population") {
+        return `Población: ${formatNumbers(countryPopulation, "number")}`;
+      }
+    }
+  };
+
   return (
-    <Box
-      position="absolute"
-      top="50%"
-      style={{ transform: "translateY(-50%)" }}
-      right={400}
-    >
-      <Box mb={3}>
-        <Typography variant="h5">
+    <>
+      <Grid item xs={6} sm={12}>
+        <Typography variant="h6">
           {props.content === "Ciudad de Buenos Aires" ? "CABA" : props.content}
         </Typography>
-        <Typography>
-          Primera dosis: {getProvinceVaccines()[0].toLocaleString("de-DE")} (
-          {(getProvinceVaccines()[0] / getProvincePopulation()).toLocaleString(
-            undefined,
-            {
-              style: "percent",
-              minimumFractionDigits: 2,
-            }
-          )}
-          )
-        </Typography>
-        <Typography>
-          Segunda dosis: {getProvinceVaccines()[1].toLocaleString("de-DE")} (
-          {(getProvinceVaccines()[1] / getProvincePopulation()).toLocaleString(
-            undefined,
-            {
-              style: "percent",
-              minimumFractionDigits: 2,
-            }
-          )}
-          )
-        </Typography>
-        <Typography>
-          Población: {getProvincePopulation().toLocaleString("de-DE")}
-        </Typography>
-      </Box>
-      <Box>
-        <Typography variant="h5">Total Argentina</Typography>
-        <Typography>
-          Primera dosis: {getCountryVaccines()[0].toLocaleString("de-DE")} (
-          {(getCountryVaccines()[0] / countryPopulation).toLocaleString(
-            undefined,
-            {
-              style: "percent",
-              minimumFractionDigits: 2,
-            }
-          )}
-          )
-        </Typography>
-        <Typography>
-          Segunda dosis: {getCountryVaccines()[1].toLocaleString("de-DE")} (
-          {(getCountryVaccines()[1] / countryPopulation).toLocaleString(
-            undefined,
-            {
-              style: "percent",
-              minimumFractionDigits: 2,
-            }
-          )}
-          )
-        </Typography>
-        <Typography>
-          Población: {countryPopulation.toLocaleString("de-DE")}
-        </Typography>
-      </Box>
-    </Box>
+        <Typography>{renderNumbers("vaccine", "province", 1)}</Typography>
+        <Typography>{renderNumbers("vaccine", "province", 2)}</Typography>
+        <Typography>{renderNumbers("population", "province")}</Typography>
+      </Grid>
+      <Grid item xs={6} sm={12}>
+        <Typography variant="h6">Argentina (total)</Typography>
+        <Typography>{renderNumbers("vaccine", "country", 1)}</Typography>
+        <Typography>{renderNumbers("vaccine", "country", 2)}</Typography>
+        <Typography>{renderNumbers("population", "country")}</Typography>
+      </Grid>
+    </>
   );
 };
 

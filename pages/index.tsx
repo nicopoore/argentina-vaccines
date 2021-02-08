@@ -1,10 +1,7 @@
 import Head from "next/head";
-import { Box, Grid, Tooltip, Typography } from "@material-ui/core";
-import { Map, Data } from "../components";
-import ReactTooltip from "react-tooltip";
-import { useState, useEffect } from "react";
-import Papa from "papaparse";
-import useSWR from "swr";
+import { Grid, Hidden, Box } from "@material-ui/core";
+import { Map, Data, Title } from "../components";
+import { useState } from "react";
 
 const Home = (): JSX.Element => {
   const [content, setContent] = useState("Ciudad de Buenos Aires");
@@ -15,21 +12,36 @@ const Home = (): JSX.Element => {
         <title>Argentina Sputnik-V</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <Map setTooltipContent={setContent} />
-      <Box
-        position="absolute"
-        top="50%"
-        style={{ transform: "translateY(-50%)" }}
-        left={100}
-      >
-        <Typography variant="h5">
-          Vacunas Sputnik-V aplicadas por provincia
-        </Typography>
-        <Typography>
-          Pasá el mouse por cada provincia para ver los datos
-        </Typography>
+      <Box overflow="hidden">
+        <Grid container item justify="space-between" spacing={0}>
+          <Grid
+            container
+            item
+            xs={false}
+            sm={3}
+            alignItems="flex-end"
+            justify="center"
+            direction="column"
+          >
+            <Title />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Map setTooltipContent={setContent} />
+          </Grid>
+          <Grid
+            container
+            item
+            xs={false}
+            sm={3}
+            justify="center"
+            direction="column"
+          >
+            <Grid container item spacing={2}>
+              <Data content={content} />
+            </Grid>
+          </Grid>
+        </Grid>
       </Box>
-      <Data content={content} />
     </>
   );
 };

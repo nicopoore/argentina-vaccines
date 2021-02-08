@@ -13,17 +13,11 @@ const geoUrl =
 const Map = ({ setTooltipContent }): JSX.Element => {
   const size = 300;
   return (
-    <Box
-      width="100%"
-      height="100vh"
-      overflow="hidden"
-      top={0}
-      left={0}
-      position="absolute"
-    >
+    <Box>
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ scale: 450, center: [-62, -50] }}
+        projectionConfig={{ scale: 900, center: [-62, -40] }}
+        height={750}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
