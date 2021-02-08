@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, CircularProgress } from "@material-ui/core";
 import useSWR from "swr";
 import { SputnikDataItem } from "./types";
 
@@ -143,20 +143,19 @@ const Data: React.FC<{ content: string }> = (props): JSX.Element => {
 
   if (error)
     return (
-      <Grid
-        container
-        alignItems="center"
-        direction="column"
-        justify="center"
-        style={{ minHeight: "100vh" }}
-      >
+      <>
         <Grid item>Error al recolectar datos</Grid>
         <Grid item>Error: {error.name}</Grid>
         <Grid item>Message: {error.message}</Grid>
-      </Grid>
+      </>
     );
 
-  if (!data) return <p>Loading...</p>;
+  if (!data)
+    return (
+      <Grid item>
+        <CircularProgress />
+      </Grid>
+    );
 
   const getProvinceVaccines = (): [number, number] => {
     const result = data.data.filter(
