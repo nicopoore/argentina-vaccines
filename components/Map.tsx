@@ -26,13 +26,18 @@ const Map = ({ setTooltipContent }): JSX.Element => {
                 key={geo.rsmKey}
                 fill="#EAEAEC"
                 geography={geo}
-                stroke="#000"
+                stroke="#555"
                 onMouseEnter={() => {
                   const { NAME_1 } = geo.properties;
                   setTooltipContent(NAME_1);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent("Ciudad de Buenos Aires");
+                }}
+                style={{
+                  default: { fill: "#EAEAEC", outline: "none" },
+                  hover: { fill: "#DADADC", outline: "none" },
+                  pressed: { fill: "#DADADC", outline: "none" },
                 }}
               ></Geography>
             ))
