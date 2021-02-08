@@ -7,7 +7,7 @@ import Papa from "papaparse";
 import useSWR from "swr";
 
 const Home = (): JSX.Element => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("Ciudad de Buenos Aires");
 
   return (
     <>

@@ -38,7 +38,7 @@ const Map = ({ setTooltipContent }): JSX.Element => {
                   setTooltipContent(NAME_1);
                 }}
                 onMouseLeave={() => {
-                  setTooltipContent("");
+                  setTooltipContent("Ciudad de Buenos Aires");
                 }}
               ></Geography>
             ))
