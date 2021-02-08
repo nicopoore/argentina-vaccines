@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Link, Typography } from "@material-ui/core";
 
 const Title: React.FC = (): JSX.Element => {
   return (
@@ -10,6 +10,7 @@ const Title: React.FC = (): JSX.Element => {
       <Typography variant="subtitle1">
         Pasá el mouse por cada provincia para ver los datos
       </Typography>
+      <Link href="/datos">Fuentes</Link>
     </Grid>
   );
 };
