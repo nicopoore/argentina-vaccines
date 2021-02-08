@@ -1,4 +1,4 @@
-import { Grid, Link, Box } from "@material-ui/core";
+import { Grid, Link } from "@material-ui/core";
 import React from "react";
 import Head from "next/head";
 

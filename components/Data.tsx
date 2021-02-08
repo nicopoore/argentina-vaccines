@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Grid } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import useSWR from "swr";
 import { SputnikDataItem } from "./types";
 

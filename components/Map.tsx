@@ -1,11 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import React, { memo } from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Sphere,
-} from "react-simple-maps";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/argentina/argentina-provinces.json";

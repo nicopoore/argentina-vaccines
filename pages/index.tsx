@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Grid, Hidden, Box } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { Map, Data, Title } from "../components";
 import { useState } from "react";
 
