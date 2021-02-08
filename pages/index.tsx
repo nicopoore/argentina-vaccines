@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Argentina Sputnik-V</title>
+        <title>Argentina Vacunada</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <Box overflow="hidden">

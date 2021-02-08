@@ -8,7 +8,7 @@ const Title: React.FC = (): JSX.Element => {
         Vacunas Sputnik-V aplicadas por provincia
       </Typography>
       <Typography variant="subtitle1">
-        Pasá el mouse por cada provincia para ver los datos
+        Tocá o pasá el mouse por cada provincia para ver los datos
       </Typography>
       <Link href="/datos">Fuentes</Link>
     </Grid>
