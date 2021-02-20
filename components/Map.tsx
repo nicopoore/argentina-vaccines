@@ -6,7 +6,6 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/argentina/argentina-provinces.json";
 
 const Map = ({ setTooltipContent }): JSX.Element => {
-  const size = 300;
   return (
     <Box>
       <Hidden smUp>

@@ -1,4 +1,4 @@
-export interface SputnikDataItem {
+export interface VaccineDataItem {
   jurisdiccion_codigo_indec: number,
   jurisdiccion_nombre: string,
   primera_dosis_cantidad: number,
