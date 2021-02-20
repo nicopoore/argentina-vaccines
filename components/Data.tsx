@@ -164,17 +164,21 @@ const Data: React.FC<{ content: string }> = (props): JSX.Element => {
     );
 
   const getProvinceVaccines = (): [number, number] => {
-    const result = data.data.filter(
+    const results = data.data.filter(
       (province) =>
         province["jurisdiccion_nombre"] === props.content ||
         (province["jurisdiccion_nombre"] === "CABA" &&
           props.content === "Ciudad de Buenos Aires")
     );
-    if (!result[0]) return [0, 0];
-    return [
-      result[0]["primera_dosis_cantidad"],
-      result[0]["segunda_dosis_cantidad"],
-    ];
+    const primeraDosis = results.reduce((acc, result) => {
+      acc += result["primera_dosis_cantidad"];
+      return acc;
+    }, 0);
+    const segundaDosis = results.reduce((acc, result) => {
+      acc += result["segunda_dosis_cantidad"];
+      return acc;
+    }, 0);
+    return [primeraDosis, segundaDosis];
   };
 
   const getCountryVaccines = (): [number, number] => {

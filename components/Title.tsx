@@ -54,14 +54,12 @@ const Title: React.FC = (): JSX.Element => {
                 Fuentes
               </MenuItem>
             </Menu>
-            <Typography variant="h6">Vacunas Sputnik-V aplicadas</Typography>
+            <Typography variant="h6">Argentina Vacunada</Typography>
           </Toolbar>
         </AppBar>
       </Hidden>
       <Hidden xsDown>
-        <Typography variant="h5">
-          Vacunas Sputnik-V aplicadas por provincia
-        </Typography>
+        <Typography variant="h5">Vacunas aplicadas por provincia</Typography>
         <Typography variant="subtitle1">
           Tocá o pasá el mouse por cada provincia para ver los datos
         </Typography>
