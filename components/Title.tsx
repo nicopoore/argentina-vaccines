@@ -15,7 +15,7 @@ const Title: React.FC = (): JSX.Element => {
         <CardContent>
           <Typography variant="h5">Vacunas aplicadas por provincia</Typography>
           <Typography variant="subtitle1">
-            Tocá o pasá el mouse por cada provincia para ver los datos
+            Pasá el mouse por cada provincia para ver los datos
           </Typography>
           <Typography>
             <Link

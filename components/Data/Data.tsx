@@ -16,7 +16,7 @@ const Data: React.FC = (): JSX.Element => {
   return (
     <>
       {places.map((place: "province" | "country") => (
-        <Grid container item xs={6} sm={12}>
+        <Grid container item xs={12}>
           <Card>
             <CardContent>
               <Typography variant="h5">
