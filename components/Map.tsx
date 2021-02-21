@@ -13,8 +13,8 @@ const Map = ({ setTooltipContent }): JSX.Element => {
       </Hidden>
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ scale: 900, center: [-62, -40] }}
-        height={750}
+        projectionConfig={{ scale: 1430, center: [-62, -40] }}
+        height={1130}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>

@@ -48,11 +48,11 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
 
   const formatNumbers = (num: number, type: string): string => {
     return type === "percentage"
-      ? num.toLocaleString(undefined, {
+      ? num.toLocaleString("es-AR", {
           style: "percent",
           minimumFractionDigits: 2,
         })
-      : num.toLocaleString("de-DE");
+      : num.toLocaleString("es-AR");
   };
 
   const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
@@ -67,13 +67,17 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
     );
   };
 
-  const getProvincePopulation = (): number => {
-    const result = provincePopulation.filter(
+  const getCurrentProvince = (data) => {
+    return data.filter(
       (province) =>
         province["jurisdiccion_nombre"] === selectedProvince ||
         (province["jurisdiccion_nombre"] === "CABA" &&
           selectedProvince === "Ciudad de Buenos Aires")
     );
+  };
+
+  const getProvincePopulation = (): number => {
+    const result = getCurrentProvince(provincePopulation);
     if (!result[0]) return 0;
     return result[0]["poblacion_estimada_2021"];
   };
@@ -82,12 +86,7 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   let vaccines = [0, 0];
   if (props.place === "province") {
     population = getProvincePopulation();
-    const filteredData = vaccineData.filter(
-      (province: VaccineDataItem) =>
-        province["jurisdiccion_nombre"] === selectedProvince ||
-        (province["jurisdiccion_nombre"] === "CABA" &&
-          selectedProvince === "Ciudad de Buenos Aires")
-    );
+    const filteredData = getCurrentProvince(vaccineData);
     vaccines = formatVaccineData(filteredData);
   } else if (props.place === "country") {
     population = countryPopulation;
@@ -96,14 +95,23 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
 
   return (
     <>
-      <Typography>
-        1ra dosis: {formatNumbers(vaccines[0], "number")} (
-        {formatNumbers(vaccines[0] / population, "percentage")})
-      </Typography>
-      <Typography>
-        2da dosis: {formatNumbers(vaccines[1], "number")} (
-        {formatNumbers(vaccines[1] / population, "percentage")})
-      </Typography>
+      <Grid container>
+        {["raw", "percentage"].map((numberType: string) => (
+          <Grid item xs={6}>
+            <Typography variant="h4">
+              {numberType === "raw"
+                ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], "number")
+                : formatNumbers(
+                    vaccines[props.dose === 1 ? 0 : 1] / population,
+                    "percentage"
+                  )}
+            </Typography>
+            <Typography variant="subtitle2" color="textSecondary">
+              {numberType === "raw" ? "personas" : "de la población"}
+            </Typography>
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

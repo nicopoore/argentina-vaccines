@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Grid, Box } from "@material-ui/core";
-import { Map, Data, Title, SelectionContext } from "../components";
+import { Map, Data, Title, SelectionContext, TitleXs } from "../components";
 import { useState } from "react";
 
 const Home = (): JSX.Element => {
@@ -18,21 +18,24 @@ const Home = (): JSX.Element => {
             container
             item
             xs={false}
-            sm={3}
+            sm={4}
             alignItems="flex-end"
             justify="center"
             direction="column"
           >
-            <Title />
+            <Grid item>
+              <TitleXs />
+              <Title />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <Map setTooltipContent={setContent} />
           </Grid>
           <Grid
             container
             item
             xs={false}
-            sm={3}
+            sm={4}
             justify="center"
             direction="column"
           >
