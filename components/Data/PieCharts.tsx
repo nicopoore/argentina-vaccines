@@ -62,7 +62,7 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
       <Grid container direction="row" justify="space-evenly">
         {allCharts.map((chart, chartIndex) => (
           <Grid item sm xs={12}>
-            <PieChart height={130} width={130}>
+            <PieChart height={110} width={110}>
               <Pie data={chart} dataKey="value" innerRadius={37} outerRadius={50}>
                 {chart.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[chartIndex][index]} />

@@ -17,21 +17,21 @@ const Home = (): JSX.Element => {
           <Grid
             container
             item
-            xs={false}
-            sm={4}
             alignItems="flex-end"
-            justify="center"
             direction="column"
+            justify="center"
+            sm={4}
+            xs={false}
           >
             <Grid item>
               <TitleXs />
               <Title />
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item sm={4} xs={12}>
             <Map setTooltipContent={setContent} />
           </Grid>
-          <Grid container item xs={false} sm={4} justify="center" direction="column">
+          <Grid container item direction="column" justify="center" sm={4} xs={false}>
             <Grid container item spacing={2}>
               <SelectionContextProvider selectedProvince={content}>
                 <DataCard />
