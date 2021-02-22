@@ -1,6 +1,12 @@
 import Head from "next/head";
 import { Grid, Box } from "@material-ui/core";
-import { Map, Data, Title, SelectionContext, TitleXs } from "../components";
+import {
+  Map,
+  DataCard,
+  Title,
+  SelectionContextProvider,
+  TitleXs,
+} from "../components";
 import { useState } from "react";
 
 const Home = (): JSX.Element => {
@@ -40,9 +46,9 @@ const Home = (): JSX.Element => {
             direction="column"
           >
             <Grid container item spacing={2}>
-              <SelectionContext selectedProvince={content}>
-                <Data />
-              </SelectionContext>
+              <SelectionContextProvider selectedProvince={content}>
+                <DataCard />
+              </SelectionContextProvider>
             </Grid>
           </Grid>
         </Grid>

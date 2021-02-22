@@ -13,37 +13,19 @@ interface VaccineNumbersProps {
   place: "province" | "country";
   vaccine?: string;
   dose?: 1 | 2;
+  numberType: "raw" | "percentage";
+  data: VaccineDataItem[] | "loading";
+  formatVaccineData: (data: VaccineDataItem[]) => [number, number];
 }
 
-const fetcher = async (url: string): Promise<any> =>
-  fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    mode: "cors",
-    cache: "default",
-  }).then((res) => res.json());
-
 const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
-  const { data, error } = useSWR("/api/data", fetcher);
-  if (error)
-    return (
-      <>
-        <Grid item>Error al recolectar datos</Grid>
-        <Grid item>Error: {error.name}</Grid>
-        <Grid item>Message: {error.message}</Grid>
-      </>
-    );
-
-  if (!data)
+  if (props.data === "loading")
     return (
       <>
         <Skeleton variant="text" />
         <Skeleton variant="text" />
       </>
     );
-  const vaccineData = data.data;
   const selectedProvince = useContext(SelectionContext);
 
   const formatNumbers = (num: number, type: string): string => {
@@ -53,18 +35,6 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
           minimumFractionDigits: 2,
         })
       : num.toLocaleString("es-AR");
-  };
-
-  const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
-    return data.reduce(
-      (acc: [number, number], province: VaccineDataItem) => {
-        if (province["jurisdiccion_codigo_indec"] === null) return acc;
-        acc[0] += province["primera_dosis_cantidad"];
-        acc[1] += province["segunda_dosis_cantidad"];
-        return acc;
-      },
-      [0, 0]
-    );
   };
 
   const getCurrentProvince = (data) => {
@@ -86,32 +56,26 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   let vaccines = [0, 0];
   if (props.place === "province") {
     population = getProvincePopulation();
-    const filteredData = getCurrentProvince(vaccineData);
-    vaccines = formatVaccineData(filteredData);
+    const filteredData = getCurrentProvince(props.data);
+    vaccines = props.formatVaccineData(filteredData);
   } else if (props.place === "country") {
     population = countryPopulation;
-    vaccines = formatVaccineData(vaccineData);
+    vaccines = props.formatVaccineData(props.data);
   }
 
   return (
     <>
-      <Grid container>
-        {["raw", "percentage"].map((numberType: string) => (
-          <Grid item xs={6}>
-            <Typography variant="h4">
-              {numberType === "raw"
-                ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], "number")
-                : formatNumbers(
-                    vaccines[props.dose === 1 ? 0 : 1] / population,
-                    "percentage"
-                  )}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-              {numberType === "raw" ? "personas" : "de la población"}
-            </Typography>
-          </Grid>
-        ))}
-      </Grid>
+      <Typography variant="h4">
+        {props.numberType === "raw"
+          ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], "number")
+          : formatNumbers(
+              vaccines[props.dose === 1 ? 0 : 1] / population,
+              "percentage"
+            )}
+      </Typography>
+      <Typography variant="subtitle2" color="textSecondary">
+        {props.numberType === "raw" ? "personas" : "de la población"}
+      </Typography>
     </>
   );
 };
