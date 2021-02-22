@@ -1,16 +1,10 @@
-import Head from "next/head";
-import { Grid, Box } from "@material-ui/core";
-import {
-  Map,
-  DataCard,
-  Title,
-  SelectionContextProvider,
-  TitleXs,
-} from "../components";
-import { useState } from "react";
+import Head from 'next/head';
+import { Grid, Box } from '@material-ui/core';
+import { Map, DataCard, Title, SelectionContextProvider, TitleXs } from '../components';
+import { useState } from 'react';
 
 const Home = (): JSX.Element => {
-  const [content, setContent] = useState("Ciudad de Buenos Aires");
+  const [content, setContent] = useState('Ciudad de Buenos Aires');
 
   return (
     <>
@@ -37,14 +31,7 @@ const Home = (): JSX.Element => {
           <Grid item xs={12} sm={4}>
             <Map setTooltipContent={setContent} />
           </Grid>
-          <Grid
-            container
-            item
-            xs={false}
-            sm={4}
-            justify="center"
-            direction="column"
-          >
+          <Grid container item xs={false} sm={4} justify="center" direction="column">
             <Grid container item spacing={2}>
               <SelectionContextProvider selectedProvince={content}>
                 <DataCard />

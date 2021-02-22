@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  Grid,
-  Hidden,
-  Link,
-  Typography,
-} from "@material-ui/core";
+import React from 'react';
+import { Card, CardContent, Hidden, Link, Typography } from '@material-ui/core';
 
 const Title: React.FC = (): JSX.Element => {
   return (
@@ -20,8 +13,8 @@ const Title: React.FC = (): JSX.Element => {
           <Typography>
             <Link
               href="https://github.com/nicopoore/argentina-vaccines"
-              target="_blank"
               rel="noreferrer"
+              target="_blank"
             >
               Creado por Nicolás Poore
             </Link>

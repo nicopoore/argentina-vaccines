@@ -1,6 +1,6 @@
-import { Grid, Link } from "@material-ui/core";
-import React from "react";
-import Head from "next/head";
+import { Grid, Link } from '@material-ui/core';
+import React from 'react';
+import Head from 'next/head';
 
 const datos: React.FC = (): JSX.Element => {
   return (

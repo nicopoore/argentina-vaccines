@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   AppBar,
-  Card,
-  CardContent,
-  Grid,
   Hidden,
   IconButton,
   Link,
@@ -11,17 +8,17 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const TitleXs: React.FC = (): JSX.Element => {
   const [menu, setMenu] = useState<null | HTMLElement>(null);
 
-  const handleOpen = (e) => {
+  const handleOpen = (e: { currentTarget: React.SetStateAction<HTMLElement> }): void => {
     setMenu(e.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setMenu(null);
   };
 
@@ -29,26 +26,15 @@ const TitleXs: React.FC = (): JSX.Element => {
     <Hidden smUp>
       <AppBar>
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleOpen}
-          >
+          <IconButton aria-label="open drawer" color="inherit" edge="start" onClick={handleOpen}>
             <MenuIcon />
           </IconButton>
-          <Menu
-            id="menu"
-            anchorEl={menu}
-            keepMounted
-            open={Boolean(menu)}
-            onClose={handleClose}
-          >
+          <Menu keepMounted anchorEl={menu} id="menu" open={Boolean(menu)} onClose={handleClose}>
             <MenuItem
               component={Link}
               href="https://github.com/nicopoore/argentina-vaccines"
-              target="_blank"
               rel="noreferrer"
+              target="_blank"
             >
               Creado por Nicolás Poore
             </MenuItem>
