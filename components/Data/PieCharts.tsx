@@ -47,7 +47,11 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
   ];
 
   const allCharts = [vaxVsUnvax, firstVsSecond, sputnikVsOxford];
-  const COLORS = ['#00C49F', '#0088FE'];
+  const COLORS = [
+    ['#00C49F', '#FF8042'],
+    ['#00C49F', '#FFBB28'],
+    ['#0088FE', '#22D4DF'],
+  ];
 
   const formatNumbers = (value: number): string => {
     return value.toLocaleString('es-AR');
@@ -56,12 +60,12 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
   return (
     <Box mt={4}>
       <Grid container direction="row" justify="space-evenly">
-        {allCharts.map(chart => (
+        {allCharts.map((chart, chartIndex) => (
           <Grid item sm xs={12}>
             <PieChart height={130} width={130}>
               <Pie data={chart} dataKey="value" innerRadius={37} outerRadius={50}>
                 {chart.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                  <Cell key={`cell-${index}`} fill={COLORS[chartIndex][index]} />
                 ))}
               </Pie>
               <Tooltip formatter={formatNumbers} wrapperStyle={{ zIndex: 1 }} />
