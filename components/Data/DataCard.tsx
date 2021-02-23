@@ -29,16 +29,15 @@ const Data: React.FC = (): JSX.Element => {
 
   const selectedProvince = useContext(SelectionContext);
 
-  const provinceName = selectedProvince === 'Ciudad de Buenos Aires' ? 'CABA' : selectedProvince;
   const places = ['province', 'country'];
   const doses = [1, 2];
 
   const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
     return data.reduce(
       (acc: [number, number], province: VaccineDataItem) => {
-        if (province['jurisdiccion_codigo_indec'] === null) return acc;
-        acc[0] += province['primera_dosis_cantidad'];
-        acc[1] += province['segunda_dosis_cantidad'];
+        if (province.jurisdiccion_codigo_indec === null) return acc;
+        acc[0] += province.primera_dosis_cantidad;
+        acc[1] += province.segunda_dosis_cantidad;
         return acc;
       },
       [0, 0]
@@ -52,7 +51,7 @@ const Data: React.FC = (): JSX.Element => {
           <Card style={{ overflow: 'visible' }}>
             <CardContent>
               <Typography variant="h5">
-                {place === 'country' ? 'Argentina' : provinceName}
+                {place === 'country' ? 'Argentina' : selectedProvince}
               </Typography>
               {doses.map((dose: 1 | 2) => (
                 <DoseInfo

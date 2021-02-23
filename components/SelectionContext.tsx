@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-export const SelectionContext = createContext('Ciudad de Buenos Aires');
+export const SelectionContext = createContext('CABA');
 
 const SelectionContextProvider: React.FC<{ selectedProvince: string }> = props => {
   return (

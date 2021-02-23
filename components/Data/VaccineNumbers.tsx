@@ -35,18 +35,13 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   };
 
   const getCurrentProvince = <T extends VaccineDataItem | PopulationDataItem>(data: T[]): T[] => {
-    return data.filter(
-      province =>
-        province['jurisdiccion_nombre'] === selectedProvince ||
-        (province['jurisdiccion_nombre'] === 'CABA' &&
-          selectedProvince === 'Ciudad de Buenos Aires')
-    );
+    return data.filter(province => province.jurisdiccion_nombre === selectedProvince);
   };
 
   const getProvincePopulation = (): number => {
     const result = getCurrentProvince(provincePopulation);
     if (!result[0]) return 0;
-    return result[0]['poblacion_estimada_2021'];
+    return result[0].poblacion_estimada_2021;
   };
 
   let population = 0;

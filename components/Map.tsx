@@ -7,7 +7,7 @@ const geoUrl =
 
 const Map = ({ setTooltipContent }): JSX.Element => {
   return (
-    <Box>
+    <>
       <Hidden smUp>
         <Box mt={6} />
       </Hidden>
@@ -34,14 +34,14 @@ const Map = ({ setTooltipContent }): JSX.Element => {
                   setTooltipContent(NAME_1);
                 }}
                 onMouseLeave={() => {
-                  setTooltipContent('Ciudad de Buenos Aires');
+                  setTooltipContent('CABA');
                 }}
               />
             ))
           }
         </Geographies>
       </ComposableMap>
-    </Box>
+    </>
   );
 };
 
