@@ -14,14 +14,14 @@ const Home = (): JSX.Element => {
       </Head>
       <Box overflow="hidden">
         <Grid container>
-          <Grid container item alignItems="center" justify="flex-end" sm={4} xs={false}>
+          <Grid container item alignItems="center" justify="flex-end" sm={4}>
             <TitleXs />
             <Title />
           </Grid>
-          <Grid item sm={4} xs={12}>
+          <Grid item alignItems="center" sm={4} xs={12}>
             <Map setTooltipContent={setContent} />
           </Grid>
-          <Grid container item alignItems="center" sm={4} xs={false}>
+          <Grid container item alignItems="center" sm={4}>
             <Grid container item spacing={2}>
               <SelectionContextProvider selectedProvince={selectedProvince}>
                 <DataCard />

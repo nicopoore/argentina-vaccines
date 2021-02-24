@@ -48,7 +48,7 @@ const Data: React.FC = (): JSX.Element => {
     <>
       {places.map((place: 'province' | 'country') => (
         <Grid key={place} container item xs={12}>
-          <Card style={{ overflow: 'visible' }}>
+          <Card style={{ margin: '0 auto', overflow: 'visible' }}>
             <CardContent>
               <Typography variant="h5">
                 {place === 'country' ? 'Argentina' : selectedProvince}
