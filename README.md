@@ -26,6 +26,7 @@ Visualizador de las vacunas de Covid-19 aplicadas en cada provincia de Argentina
 ### Extra
 
 - React Simple Maps
+- Rechart
 
 ## Bugs
 
