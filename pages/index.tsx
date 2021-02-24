@@ -1,6 +1,5 @@
-import Head from 'next/head';
 import { Grid, Box } from '@material-ui/core';
-import { Map, DataCard, Title, SelectionContextProvider, TitleXs } from '../components';
+import { Meta, Map, DataCard, Title, SelectionContextProvider, TitleXs } from '../components';
 import { useState } from 'react';
 
 const Home = (): JSX.Element => {
@@ -8,10 +7,7 @@ const Home = (): JSX.Element => {
   const selectedProvince = content === 'Ciudad de Buenos Aires' ? 'CABA' : content;
   return (
     <>
-      <Head>
-        <title>Argentina Vacunada</title>
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
+      <Meta />
       <Box overflow="hidden">
         <Grid container>
           <Grid container item alignItems="center" justify="flex-end" sm={4}>

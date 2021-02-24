@@ -1,3 +1,5 @@
+export { default as Meta } from './Meta'
+
 export { default as SelectionContextProvider } from './SelectionContext'
 
 export { default as Title } from './Title'
