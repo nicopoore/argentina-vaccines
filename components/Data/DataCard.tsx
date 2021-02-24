@@ -6,7 +6,7 @@ import PieCharts from './PieCharts';
 import useSWR from 'swr';
 import { VaccineDataItem } from '../types';
 
-const Data: React.FC = (): JSX.Element => {
+const DataCard: React.FC = (): JSX.Element => {
   const fetcher = async (url: string): Promise<any> =>
     fetch(url, {
       method: 'GET',
@@ -76,4 +76,4 @@ const Data: React.FC = (): JSX.Element => {
   );
 };
 
-export default Data;
+export default DataCard;

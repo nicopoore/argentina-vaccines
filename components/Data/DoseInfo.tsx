@@ -3,7 +3,7 @@ import React from 'react';
 import { VaccineNumbers } from '..';
 import { VaccineDataItem } from '../types';
 
-interface VaccineCardProps {
+interface DoseInfoProps {
   place: 'country' | 'province';
   dose: 1 | 2;
   data: VaccineDataItem[] | 'loading';
@@ -11,7 +11,7 @@ interface VaccineCardProps {
   formatVaccineData: (data: VaccineDataItem[]) => [number, number];
 }
 
-const VaccineCard: React.FC<VaccineCardProps> = (props): JSX.Element => {
+const DoseInfo: React.FC<DoseInfoProps> = (props): JSX.Element => {
   return (
     <Box my={1}>
       <Grid item style={{ minWidth: 350 }}>
@@ -34,4 +34,4 @@ const VaccineCard: React.FC<VaccineCardProps> = (props): JSX.Element => {
   );
 };
 
-export default VaccineCard;
+export default DoseInfo;

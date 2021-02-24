@@ -14,7 +14,7 @@ const Home = (): JSX.Element => {
             <TitleXs />
             <Title />
           </Grid>
-          <Grid item alignItems="center" sm={4} xs={12}>
+          <Grid container item alignItems="center" sm={4} xs={12}>
             <Map setTooltipContent={setContent} />
           </Grid>
           <Grid container item alignItems="center" sm={4}>
