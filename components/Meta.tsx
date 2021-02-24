@@ -23,7 +23,7 @@ const Meta: React.FC = (): JSX.Element => {
       <meta content={metaTitle} property="twitter:title" />
       <meta content={metaDesc} property="twitter:description" />
       <meta
-        content="https://images.unsplash.com/photo-1612862403503-b45fa3c22301?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"
+        content="https://www.argentina.gob.ar/sites/default/files/29-12-20-vac-covid-19.jpeg"
         property="twitter:image"
       />
     </Head>
