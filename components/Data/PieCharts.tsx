@@ -30,7 +30,11 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
   };
 
   const vaccineData = props.formatVaccineData(props.data);
-  const vaccineNames = ['Sputnik V COVID19 Instituto Gamaleya', 'COVISHIELD ChAdOx1nCoV COVID 19'];
+  const vaccineNames = [
+    'Sputnik V COVID19 Instituto Gamaleya',
+    'COVISHIELD ChAdOx1nCoV COVID 19',
+    'Sinopharm Vacuna SARSCOV 2 inactivada',
+  ];
   const vaccineOrigin = formatVaccineOrigin(props.data, vaccineNames);
 
   const vaxVsUnvax = [
@@ -41,16 +45,17 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
     { name: 'Ambas dosis', value: vaccineData[1] },
     { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
   ];
-  const sputnikVsOxford = [
+  const vaccineOriginVs = [
     { name: 'Sputnik V (1 o más dosis)', value: vaccineOrigin[0] },
     { name: 'Oxford-AstraZeneca (1 o más dosis)', value: vaccineOrigin[1] },
+    { name: 'Sinopharma (1 o más dosis)', value: vaccineOrigin[2] },
   ];
 
-  const allCharts = [vaxVsUnvax, firstVsSecond, sputnikVsOxford];
+  const allCharts = [vaxVsUnvax, firstVsSecond, vaccineOriginVs];
   const COLORS = [
     ['#00C49F', '#FF8042'],
     ['#00C49F', '#FFBB28'],
-    ['#0088FE', '#22D4DF'],
+    ['#0088FE', '#22D4DF', '#FF8042'],
   ];
 
   const formatNumbers = (value: number): string => {
