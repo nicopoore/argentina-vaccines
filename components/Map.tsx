@@ -10,8 +10,8 @@ const Map: React.FC<{ setTooltipContent: (_: string) => void }> = ({
 }): JSX.Element => {
   return (
     <Grid container item alignItems="center" sm={4} xs={12}>
-      <Hidden mdUp>
-        <Box mt={6} />
+      <Hidden smUp>
+        <Box height="1px" mt={6} width="1px" />
       </Hidden>
       <ComposableMap
         height={1130}
