@@ -1,32 +1,22 @@
 import { Grid, Box } from '@material-ui/core';
-import { Meta, Map, DataCard, Title, SelectionContextProvider, TitleXs } from '../components';
-import { useState } from 'react';
+import { Meta, Map, DataCard, Title } from '../components';
+import React, { useState } from 'react';
+import SelectionContextProvider from '../utils/SelectionContext';
 
 const Home = (): JSX.Element => {
   const [content, setContent] = useState('CABA');
   const selectedProvince = content === 'Ciudad de Buenos Aires' ? 'CABA' : content;
   return (
-    <>
+    <Box overflow="hidden">
       <Meta />
-      <Box overflow="hidden">
-        <Grid container>
-          <Grid container item alignItems="center" justify="flex-end" sm={4}>
-            <TitleXs />
-            <Title />
-          </Grid>
-          <Grid container item alignItems="center" sm={4} xs={12}>
-            <Map setTooltipContent={setContent} />
-          </Grid>
-          <Grid container item alignItems="center" sm={4}>
-            <Grid container item spacing={2}>
-              <SelectionContextProvider selectedProvince={selectedProvince}>
-                <DataCard />
-              </SelectionContextProvider>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Box>
-    </>
+      <Grid container>
+        <Title />
+        <Map setTooltipContent={setContent} />
+        <SelectionContextProvider selectedProvince={selectedProvince}>
+          <DataCard />
+        </SelectionContextProvider>
+      </Grid>
+    </Box>
   );
 };
 

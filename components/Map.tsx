@@ -1,14 +1,16 @@
-import { Box, Hidden } from '@material-ui/core';
+import { Box, Grid, Hidden } from '@material-ui/core';
 import React, { memo } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
 const geoUrl =
   'https://raw.githubusercontent.com/deldersveld/topojson/master/countries/argentina/argentina-provinces.json';
 
-const Map = ({ setTooltipContent }): JSX.Element => {
+const Map: React.FC<{ setTooltipContent: (_: string) => void }> = ({
+  setTooltipContent,
+}): JSX.Element => {
   return (
-    <>
-      <Hidden smUp>
+    <Grid container item alignItems="center" sm={4} xs={12}>
+      <Hidden mdUp>
         <Box mt={6} />
       </Hidden>
       <ComposableMap
@@ -41,7 +43,7 @@ const Map = ({ setTooltipContent }): JSX.Element => {
           }
         </Geographies>
       </ComposableMap>
-    </>
+    </Grid>
   );
 };
 

@@ -1,8 +1,8 @@
 import { Typography } from '@material-ui/core';
 import React, { useContext } from 'react';
-import { provincePopulation, countryPopulation } from '../../rawData/population.json';
-import { SelectionContext } from '../SelectionContext';
-import { VaccineDataItem, PopulationDataItem } from '../types';
+import { provincePopulation, countryPopulation } from '../../../utils/population.json';
+import { VaccineDataItem, PopulationDataItem } from '../../../utils/types';
+import { SelectionContext } from '../../../utils/SelectionContext';
 import { Skeleton } from '@material-ui/lab';
 
 interface VaccineNumbersProps {

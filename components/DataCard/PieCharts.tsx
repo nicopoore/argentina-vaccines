@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { VaccineDataItem } from '../types';
-import { countryPopulation } from '../../rawData/population.json';
+import { VaccineDataItem } from '../../utils/types';
+import { countryPopulation } from '../../utils/population.json';
 import { Box, Grid } from '@material-ui/core';
 
 interface PieChartsProps {

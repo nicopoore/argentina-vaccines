@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import { VaccineNumbers } from '..';
-import { VaccineDataItem } from '../types';
+import VaccineNumbers from './VaccineNumbers';
+import { VaccineDataItem } from '../../../utils/types';
 
 interface DoseInfoProps {
   place: 'country' | 'province';

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Typography, Grid, Card, CardContent } from '@material-ui/core';
-import { SelectionContext } from '../SelectionContext';
-import { DoseInfo } from '..';
+import { SelectionContext } from '../../utils/SelectionContext';
+import DoseInfo from './DoseInfo';
 import PieCharts from './PieCharts';
 import useSWR from 'swr';
-import { VaccineDataItem } from '../types';
+import { VaccineDataItem } from '../../utils/types';
 
 const DataCard: React.FC = (): JSX.Element => {
   const fetcher = async (url: string): Promise<any> =>
@@ -45,34 +45,36 @@ const DataCard: React.FC = (): JSX.Element => {
   };
 
   return (
-    <>
-      {places.map((place: 'province' | 'country') => (
-        <Grid key={place} container item xs={12}>
-          <Card style={{ overflow: 'visible' }}>
-            <CardContent>
-              <Typography variant="h5">
-                {place === 'country' ? 'Argentina' : selectedProvince}
-              </Typography>
-              {doses.map((dose: 1 | 2) => (
-                <DoseInfo
-                  key={dose}
-                  data={data ? data.data : 'loading'}
-                  dose={dose}
-                  formatVaccineData={formatVaccineData}
-                  place={place}
-                />
-              ))}
-              {place === 'country' && (
-                <PieCharts
-                  data={data ? data.data : 'loading'}
-                  formatVaccineData={formatVaccineData}
-                />
-              )}
-            </CardContent>
-          </Card>
-        </Grid>
-      ))}
-    </>
+    <Grid container item alignItems="center" sm={4}>
+      <Grid container item spacing={2}>
+        {places.map((place: 'province' | 'country') => (
+          <Grid key={place} container item xs={12}>
+            <Card style={{ overflow: 'visible' }}>
+              <CardContent>
+                <Typography variant="h5">
+                  {place === 'country' ? 'Argentina' : selectedProvince}
+                </Typography>
+                {doses.map((dose: 1 | 2) => (
+                  <DoseInfo
+                    key={dose}
+                    data={data ? data.data : 'loading'}
+                    dose={dose}
+                    formatVaccineData={formatVaccineData}
+                    place={place}
+                  />
+                ))}
+                {place === 'country' && (
+                  <PieCharts
+                    data={data ? data.data : 'loading'}
+                    formatVaccineData={formatVaccineData}
+                  />
+                )}
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Grid>
   );
 };
 
