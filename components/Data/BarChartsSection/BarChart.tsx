@@ -29,7 +29,13 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
                 percentage
               )}%)`}
             >
-              <Box bgColor={props.colors[index]} h="100%" w={`${percentage}%`} />
+              <Box
+                bgColor={props.colors[index]}
+                borderLeftRadius={index === 0 ? 2 : 0}
+                borderRightRadius={index === props.data.length - 1 ? 2 : 0}
+                h="100%"
+                w={`${percentage}%`}
+              />
             </Tooltip>
           );
         })}

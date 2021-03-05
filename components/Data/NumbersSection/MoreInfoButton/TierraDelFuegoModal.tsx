@@ -29,7 +29,6 @@ const TierraDelFuegoModal: React.FC<Props> = (props): JSX.Element => {
             <Text>
               Llamá al{' '}
               <Link color="teal.400" href="tel:08003330358">
-                {' '}
                 0800-333-0358
               </Link>
             </Text>

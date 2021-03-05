@@ -32,13 +32,13 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
       </Text>
       {selectedProvince === 'Tierra del Fuego' ? (
         <>
-          <Button colorScheme="blue" width="40%" onClick={handleOpenModal}>
+          <Button colorScheme="blue" width="32%" onClick={handleOpenModal}>
             Conocé más
           </Button>
           <TierraDelFuegoModal handleClose={handleCloseModal} isOpen={modalIsOpen} />
         </>
       ) : (
-        <Button as="a" colorScheme="blue" href={url} width="40%">
+        <Button as="a" colorScheme="blue" href={url} width="32%">
           Conocé más
         </Button>
       )}

@@ -14,7 +14,7 @@ const NumbersSection: React.FC<Props> = (props): JSX.Element => {
 
   const selectedProvince = useContext(SelectionContext);
   return (
-    <Flex direction="column" minH={300} w={300}>
+    <Flex direction="column" minH={300} minW={350}>
       <Text as="h5" fontSize="2xl">
         {selectedProvince}
       </Text>

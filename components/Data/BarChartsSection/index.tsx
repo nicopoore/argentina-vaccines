@@ -48,7 +48,7 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   const vaccineOrigin = formatVaccineOrigin(props.data, vaccineNames);
 
   const vaxVsUnvax = [
-    { name: 'Vacunadas (1 o más dosis)', value: vaccineData[0] },
+    { name: 'Vacunadas', value: vaccineData[0] },
     { name: 'No vacunadas', value: countryPopulation - vaccineData[0] },
   ];
   const firstVsSecond = [
@@ -62,7 +62,11 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   ];
 
   const allCharts = [
-    { name: '% de la población vacunada', values: vaxVsUnvax, colors: ['#00C49F', '#FF8042'] },
+    {
+      name: '% de la población vacunada (1 o más dosis)',
+      values: vaxVsUnvax,
+      colors: ['#00C49F', '#FF8042'],
+    },
     {
       name: 'Parcial vs. totalmente vacunades',
       values: firstVsSecond,
@@ -76,7 +80,7 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   ];
 
   return (
-    <Flex direction="column" h={300} w={500}>
+    <Flex direction="column" h={300} px={4} w={500}>
       {allCharts.map(chart => (
         <BarChart colors={chart.colors} data={chart.values} name={chart.name} />
       ))}
