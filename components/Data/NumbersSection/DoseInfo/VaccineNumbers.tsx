@@ -1,8 +1,14 @@
 import React, { useContext } from 'react';
 import { provincePopulation, countryPopulation } from '../../../../utils/population.json';
-import { VaccineDataItem, PopulationDataItem } from '../../../../utils/types';
+import { VaccineDataItem } from '../../../../utils/types';
 import { SelectionContext } from '../../../../utils/SelectionContext';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';
+import {
+  formatNumbers,
+  formatVaccineData,
+  getCurrentProvince,
+  getProvincePopulation,
+} from '../../../../utils/functions';
 
 interface VaccineNumbersProps {
   vaccine?: string;
@@ -23,44 +29,14 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
     );
   const selectedProvince = useContext(SelectionContext);
 
-  const formatNumbers = (num: number, type: string): string => {
-    return type === 'percentage'
-      ? num.toLocaleString('es-AR', {
-          style: 'percent',
-          minimumFractionDigits: 2,
-        })
-      : num.toLocaleString('es-AR');
-  };
-
-  const getCurrentProvince = <T extends VaccineDataItem | PopulationDataItem>(data: T[]): T[] =>
-    data.filter(province => province.jurisdiccion_nombre === selectedProvince);
-
-  const getProvincePopulation = (): number => {
-    const result = getCurrentProvince(provincePopulation);
-    if (!result[0]) return 0;
-    return result[0].poblacion_estimada_2021;
-  };
-
-  const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
-    return data.reduce(
-      (acc: [number, number], province: VaccineDataItem) => {
-        if (province.jurisdiccion_codigo_indec === null) return acc;
-        acc[0] += province.primera_dosis_cantidad;
-        acc[1] += province.segunda_dosis_cantidad;
-        return acc;
-      },
-      [0, 0]
-    );
-  };
-
   let population = 0;
   let vaccines = [0, 0];
   if (selectedProvince === 'Argentina') {
     population = countryPopulation;
     vaccines = formatVaccineData(props.data);
   } else {
-    population = getProvincePopulation();
-    const filteredData = getCurrentProvince(props.data);
+    population = getProvincePopulation(provincePopulation, selectedProvince);
+    const filteredData = getCurrentProvince(props.data, selectedProvince);
     vaccines = formatVaccineData(filteredData);
   }
 

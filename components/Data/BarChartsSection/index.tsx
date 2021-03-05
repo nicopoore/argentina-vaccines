@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { VaccineDataItem } from '../../../utils/types';
-import { countryPopulation } from '../../../utils/population.json';
+import { countryPopulation, provincePopulation } from '../../../utils/population.json';
 import { Flex } from '@chakra-ui/react';
 import BarChart from './BarChart';
+import {
+  formatVaccineData,
+  formatVaccineOrigin,
+  getCurrentProvince,
+  getProvincePopulation,
+} from '../../../utils/functions';
+import { SelectionContext } from '../../../utils/SelectionContext';
 
 interface Props {
   data: VaccineDataItem[] | 'loading';
@@ -11,45 +18,31 @@ interface Props {
 const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   if (props.data === 'loading') return <></>;
 
-  const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: string[]): number[] => {
-    let vaccineArray = [];
-    vaccineNameArray.map(vaccineName => {
-      vaccineArray.push(
-        data
-          .filter(row => row.vacuna_nombre === vaccineName)
-          .reduce((acc: number, province: VaccineDataItem) => {
-            if (province['jurisdiccion_codigo_indec'] === null) return acc;
-            acc += province['primera_dosis_cantidad'];
-            return acc;
-          }, 0)
-      );
-    });
-    return vaccineArray;
-  };
+  const selectedProvince = useContext(SelectionContext);
 
-  const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
-    return data.reduce(
-      (acc: [number, number], province: VaccineDataItem) => {
-        if (province.jurisdiccion_codigo_indec === null) return acc;
-        acc[0] += province.primera_dosis_cantidad;
-        acc[1] += province.segunda_dosis_cantidad;
-        return acc;
-      },
-      [0, 0]
-    );
-  };
+  let population = 0;
+  let vaccineData = [0, 0];
+  let filteredData;
+  if (selectedProvince === 'Argentina') {
+    population = countryPopulation;
+    filteredData = props.data;
+    vaccineData = formatVaccineData(props.data);
+  } else {
+    population = getProvincePopulation(provincePopulation, selectedProvince);
+    filteredData = getCurrentProvince(props.data, selectedProvince);
+    vaccineData = formatVaccineData(filteredData);
+  }
 
-  const vaccineData = formatVaccineData(props.data);
   const vaccineNames = [
     'Sputnik V COVID19 Instituto Gamaleya',
     'COVISHIELD ChAdOx1nCoV COVID 19',
     'Sinopharm Vacuna SARSCOV 2 inactivada',
   ];
-  const vaccineOrigin = formatVaccineOrigin(props.data, vaccineNames);
+  const vaccineOrigin = formatVaccineOrigin(filteredData, vaccineNames);
 
   const vaxVsUnvax = [
     { name: 'Vacunadas', value: vaccineData[0] },
-    { name: 'No vacunadas', value: countryPopulation - vaccineData[0] },
+    { name: 'No vacunadas', value: population - vaccineData[0] },
   ];
   const firstVsSecond = [
     { name: 'Ambas dosis', value: vaccineData[1] },

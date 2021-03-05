@@ -19,7 +19,9 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      <Text fontSize="xl">{props.name}</Text>
+      <Text fontSize="xl" mb={1}>
+        {props.name}
+      </Text>
       <Flex h={4} mb={4} w="100%">
         {props.data.map((chartItem, index) => {
           const percentage = (chartItem.value / total) * 100;
