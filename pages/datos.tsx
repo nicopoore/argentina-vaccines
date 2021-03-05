@@ -1,4 +1,3 @@
-import { Grid, Link } from '@material-ui/core';
 import React from 'react';
 import Head from 'next/head';
 
@@ -9,7 +8,7 @@ const datos: React.FC = (): JSX.Element => {
         <title>Argentina Vacunada</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <Grid container alignItems="center" direction="column">
+      {/* <Grid container alignItems="center" direction="column">
         <Grid item>
           <Link href="http://datos.salud.gob.ar/dataset/vacunas-contra-covid-19-dosis-aplicadas-en-la-republica-argentina">
             Vacunas aplicadas en Argentina
@@ -20,7 +19,7 @@ const datos: React.FC = (): JSX.Element => {
             Población estimada 2021 por provincia
           </Link>
         </Grid>
-      </Grid>
+      </Grid> */}
     </>
   );
 };
