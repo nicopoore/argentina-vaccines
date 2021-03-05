@@ -12,29 +12,30 @@ const TitleXs: React.FC = (): JSX.Element => {
   };
 
   return (
-    <Hidden smUp>
-      <AppBar>
-        <Toolbar>
-          <IconButton aria-label="open drawer" color="inherit" edge="start" onClick={handleOpen}>
-            <MenuIcon />
-          </IconButton>
-          <Menu keepMounted anchorEl={menu} id="menu" open={Boolean(menu)} onClose={handleClose}>
-            <MenuItem
-              component={Link}
-              href="https://github.com/nicopoore/argentina-vaccines"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Creado por Nicolás Poore
-            </MenuItem>
-            <MenuItem component={Link} href="/datos">
-              Fuentes
-            </MenuItem>
-          </Menu>
-          <Typography variant="h6">Argentina Vacunada</Typography>
-        </Toolbar>
-      </AppBar>
-    </Hidden>
+    <div />
+    // <Hidden smUp>
+    //   <AppBar>
+    //     <Toolbar>
+    //       <IconButton aria-label="open drawer" color="inherit" edge="start" onClick={handleOpen}>
+    //         <MenuIcon />
+    //       </IconButton>
+    //       <Menu keepMounted anchorEl={menu} id="menu" open={Boolean(menu)} onClose={handleClose}>
+    //         <MenuItem
+    //           component={Link}
+    //           href="https://github.com/nicopoore/argentina-vaccines"
+    //           rel="noreferrer"
+    //           target="_blank"
+    //         >
+    //           Creado por Nicolás Poore
+    //         </MenuItem>
+    //         <MenuItem component={Link} href="/datos">
+    //           Fuentes
+    //         </MenuItem>
+    //       </Menu>
+    //       <Typography variant="h6">Argentina Vacunada</Typography>
+    //     </Toolbar>
+    //   </AppBar>
+    // </Hidden>
   );
 };
 
