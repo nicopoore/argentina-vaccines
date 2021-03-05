@@ -1,13 +1,12 @@
 import React from 'react';
-import TitleXs from './TitleXs';
-import TitleSm from './TitleSm';
-import { Grid } from '@material-ui/core';
+import { Box, Text } from '@chakra-ui/react';
 
 const Title: React.FC = (): JSX.Element => (
-  <Grid container item alignItems="center" justify="flex-end" sm={4}>
-    <TitleXs />
-    <TitleSm />
-  </Grid>
+  <Box pl={4} w="100%">
+    <Text as="h1" fontSize="3xl" m={2} mb={-3}>
+      Argentina vacunada
+    </Text>
+  </Box>
 );
 
 export default Title;

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Typography, Grid, Card, CardContent } from '@material-ui/core';
 import { SelectionContext } from '../../utils/SelectionContext';
-import DoseInfo from './DoseInfo';
+import DoseInfo from '../Data/Numbers/DoseInfo';
 import PieCharts from './PieCharts';
 import useSWR from 'swr';
 import { VaccineDataItem } from '../../utils/types';

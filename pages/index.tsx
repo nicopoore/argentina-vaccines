@@ -1,22 +1,30 @@
-import { Grid, Box } from '@material-ui/core';
-import { Meta, Map, DataCard, Title } from '../components';
+import { Map, Data, Title } from '../components';
 import React, { useState } from 'react';
 import SelectionContextProvider from '../utils/SelectionContext';
+import { Stack } from '@chakra-ui/react';
 
 const Home = (): JSX.Element => {
-  const [content, setContent] = useState('CABA');
-  const selectedProvince = content === 'Ciudad de Buenos Aires' ? 'CABA' : content;
+  const [selectedProvince, setSelectedProvince] = useState('CABA');
   return (
-    <Box overflow="hidden">
-      <Meta />
-      <Grid container>
-        <Title />
-        <Map setTooltipContent={setContent} />
+    <Stack>
+      <Title />
+      <Stack direction="row">
         <SelectionContextProvider selectedProvince={selectedProvince}>
-          <DataCard />
+          <Map setSelectedProvince={setSelectedProvince} />
+          <Data />
         </SelectionContextProvider>
-      </Grid>
-    </Box>
+      </Stack>
+    </Stack>
+    // <Box overflow="hidden">
+    //   <Meta />
+    //   <Grid container>
+    //     <Title />
+    //     <Map setTooltipContent={setContent} />
+    //     <SelectionContextProvider selectedProvince={selectedProvince}>
+    //       <DataCard />
+    //     </SelectionContextProvider>
+    //   </Grid>
+    // </Box>
   );
 };
 

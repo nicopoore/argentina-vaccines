@@ -1,0 +1,42 @@
+import { Stack, Text } from '@chakra-ui/react';
+import React from 'react';
+import useSWR from 'swr';
+import BarCharts from './BarCharts';
+import Numbers from './Numbers';
+
+const Data: React.FC = (): JSX.Element => {
+  const fetcher = async (url: string): Promise<any> =>
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      cache: 'default',
+    }).then(res => res.json());
+  const { data, error } = useSWR('/api/data', fetcher);
+
+  if (error)
+    return (
+      <Stack>
+        <Text>Error al recolectar datos</Text>
+        <Text>Error: {error.name}</Text>
+        <Text>Message: {error.message}</Text>
+      </Stack>
+    );
+
+  return (
+    <Stack alignItems="center" flexGrow={1} justify="center">
+      <Stack direction="row">
+        <Numbers data={data ? data.data : 'loading'} />
+        <BarCharts data={data ? data.data : 'loading'} />
+      </Stack>
+      <Stack direction="row">
+        <Stack h={300} w={300} />
+        <Stack h={300} w={300} />
+      </Stack>
+    </Stack>
+  );
+};
+
+export default Data;

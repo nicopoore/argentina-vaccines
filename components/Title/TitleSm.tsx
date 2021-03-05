@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, CardContent, Hidden, Link, Typography } from '@material-ui/core';
 
 const Title: React.FC = (): JSX.Element => {
   return (

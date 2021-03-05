@@ -1,15 +1,14 @@
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { VaccineDataItem } from '../../utils/types';
-import { countryPopulation } from '../../utils/population.json';
+import { Cell, Pie, PieChart, Tooltip } from 'recharts';
+import { VaccineDataItem } from '../../../utils/types';
+import { countryPopulation } from '../../../utils/population.json';
+import { Flex } from '@chakra-ui/react';
 
-interface PieChartsProps {
+interface Props {
   data: VaccineDataItem[] | 'loading';
-  // eslint-disable-next-line no-unused-vars
-  formatVaccineData: (data: VaccineDataItem[]) => [number, number];
 }
 
-const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
+const BarCharts: React.FC<Props> = (props): JSX.Element => {
   if (props.data === 'loading') return <></>;
 
   const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: string[]): number[] => {
@@ -28,7 +27,19 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
     return vaccineArray;
   };
 
-  const vaccineData = props.formatVaccineData(props.data);
+  const formatVaccineData = (data: VaccineDataItem[]): [number, number] => {
+    return data.reduce(
+      (acc: [number, number], province: VaccineDataItem) => {
+        if (province.jurisdiccion_codigo_indec === null) return acc;
+        acc[0] += province.primera_dosis_cantidad;
+        acc[1] += province.segunda_dosis_cantidad;
+        return acc;
+      },
+      [0, 0]
+    );
+  };
+
+  const vaccineData = formatVaccineData(props.data);
   const vaccineNames = [
     'Sputnik V COVID19 Instituto Gamaleya',
     'COVISHIELD ChAdOx1nCoV COVID 19',
@@ -62,23 +73,19 @@ const PieCharts: React.FC<PieChartsProps> = (props): JSX.Element => {
   };
 
   return (
-    <Box mt={4}>
-      <Grid container direction="row" justify="space-evenly">
-        {allCharts.map((chart, chartIndex) => (
-          <Grid key={`chart-${chartIndex}`} item>
-            <PieChart height={110} width={110}>
-              <Pie data={chart} dataKey="value" innerRadius={37} outerRadius={50}>
-                {chart.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[chartIndex][index]} />
-                ))}
-              </Pie>
-              <Tooltip formatter={formatNumbers} wrapperStyle={{ zIndex: 1 }} />
-            </PieChart>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <Flex direction="column" h={300} w={300}>
+      {allCharts.map((chart, chartIndex) => (
+        <PieChart height={110} width={110}>
+          <Pie data={chart} dataKey="value" innerRadius={37} outerRadius={50}>
+            {chart.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[chartIndex][index]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={formatNumbers} wrapperStyle={{ zIndex: 1 }} />
+        </PieChart>
+      ))}
+    </Flex>
   );
 };
 
-export default PieCharts;
+export default BarCharts;

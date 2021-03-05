@@ -1,15 +1,4 @@
 import React, { useState } from 'react';
-import {
-  AppBar,
-  Hidden,
-  IconButton,
-  Link,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const TitleXs: React.FC = (): JSX.Element => {
   const [menu, setMenu] = useState<null | HTMLElement>(null);
