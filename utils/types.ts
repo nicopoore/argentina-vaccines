@@ -10,4 +10,5 @@ export interface PopulationDataItem {
   jurisdiccion_codigo_indec: number,
   jurisdiccion_nombre: string,
   poblacion_estimada_2021: number,
+  info_website: string
 }

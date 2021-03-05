@@ -32,9 +32,8 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
       : num.toLocaleString('es-AR');
   };
 
-  const getCurrentProvince = <T extends VaccineDataItem | PopulationDataItem>(data: T[]): T[] => {
-    return data.filter(province => province.jurisdiccion_nombre === selectedProvince);
-  };
+  const getCurrentProvince = <T extends VaccineDataItem | PopulationDataItem>(data: T[]): T[] =>
+    data.filter(province => province.jurisdiccion_nombre === selectedProvince);
 
   const getProvincePopulation = (): number => {
     const result = getCurrentProvince(provincePopulation);

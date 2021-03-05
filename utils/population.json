@@ -4,122 +4,146 @@
       {
         "jurisdiccion_codigo_indec": 6,
         "jurisdiccion_nombre": "Buenos Aires",
-        "poblacion_estimada_2021": 17709598
+        "poblacion_estimada_2021": 17709598,
+        "info_website": "https://www.gba.gob.ar/vacunate/"
       },
       {
         "jurisdiccion_codigo_indec": 2,
         "jurisdiccion_nombre": "CABA",
-        "poblacion_estimada_2021": 3078836
+        "poblacion_estimada_2021": 3078836,
+        "info_website": "https://www.buenosaires.gob.ar/coronavirus/vacunacion-covid-19"
       },
       {
         "jurisdiccion_codigo_indec": 10,
         "jurisdiccion_nombre": "Catamarca",
-        "poblacion_estimada_2021": 418991
+        "poblacion_estimada_2021": 418991,
+        "info_website": "https://coronavirus-dengue.catamarca.gob.ar/#/vacunacion/canal/31/mensajes"
       },
       {
         "jurisdiccion_codigo_indec": 22,
         "jurisdiccion_nombre": "Chaco",
-        "poblacion_estimada_2021": 1216247
+        "poblacion_estimada_2021": 1216247,
+        "info_website": "https://elijovacunarme.chaco.gob.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 26,
         "jurisdiccion_nombre": "Chubut",
-        "poblacion_estimada_2021": 629181
+        "poblacion_estimada_2021": 629181,
+        "info_website": "https://www.vacunate.chubut.gov.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 18,
         "jurisdiccion_nombre": "Corrientes",
-        "poblacion_estimada_2021": 1130320
+        "poblacion_estimada_2021": 1130320,
+        "info_website": "https://vacunate.corrientes.gob.ar/vacunate"
       },
       {
         "jurisdiccion_codigo_indec": 14,
         "jurisdiccion_nombre": "Córdoba",
-        "poblacion_estimada_2021": 3798261
+        "poblacion_estimada_2021": 3798261,
+        "info_website": "https://vacunacioncovid19.cba.gov.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 30,
         "jurisdiccion_nombre": "Entre Ríos",
-        "poblacion_estimada_2021": 1398510
+        "poblacion_estimada_2021": 1398510,
+        "info_website": "https://www.entrerios.gov.ar/msalud/#/ms-%C2%BD"
       },
       {
         "jurisdiccion_codigo_indec": 34,
         "jurisdiccion_nombre": "Formosa",
-        "poblacion_estimada_2021": 610019
+        "poblacion_estimada_2021": 610019,
+        "info_website": "https://www.formosa.gob.ar/coronavirus"
       },
       {
         "jurisdiccion_codigo_indec": 38,
         "jurisdiccion_nombre": "Jujuy",
-        "poblacion_estimada_2021": 779212
+        "poblacion_estimada_2021": 779212,
+        "info_website": "http://salud.jujuy.gob.ar/coronavirus/"
       },
       {
         "jurisdiccion_codigo_indec": 42,
         "jurisdiccion_nombre": "La Pampa",
-        "poblacion_estimada_2021": 361394
+        "poblacion_estimada_2021": 361394,
+        "info_website": "https://vacunate.lapampa.gob.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 46,
         "jurisdiccion_nombre": "La Rioja",
-        "poblacion_estimada_2021": 398648
+        "poblacion_estimada_2021": 398648,
+        "info_website": "https://salud.larioja.gob.ar/web/"
       },
       {
         "jurisdiccion_codigo_indec": 50,
         "jurisdiccion_nombre": "Mendoza",
-        "poblacion_estimada_2021": 2010363
+        "poblacion_estimada_2021": 2010363,
+        "info_website": "https://www.mendoza.gov.ar/vacunacion-covid-19/"
       },
       {
         "jurisdiccion_codigo_indec": 54,
         "jurisdiccion_nombre": "Misiones",
-        "poblacion_estimada_2021": 1274992
+        "poblacion_estimada_2021": 1274992,
+        "info_website": "https://salud.misiones.gob.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 58,
         "jurisdiccion_nombre": "Neuquén",
-        "poblacion_estimada_2021": 672461
+        "poblacion_estimada_2021": 672461,
+        "info_website": "https://www.saludneuquen.gob.ar/campana-de-vacunacion-contra-el-coronavirus/"
       },
       {
         "jurisdiccion_codigo_indec": 62,
         "jurisdiccion_nombre": "Río Negro",
-        "poblacion_estimada_2021": 757052
+        "poblacion_estimada_2021": 757052,
+        "info_website": "https://vacunate.rionegro.gov.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 66,
         "jurisdiccion_nombre": "Salta",
-        "poblacion_estimada_2021": 1441988
+        "poblacion_estimada_2021": 1441988,
+        "info_website": "https://vacunate.salta.gob.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 70,
         "jurisdiccion_nombre": "San Juan",
-        "poblacion_estimada_2021": 789489
+        "poblacion_estimada_2021": 789489,
+        "info_website": "https://sisanjuan.gob.ar/vacunacionsanjuan"
       },
       {
         "jurisdiccion_codigo_indec": 74,
         "jurisdiccion_nombre": "San Luis",
-        "poblacion_estimada_2021": 514610
+        "poblacion_estimada_2021": 514610,
+        "info_website": "http://vacunacioncovid.sanluis.gov.ar/"
       },
       {
         "jurisdiccion_codigo_indec": 78,
         "jurisdiccion_nombre": "Santa Cruz",
-        "poblacion_estimada_2021": 374756
+        "poblacion_estimada_2021": 374756,
+        "info_website": ""
       },
       {
         "jurisdiccion_codigo_indec": 82,
         "jurisdiccion_nombre": "Santa Fe",
-        "poblacion_estimada_2021": 3563390
+        "poblacion_estimada_2021": 3563390,
+        "info_website": "https://www.santafe.gob.ar/ms/covid19/"
       },
       {
         "jurisdiccion_codigo_indec": 86,
         "jurisdiccion_nombre": "Santiago del Estero",
-        "poblacion_estimada_2021": 988245
+        "poblacion_estimada_2021": 988245,
+        "info_website": "http://www.msaludsgo.gov.ar/web2/"
       },
       {
         "jurisdiccion_codigo_indec": 94,
         "jurisdiccion_nombre": "Tierra del Fuego",
-        "poblacion_estimada_2021": 177697
+        "poblacion_estimada_2021": 177697,
+        "info_website": ""
       },
       {
         "jurisdiccion_codigo_indec": 90,
         "jurisdiccion_nombre": "Tucumán",
-        "poblacion_estimada_2021": 1714487
+        "poblacion_estimada_2021": 1714487,
+        "info_website": "https://www.tucuman.gob.ar/coronavirus/8545cead-253b-454a-92e8-97b40018f2c0"
       }
     ],
   "countryPopulation": 45808747

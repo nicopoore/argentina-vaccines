@@ -4,7 +4,7 @@ import SelectionContextProvider from '../utils/SelectionContext';
 import { Stack } from '@chakra-ui/react';
 
 const Home = (): JSX.Element => {
-  const [selectedProvince, setSelectedProvince] = useState('CABA');
+  const [selectedProvince, setSelectedProvince] = useState('Argentina');
   return (
     <Stack>
       <Title />
