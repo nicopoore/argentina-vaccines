@@ -26,19 +26,19 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
       : getCurrentProvince(provinceData.provincePopulation)[0].info_website;
 
   return (
-    <Box>
-      <Text fontSize="md" mb={4}>
-        Consultá la información oficial de esta jurisdicción
+    <Box w={300}>
+      <Text fontSize="md" mb={4} wordBreak="normal">
+        Consultá la información oficial de vacunación en {selectedProvince}
       </Text>
       {selectedProvince === 'Tierra del Fuego' ? (
         <>
-          <Button colorScheme="blue" width="32%" onClick={handleOpenModal}>
+          <Button colorScheme="blue" width="37%" onClick={handleOpenModal}>
             Conocé más
           </Button>
           <TierraDelFuegoModal handleClose={handleCloseModal} isOpen={modalIsOpen} />
         </>
       ) : (
-        <Button as="a" colorScheme="blue" href={url} width="32%">
+        <Button as="a" colorScheme="blue" href={url} rel="noreferrer" target="_blank" width="37%">
           Conocé más
         </Button>
       )}
