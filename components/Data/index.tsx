@@ -1,8 +1,8 @@
 import { Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import useSWR from 'swr';
-import BarCharts from './BarCharts';
-import Numbers from './Numbers';
+import BarChartsSection from './BarChartsSection';
+import NumbersSection from './NumbersSection';
 
 const Data: React.FC = (): JSX.Element => {
   const fetcher = async (url: string): Promise<any> =>
@@ -28,8 +28,8 @@ const Data: React.FC = (): JSX.Element => {
   return (
     <Stack alignItems="center" flexGrow={1} justify="center">
       <Stack direction="row">
-        <Numbers data={data ? data.data : 'loading'} />
-        <BarCharts data={data ? data.data : 'loading'} />
+        <NumbersSection data={data ? data.data : 'loading'} />
+        <BarChartsSection data={data ? data.data : 'loading'} />
       </Stack>
       <Stack direction="row">
         <Stack h={300} w={300} />

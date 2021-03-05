@@ -8,7 +8,7 @@ interface Props {
   data: VaccineDataItem[] | 'loading';
 }
 
-const Numbers: React.FC<Props> = (props): JSX.Element => {
+const NumbersSection: React.FC<Props> = (props): JSX.Element => {
   const doses = [1, 2];
 
   const selectedProvince = useContext(SelectionContext);
@@ -24,4 +24,4 @@ const Numbers: React.FC<Props> = (props): JSX.Element => {
   );
 };
 
-export default Numbers;
+export default NumbersSection;

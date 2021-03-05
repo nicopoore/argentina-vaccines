@@ -6,4 +6,3 @@ export { default as Data } from './Data/index'
 
 
 export { default as Meta } from './Meta'
-export { default as DataCard } from './DataCard'
