@@ -9,7 +9,7 @@ interface Props {
 
 const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
   return (
-    <Box pb={2} position="relative" w={400}>
+    <Box minW={400} pb={2} position="relative">
       <ComposableMap
         height={1730}
         projection="geoMercator"

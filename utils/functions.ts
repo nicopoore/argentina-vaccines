@@ -30,10 +30,10 @@ export const formatVaccineData = (data: VaccineDataItem[]): [number, number] => 
   );
 };
 
-export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: string[]): number[] => {
-  let vaccineArray = [];
+export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: string[]): {[key: string]: number} => {
+  let vaccineArray = {};
   vaccineNameArray.map(vaccineName => {
-    vaccineArray.push(
+    vaccineArray[vaccineName] = (
       data
         .filter(row => row.vacuna_nombre === vaccineName)
         .reduce((acc: number, province: VaccineDataItem) => {

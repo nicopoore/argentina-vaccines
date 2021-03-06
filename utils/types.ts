@@ -12,3 +12,13 @@ export interface PopulationDataItem {
   poblacion_estimada_2021: number,
   info_website: string
 }
+
+export interface VaccineTypeItem { 
+  shortName?: string; 
+  name: string; 
+  provider?: string; 
+  countryProduced?: string; 
+  purchased?: number; 
+  arrived?: number;
+  administered?: number; 
+}

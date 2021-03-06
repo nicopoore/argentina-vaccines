@@ -146,5 +146,39 @@
         "info_website": "https://www.tucuman.gob.ar/coronavirus/8545cead-253b-454a-92e8-97b40018f2c0"
       }
     ],
-  "countryPopulation": 45808747
+  "countryPopulation": 45808747,
+  "vaccineTypes": [
+    {
+      "shortName": "Sputnik V",
+      "name": "Sputnik V COVID19 Instituto Gamaleya",
+      "provider": "Instituto Gamaleya",
+      "countryProduced": "RU",
+      "purchased": 20000000,
+      "arrived": 2400000
+    },
+    {
+      "shortName": "Covishield",
+      "name": "COVISHIELD ChAdOx1nCoV COVID 19",
+      "provider": "Oxford / AstraZeneca",
+      "countryProduced": "IN",
+      "purchased": 1160000,
+      "arrived": 580000
+    },
+    {
+      "shortName": "BBIBP-CorV",
+      "name": "Sinopharm Vacuna SARSCOV 2 inactivada",
+      "provider": "Sinopharm",
+      "countryProduced": "CN",
+      "purchased": 1000000,
+      "arrived": 1000000
+    },
+    {
+      "shortName": "AZD1222",
+      "name": "AZD1222 ChAdOx1nCoV COVID 19",
+      "provider": "Oxford / AstraZeneca",
+      "countryProduced": "GB",
+      "purchased": 22431000,
+      "arrived": 0
+    }
+  ]
 }

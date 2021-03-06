@@ -4,8 +4,10 @@ import React from 'react';
 
 interface Props {
   data: { name: string; value: number }[];
-  name: string;
+  name?: string;
   colors: string[];
+  variant?: string;
+  lastItem?: boolean;
 }
 
 const BarChart: React.FC<Props> = (props): JSX.Element => {
@@ -18,18 +20,17 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
     value.toLocaleString('es-AR', { maximumFractionDigits: 2 });
 
   return (
-    <>
-      <Text fontSize="xl" mb={1}>
-        {props.name}
-      </Text>
-      <Flex h={4} mb={4} w="100%">
+    <Box mb={props.lastItem ? 0 : 8}>
+      <Flex h={4} w="100%">
         {props.data.map((chartItem, index) => {
           const percentage = (chartItem.value / total) * 100;
           return (
             <Tooltip
+              key={chartItem.name}
               label={`${chartItem.name}: ${formatNumbers(chartItem.value)} (${formatNumbers(
                 percentage
               )}%)`}
+              placement={props.variant === 'vaccineType' ? 'bottom' : 'top'}
             >
               <Box
                 bgColor={props.colors[index]}
@@ -42,7 +43,12 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
           );
         })}
       </Flex>
-    </>
+      {props.name && (
+        <Text fontSize="lg" fontWeight="semibold">
+          {props.name}
+        </Text>
+      )}
+    </Box>
   );
 };
 
