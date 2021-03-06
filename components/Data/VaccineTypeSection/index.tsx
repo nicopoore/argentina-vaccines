@@ -1,9 +1,12 @@
-import { Box, Button, ButtonGroup, Flex, Image, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import { AnimateSharedLayout, motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
-import { vaccineTypes } from '../../../utils/population.json';
+import { formatVaccineOrigin } from '../../../utils/functions';
+import MotionFlex from '../../../utils/MotionFlex';
+import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
 import { VaccineDataItem, VaccineTypeItem } from '../../../utils/types';
-import BarChart from '../BarChartsSection/BarChart';
+import VaccineTypeData from './VaccineTypeData';
+import VaccineTypeButtons from './VaccineTypeButtons';
 
 interface Props {
   data: VaccineDataItem[] | 'loading';
@@ -13,68 +16,64 @@ const VaccineTypeSection: React.FC<Props> = (props): JSX.Element => {
   const [activeType, setActiveType] = useState('Sputnik V COVID19 Instituto Gamaleya');
   if (props.data === 'loading') return <></>;
 
-  const filteredData = props.data;
+  const vaccineNames = rawVaccineTypes.map(vaccineType => vaccineType.name);
+  const vaccineOrigin = formatVaccineOrigin(props.data, vaccineNames);
 
-  const vaccineNames = vaccineTypes.map(vaccineType => vaccineType.name);
-  const vaccineOrigin = formatVaccineOrigin(filteredData, vaccineNames);
-  const fullVaccineArray = vaccineTypes.map(vaccineType => {
+  const vaccineTypes = rawVaccineTypes.map(vaccineType => {
     return { ...vaccineType, administered: vaccineOrigin[vaccineType['name']] };
   });
+  const totalNumbers = vaccineTypes.reduce(
+    (acc, item) => {
+      acc['arrived'] += item['arrived'];
+      acc['purchased'] += item['purchased'];
+      acc['administered'] += item['administered'];
+      return acc;
+    },
+    { arrived: 0, purchased: 0, administered: 0, name: 'Total', shortName: 'Total' }
+  );
+  const fullVaccineArray = [...vaccineTypes, totalNumbers];
+
+  type ActiveDataType =
+    | VaccineTypeItem
+    | {
+        arrived: number;
+        purchased: number;
+        administered: number;
+        name: 'Total';
+        shortName: 'Total';
+      };
+  const activeData: ActiveDataType = fullVaccineArray.filter(
+    vaccineType => vaccineType.name === activeType
+  )[0];
 
   const handleChange = (vaccineType: VaccineTypeItem): void => {
     setActiveType(() => vaccineType.name);
   };
 
-  const activeData = fullVaccineArray.filter(vaccineType => vaccineType.name === activeType)[0];
-
-  const administered = [
-    { name: 'Aplicadas', value: activeData.administered },
-    { name: 'Entregadas (por aplicar)', value: activeData.arrived - activeData.administered },
-    { name: 'Comprometidas (por entregar)', value: activeData.purchased - activeData.arrived },
-  ];
-
-  const chart = {
-    name: `Vacunas ${activeData.shortName} aplicadas, entregadas y comprometidas`,
-    values: administered,
-    colors: ['#0088FE', '#22D4DF', '#FF8042'],
-  };
-
   return (
-    <Flex bgColor="gray.900" direction="column" minH={300} p={8} w={450}>
-      <Text fontSize="2xl">Vacunas en la Argentina</Text>
-      <ButtonGroup isAttached my={3}>
-        {fullVaccineArray.map(vaccineType => (
-          <Button
-            colorScheme={activeType === vaccineType.name ? 'blue' : undefined}
-            onClick={() => handleChange(vaccineType)}
-          >
-            {vaccineType.shortName}
-          </Button>
-        ))}
-      </ButtonGroup>
-      <Box px="12">
-        <Box mb={4}>
-          <Text fontSize="xl">{activeData.shortName}</Text>
-          <Text color="gray.500" fontSize="md">
-            {activeData.provider}
-          </Text>
-          <Image
-            alt={activeData.countryProduced}
-            boxSize="24px"
-            mt={1}
-            src={`https://www.countryflags.io/${activeData.countryProduced}/flat/48.png`}
-          />
-        </Box>
-        <Box>
-          <BarChart lastItem colors={chart.colors} data={chart.values} variant="vaccineType" />
-          <Text fontSize="4xl" mt={2}>
-            {formatNumbers(activeData.purchased, 'number')}
-          </Text>
-          <Text color="gray.500">vacunas comprometidas</Text>
-        </Box>
-      </Box>
-    </Flex>
+    <AnimateSharedLayout>
+      <MotionFlex
+        layout
+        animate="visible"
+        bgColor="gray.900"
+        direction="column"
+        exit="hidden"
+        initial="hidden"
+        overflow="hidden"
+        p={8}
+        variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+        w={550}
+      >
+        <Text fontSize="2xl">Vacunas en la Argentina</Text>
+        <VaccineTypeButtons
+          activeType={activeType}
+          fullVaccineArray={fullVaccineArray}
+          handleChange={handleChange}
+        />
+        <VaccineTypeData activeData={activeData} />
+      </MotionFlex>
+    </AnimateSharedLayout>
   );
 };
 
-export default VaccineTypeSection;
+export default motion(VaccineTypeSection);

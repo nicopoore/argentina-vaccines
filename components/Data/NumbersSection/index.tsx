@@ -1,5 +1,6 @@
-import { Divider, Flex, Text } from '@chakra-ui/react';
+import { Divider, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
+import MotionFlex from '../../../utils/MotionFlex';
 import { SelectionContext } from '../../../utils/SelectionContext';
 import { VaccineDataItem } from '../../../utils/types';
 import DoseInfo from './DoseInfo';
@@ -14,7 +15,8 @@ const NumbersSection: React.FC<Props> = (props): JSX.Element => {
 
   const selectedProvince = useContext(SelectionContext);
   return (
-    <Flex
+    <MotionFlex
+      layout
       bgColor="gray.900"
       direction="column"
       grow={1}
@@ -31,7 +33,7 @@ const NumbersSection: React.FC<Props> = (props): JSX.Element => {
       ))}
       <Divider mx="auto" my={4} w="40%" />
       <MoreInfoButton />
-    </Flex>
+    </MotionFlex>
   );
 };
 

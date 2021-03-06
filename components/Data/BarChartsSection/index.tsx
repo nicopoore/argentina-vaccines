@@ -5,7 +5,6 @@ import {
   provincePopulation,
   vaccineTypes,
 } from '../../../utils/population.json';
-import { Flex } from '@chakra-ui/react';
 import BarChart from './BarChart';
 import {
   formatVaccineData,
@@ -14,6 +13,7 @@ import {
   getProvincePopulation,
 } from '../../../utils/functions';
 import { SelectionContext } from '../../../utils/SelectionContext';
+import MotionFlex from '../../../utils/MotionFlex';
 
 interface Props {
   data: VaccineDataItem[] | 'loading';
@@ -71,7 +71,7 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   ];
 
   return (
-    <Flex bgColor="gray.900" direction="column" grow={1} p={8} w={500}>
+    <MotionFlex layout bgColor="gray.900" direction="column" grow={1} p={8} w={500}>
       {allCharts.map((chart, index) => (
         <BarChart
           colors={chart.colors}
@@ -80,7 +80,7 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
           name={chart.name}
         />
       ))}
-    </Flex>
+    </MotionFlex>
   );
 };
 

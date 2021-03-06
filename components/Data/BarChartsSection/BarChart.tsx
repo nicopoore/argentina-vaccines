@@ -21,7 +21,7 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <Box mb={props.lastItem ? 0 : 8}>
-      <Flex h={4} w="100%">
+      <Flex borderRadius={2} h={4} overflow="hidden" w="100%">
         {props.data.map((chartItem, index) => {
           const percentage = (chartItem.value / total) * 100;
           return (
@@ -32,13 +32,7 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
               )}%)`}
               placement={props.variant === 'vaccineType' ? 'bottom' : 'top'}
             >
-              <Box
-                bgColor={props.colors[index]}
-                borderLeftRadius={index === 0 ? 2 : 0}
-                borderRightRadius={index === props.data.length - 1 ? 2 : 0}
-                h="100%"
-                w={`${percentage}%`}
-              />
+              <Box bgColor={props.colors[index]} h="100%" w={`${percentage}%`} />
             </Tooltip>
           );
         })}
