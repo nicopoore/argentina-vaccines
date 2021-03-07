@@ -1,6 +1,8 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { Box, Skeleton, Tooltip } from '@chakra-ui/react';
+import { AnimateSharedLayout } from 'framer-motion';
 import React from 'react';
+import MotionBox from '../../../utils/MotionBox';
 
 interface LoadedProps {
   data: { name: string; value: number }[] | 'loading';
@@ -34,20 +36,28 @@ const BarChart: React.FC<LoadedProps | LoadingProps> = (props): JSX.Element => {
         {props.data === 'loading' ? (
           <Skeleton h="100%" w="100%" />
         ) : (
-          props.data.map((chartItem, index) => {
-            const percentage = (chartItem.value / total) * 100;
-            return (
-              <Tooltip
-                key={chartItem.name}
-                label={`${chartItem.name}: ${formatNumbers(chartItem.value)} (${formatNumbers(
-                  percentage
-                )}%)`}
-                placement={props.variant === 'vaccineType' ? 'bottom' : 'top'}
-              >
-                <Box bgColor={props.colors[index]} h="100%" w={`${percentage}%`} />
-              </Tooltip>
-            );
-          })
+          <AnimateSharedLayout>
+            {props.data.map((chartItem, index) => {
+              const percentage = (chartItem.value / total) * 100;
+              return (
+                <Tooltip
+                  key={chartItem.name}
+                  label={`${chartItem.name}: ${formatNumbers(chartItem.value)} (${formatNumbers(
+                    percentage
+                  )}%)`}
+                  placement={props.variant === 'vaccineType' ? 'bottom' : 'top'}
+                >
+                  <MotionBox
+                    layout
+                    bgColor={props.colors[index]}
+                    h="100%"
+                    layoutId={chartItem.name}
+                    w={`${percentage}%`}
+                  />
+                </Tooltip>
+              );
+            })}
+          </AnimateSharedLayout>
         )}
       </Flex>
       {props.name && (
