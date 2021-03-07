@@ -14,13 +14,30 @@ import {
 } from '../../../utils/functions';
 import { SelectionContext } from '../../../utils/SelectionContext';
 import MotionFlex from '../../../utils/MotionFlex';
+import { Flex } from '@chakra-ui/layout';
 
 interface Props {
   data: VaccineDataItem[] | 'loading';
 }
 
 const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
-  if (props.data === 'loading') return <></>;
+  const chartNames = [
+    '% de la población vacunada (1 o más dosis)',
+    'Parcial vs. totalmente vacunades',
+    '% de vacunades por tipo (1 o más dosis)',
+  ];
+  if (props.data === 'loading')
+    return (
+      <Flex bgColor="gray.900" direction="column" p={8} w={500}>
+        {chartNames.map((chartName, index) => (
+          <BarChart
+            data="loading"
+            lastItem={index === chartNames.length - 1 ? true : false}
+            name={chartName}
+          />
+        ))}
+      </Flex>
+    );
 
   const selectedProvince = useContext(SelectionContext);
 
@@ -38,34 +55,30 @@ const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
   const vaccineNames = vaccineTypes.map(vaccineType => vaccineType.name);
   const vaccineOrigin = formatVaccineOrigin(filteredData, vaccineNames);
 
-  const vaxVsUnvax = [
-    { name: 'Vacunadas', value: vaccineData[0] },
-    { name: 'No vacunadas', value: population - vaccineData[0] },
-  ];
-  const firstVsSecond = [
-    { name: 'Ambas dosis', value: vaccineData[1] },
-    { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
-  ];
-  const vaccineOriginVs = [
-    { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
-    { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
-    { name: 'Sinopharma', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
-  ];
-
   const allCharts = [
     {
       name: '% de la población vacunada (1 o más dosis)',
-      values: vaxVsUnvax,
+      values: [
+        { name: 'Vacunadas', value: vaccineData[0] },
+        { name: 'No vacunadas', value: population - vaccineData[0] },
+      ],
       colors: ['#00C49F', '#FF8042'],
     },
     {
       name: 'Parcial vs. totalmente vacunades',
-      values: firstVsSecond,
+      values: [
+        { name: 'Ambas dosis', value: vaccineData[1] },
+        { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
+      ],
       colors: ['#00C49F', '#FFBB28'],
     },
     {
       name: '% de vacunades por tipo (1 o más dosis)',
-      values: vaccineOriginVs,
+      values: [
+        { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
+        { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
+        { name: 'Sinopharma', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
+      ],
       colors: ['#0088FE', '#22D4DF', '#FF8042'],
     },
   ];

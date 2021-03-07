@@ -1,20 +1,20 @@
 import { ButtonGroup, Button } from '@chakra-ui/react';
 import React from 'react';
-import { VaccineTypeItem } from '../../../utils/types';
+import { RawVaccineTypeItem } from '../../../utils/types';
 
 interface Props {
-  fullVaccineArray;
+  vaccines: RawVaccineTypeItem[];
   activeType: string;
-  handleChange: (_: VaccineTypeItem) => void;
+  handleChange: (_: string) => void;
 }
 
 const VaccineTypeButtons: React.FC<Props> = (props): JSX.Element => {
   return (
     <ButtonGroup isAttached my={3}>
-      {props.fullVaccineArray.map(vaccineType => (
+      {props.vaccines.map(vaccineType => (
         <Button
           colorScheme={props.activeType === vaccineType.name ? 'blue' : undefined}
-          onClick={() => props.handleChange(vaccineType)}
+          onClick={() => props.handleChange(vaccineType.name)}
         >
           {vaccineType.shortName}
         </Button>

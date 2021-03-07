@@ -15,16 +15,6 @@ const Home = (): JSX.Element => {
         </SelectionContextProvider>
       </Stack>
     </Stack>
-    // <Box overflow="hidden">
-    //   <Meta />
-    //   <Grid container>
-    //     <Title />
-    //     <Map setTooltipContent={setContent} />
-    //     <SelectionContextProvider selectedProvince={selectedProvince}>
-    //       <DataCard />
-    //     </SelectionContextProvider>
-    //   </Grid>
-    // </Box>
   );
 };
 

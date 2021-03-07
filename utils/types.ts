@@ -13,7 +13,7 @@ export interface PopulationDataItem {
   info_website: string
 }
 
-export interface VaccineTypeItem { 
+export interface FullVaccineTypeItem { 
   shortName?: string; 
   name: string; 
   provider?: string; 
@@ -21,4 +21,13 @@ export interface VaccineTypeItem {
   purchased?: number; 
   arrived?: number;
   administered?: number; 
+}
+
+export interface RawVaccineTypeItem { 
+  shortName?: string; 
+  name: string; 
+  provider?: string; 
+  countryProduced?: string; 
+  purchased?: number; 
+  arrived?: number;
 }
