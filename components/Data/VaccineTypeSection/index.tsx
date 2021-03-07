@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react';
-import { AnimateSharedLayout, motion } from 'framer-motion';
+import { AnimateSharedLayout } from 'framer-motion';
 import React, { useState } from 'react';
 import MotionFlex from '../../../utils/MotionFlex';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
@@ -39,4 +39,4 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
   );
 };
 
-export default motion(VaccineTypeSection);
+export default VaccineTypeSection;

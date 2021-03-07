@@ -24,15 +24,19 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     '% de vacunades por tipo (1 o más dosis)',
   ];
   const data = useContext(DataContext);
+  const selectedProvince = useContext(SelectionContext);
   if (!data)
     return (
       <Flex bgColor="gray.900" direction="column" p={8} w={500}>
         {chartNames.map((chartName, index) => (
-          <BarChart lastItem={index === chartNames.length - 1 ? true : false} name={chartName} />
+          <BarChart
+            key={`${chartName}-bar-chart`}
+            lastItem={index === chartNames.length - 1 ? true : false}
+            name={chartName}
+          />
         ))}
       </Flex>
     );
-  const selectedProvince = useContext(SelectionContext);
 
   let population = 0;
   let filteredData: VaccineDataItem[];
@@ -80,6 +84,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     <MotionFlex layout bgColor="gray.900" direction="column" grow={1} p={8} w={500}>
       {allCharts.map((chart, index) => (
         <BarChart
+          key={`${chart.name}-bar-chart`}
           colors={chart.colors}
           data={chart.values}
           lastItem={index === allCharts.length - 1 ? true : false}

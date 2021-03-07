@@ -13,6 +13,7 @@ const VaccineTypeButtons: React.FC<Props> = (props): JSX.Element => {
     <ButtonGroup isAttached my={3}>
       {props.vaccines.map(vaccineType => (
         <Button
+          key={`${vaccineType.name}-button`}
           colorScheme={props.activeType === vaccineType.name ? 'blue' : undefined}
           onClick={() => props.handleChange(vaccineType.name)}
         >

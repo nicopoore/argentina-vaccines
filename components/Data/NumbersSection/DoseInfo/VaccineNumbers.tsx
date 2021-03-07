@@ -19,6 +19,7 @@ interface VaccineNumbersProps {
 
 const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   const data = useContext(DataContext);
+  const selectedProvince = useContext(SelectionContext);
   if (!data)
     return (
       <Box w="48%">
@@ -28,7 +29,6 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
         </Text>
       </Box>
     );
-  const selectedProvince = useContext(SelectionContext);
 
   let population = 0;
   let vaccines = [0, 0];

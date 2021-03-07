@@ -1,7 +1,7 @@
 import { forwardRef, Flex } from '@chakra-ui/react';
 import { isValidMotionProp, motion } from 'framer-motion';
 
-const MotionFlex = motion.custom(
+const MotionFlex = motion(
   forwardRef((props, ref) => {
     const chakraProps = Object.fromEntries(
       Object.entries(props).filter(([key]) => !isValidMotionProp(key))

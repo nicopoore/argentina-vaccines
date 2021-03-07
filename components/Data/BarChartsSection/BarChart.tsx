@@ -47,6 +47,7 @@ const BarChart: React.FC<LoadedProps | LoadingProps> = (props): JSX.Element => {
                   placement={props.variant === 'vaccineType' ? 'bottom' : 'top'}
                 >
                   <MotionBox
+                    key={`${chartItem.name}-box`}
                     layout
                     bgColor={props.colors[index]}
                     h="100%"

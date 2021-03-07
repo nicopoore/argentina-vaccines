@@ -17,8 +17,8 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
 
   if (!data)
     return (
-      <Box key="bottom-section" layout px={6}>
-        <Box layout mb={4} mt={4}>
+      <Box key="bottom-section" px={6}>
+        <Box mb={4} mt={4}>
           <SkeletonText noOfLines={2} w={32} />
           <Skeleton h="20px" mt={2} w="24px" />
         </Box>
@@ -68,8 +68,8 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
   };
 
   return (
-    <Box key="bottom-section" layout px={6}>
-      <Box layout mb={4}>
+    <Box key="bottom-section" px={6}>
+      <Box mb={4}>
         <Text fontSize="xl">{activeData.shortName}</Text>
         <AnimatePresence>
           {activeData.shortName !== 'Total' && (
