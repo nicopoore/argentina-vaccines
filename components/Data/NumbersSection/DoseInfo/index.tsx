@@ -1,11 +1,9 @@
 import React from 'react';
 import VaccineNumbers from './VaccineNumbers';
-import { VaccineDataItem } from '../../../../utils/types';
 import { Flex, Text } from '@chakra-ui/react';
 
 interface DoseInfoProps {
   dose: 1 | 2;
-  data: VaccineDataItem[] | 'loading';
 }
 
 const DoseInfo: React.FC<DoseInfoProps> = (props): JSX.Element => {
@@ -16,12 +14,7 @@ const DoseInfo: React.FC<DoseInfoProps> = (props): JSX.Element => {
       </Text>
       <Flex justify="space-between">
         {['raw', 'percentage'].map((numberType: 'raw' | 'percentage') => (
-          <VaccineNumbers
-            key={`vaccine-${numberType}`}
-            data={props.data}
-            dose={props.dose}
-            numberType={numberType}
-          />
+          <VaccineNumbers key={`vaccine-${numberType}`} dose={props.dose} numberType={numberType} />
         ))}
       </Flex>
     </>

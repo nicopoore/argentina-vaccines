@@ -9,16 +9,17 @@ import {
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../../utils/functions';
+import { DataContext } from '../../../../utils/DataContext';
 
 interface VaccineNumbersProps {
   vaccine?: string;
   dose?: 1 | 2;
   numberType: 'raw' | 'percentage';
-  data: VaccineDataItem[] | 'loading';
 }
 
 const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
-  if (props.data === 'loading')
+  const data = useContext(DataContext);
+  if (!data)
     return (
       <Box w="48%">
         <SkeletonText mt={2} noOfLines={2} pr={4} w="100%" />
@@ -33,10 +34,10 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   let vaccines = [0, 0];
   if (selectedProvince === 'Argentina') {
     population = countryPopulation;
-    vaccines = formatVaccineData(props.data);
+    vaccines = formatVaccineData(data);
   } else {
     population = getProvincePopulation(provincePopulation, selectedProvince);
-    const filteredData = getCurrentProvince(props.data, selectedProvince);
+    const filteredData: VaccineDataItem[] = getCurrentProvince(data, selectedProvince);
     vaccines = formatVaccineData(filteredData);
   }
 

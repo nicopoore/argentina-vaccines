@@ -1,19 +1,21 @@
 import { Box, Text, Image, SkeletonText, Skeleton } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
-import React from 'react';
+import React, { useContext } from 'react';
 import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
 import MotionBox from '../../../utils/MotionBox';
-import { FullVaccineTypeItem, VaccineDataItem } from '../../../utils/types';
+import { FullVaccineTypeItem } from '../../../utils/types';
 import BarChart from '../BarChartsSection/BarChart';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
+import { DataContext } from '../../../utils/DataContext';
 
 interface Props {
-  data: VaccineDataItem[] | 'loading';
   activeType: string;
 }
 
 const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
-  if (props.data === 'loading')
+  const data = useContext(DataContext);
+
+  if (!data)
     return (
       <Box key="bottom-section" layout px={6}>
         <Box layout mb={4} mt={4}>
@@ -21,14 +23,14 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
           <Skeleton h="20px" mt={2} w="24px" />
         </Box>
         <MotionBox layout>
-          <BarChart lastItem data="loading" />
+          <BarChart lastItem />
           <SkeletonText mt={4} noOfLines={2} w={48} />
         </MotionBox>
       </Box>
     );
 
   const vaccineNames = rawVaccineTypes.map(vaccineType => vaccineType.name);
-  const vaccineOrigin = formatVaccineOrigin(props.data, vaccineNames);
+  const vaccineOrigin = formatVaccineOrigin(data, vaccineNames);
 
   const vaccineTypes = rawVaccineTypes.map(vaccineType => {
     return { ...vaccineType, administered: vaccineOrigin[vaccineType['name']] };

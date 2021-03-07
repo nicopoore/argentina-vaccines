@@ -5,7 +5,7 @@ import React from 'react';
 import MotionBox from '../../../utils/MotionBox';
 
 interface LoadedProps {
-  data: { name: string; value: number }[] | 'loading';
+  data: { name: string; value: number }[];
   name?: string;
   colors: string[];
   variant?: string;
@@ -13,14 +13,13 @@ interface LoadedProps {
 }
 
 interface LoadingProps {
-  data: 'loading';
   name?: string;
   lastItem?: boolean;
 }
 
 const BarChart: React.FC<LoadedProps | LoadingProps> = (props): JSX.Element => {
   let total: number;
-  if (props.data !== 'loading') {
+  if ('data' in props) {
     total = props.data.reduce((acc, item) => {
       acc += item.value;
       return acc;
@@ -33,7 +32,7 @@ const BarChart: React.FC<LoadedProps | LoadingProps> = (props): JSX.Element => {
   return (
     <Box mb={props.lastItem ? 0 : 8}>
       <Flex borderRadius={2} h={4} mb={1} overflow="hidden" w="100%">
-        {props.data === 'loading' ? (
+        {!('data' in props) ? (
           <Skeleton h="100%" w="100%" />
         ) : (
           <AnimateSharedLayout>

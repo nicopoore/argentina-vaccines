@@ -15,40 +15,33 @@ import {
 import { SelectionContext } from '../../../utils/SelectionContext';
 import MotionFlex from '../../../utils/MotionFlex';
 import { Flex } from '@chakra-ui/layout';
+import { DataContext } from '../../../utils/DataContext';
 
-interface Props {
-  data: VaccineDataItem[] | 'loading';
-}
-
-const BarChartsSection: React.FC<Props> = (props): JSX.Element => {
+const BarChartsSection: React.FC = (): JSX.Element => {
   const chartNames = [
     '% de la población vacunada (1 o más dosis)',
     'Parcial vs. totalmente vacunades',
     '% de vacunades por tipo (1 o más dosis)',
   ];
-  if (props.data === 'loading')
+  const data = useContext(DataContext);
+  if (!data)
     return (
       <Flex bgColor="gray.900" direction="column" p={8} w={500}>
         {chartNames.map((chartName, index) => (
-          <BarChart
-            data="loading"
-            lastItem={index === chartNames.length - 1 ? true : false}
-            name={chartName}
-          />
+          <BarChart lastItem={index === chartNames.length - 1 ? true : false} name={chartName} />
         ))}
       </Flex>
     );
-
   const selectedProvince = useContext(SelectionContext);
 
   let population = 0;
   let filteredData: VaccineDataItem[];
   if (selectedProvince === 'Argentina') {
     population = countryPopulation;
-    filteredData = props.data;
+    filteredData = data;
   } else {
     population = getProvincePopulation(provincePopulation, selectedProvince);
-    filteredData = getCurrentProvince(props.data, selectedProvince);
+    filteredData = getCurrentProvince(data, selectedProvince);
   }
 
   const vaccineData = formatVaccineData(filteredData);

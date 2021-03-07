@@ -2,15 +2,10 @@ import { Divider, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import MotionFlex from '../../../utils/MotionFlex';
 import { SelectionContext } from '../../../utils/SelectionContext';
-import { VaccineDataItem } from '../../../utils/types';
 import DoseInfo from './DoseInfo';
 import MoreInfoButton from './MoreInfoButton/index';
 
-interface Props {
-  data: VaccineDataItem[] | 'loading';
-}
-
-const NumbersSection: React.FC<Props> = (props): JSX.Element => {
+const NumbersSection: React.FC = (): JSX.Element => {
   const doses = [1, 2];
 
   const selectedProvince = useContext(SelectionContext);
@@ -29,7 +24,7 @@ const NumbersSection: React.FC<Props> = (props): JSX.Element => {
         {selectedProvince}
       </Text>
       {doses.map((dose: 1 | 2) => (
-        <DoseInfo key={`dose-${dose}`} data={props.data} dose={dose} />
+        <DoseInfo key={`dose-${dose}`} dose={dose} />
       ))}
       <Divider mx="auto" my={4} w="40%" />
       <MoreInfoButton />

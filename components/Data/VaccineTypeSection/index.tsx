@@ -3,15 +3,10 @@ import { AnimateSharedLayout, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import MotionFlex from '../../../utils/MotionFlex';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
-import { VaccineDataItem } from '../../../utils/types';
 import VaccineTypeData from './VaccineTypeData';
 import VaccineTypeButtons from './VaccineTypeButtons';
 
-interface Props {
-  data: VaccineDataItem[] | 'loading';
-}
-
-const VaccineTypeSection: React.FC<Props> = (props): JSX.Element => {
+const VaccineTypeSection: React.FC = (): JSX.Element => {
   const [activeType, setActiveType] = useState('Sputnik V COVID19 Instituto Gamaleya');
 
   const handleChange = (vaccineName: string): void => {
@@ -38,7 +33,7 @@ const VaccineTypeSection: React.FC<Props> = (props): JSX.Element => {
           handleChange={handleChange}
           vaccines={[...rawVaccineTypes, { name: 'Total', shortName: 'Total' }]}
         />
-        <VaccineTypeData activeType={activeType} data={props.data} />
+        <VaccineTypeData activeType={activeType} />
       </MotionFlex>
     </AnimateSharedLayout>
   );
