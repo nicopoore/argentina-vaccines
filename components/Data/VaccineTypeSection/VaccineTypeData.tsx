@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
 import MotionBox from '../../../utils/MotionBox';
 import { FullVaccineTypeItem } from '../../../utils/types';
-import BarChart from '../BarChartsSection/BarChart';
+import BarChart from '../BarChart';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
 import { DataContext } from '../../../utils/DataContext';
 
