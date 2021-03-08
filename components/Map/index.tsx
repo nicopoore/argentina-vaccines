@@ -11,7 +11,7 @@ const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
   return (
     <Box
       align="center"
-      mb={[4, 0, 0, 0, 0]}
+      mb={{ base: 4, sm: 0 }}
       minW={['70%', 300, 300, 320, 400]}
       mx="auto"
       pb={2}
@@ -27,8 +27,8 @@ const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
       <Box
         position="absolute"
         right={[0, 0, 2, 2, 5]}
-        top={['25%', '25%', 180, 195, 250]}
-        w={['15%', '15%', '50px', '50px', '60px']}
+        top={['25%', null, 180, 195, 250]}
+        w={{ base: '15%', md: '50px', '2xl': '60px' }}
       >
         <ComposableMap
           height={800}

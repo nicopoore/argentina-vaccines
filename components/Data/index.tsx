@@ -17,7 +17,7 @@ const Data: React.FC = (): JSX.Element => {
         alignItems="center"
         direction="row"
         justify="center"
-        w={['100%', '60%', '60%', '60%', 'initial']}
+        w={{ base: '100%', sm: '60%', '2xl': 'initial' }}
         wrap="wrap"
       >
         <AnimateSharedLayout>

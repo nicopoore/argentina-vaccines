@@ -22,12 +22,12 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
         direction="column"
         exit="hidden"
         initial="hidden"
-        mb={[6, 6, 12, 12, 0]}
-        minW={[300, 350, 400, 0, 0]}
+        mb={{ base: 6, md: 12, '2xl': 0 }}
+        minW={[300, 350, 400, 0]}
         overflow="hidden"
         p={8}
         variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-        w={['100%', '100%', '100%', '100%', 550]}
+        w={{ base: '100%', '2xl': 550 }}
       >
         <Text fontSize="2xl">Vacunas en la Argentina</Text>
         <VaccineTypeButtons

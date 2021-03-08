@@ -11,10 +11,7 @@ interface Props {
 const VaccineTypeButtons: React.FC<Props> = (props): JSX.Element => {
   const buttonSize = useBreakpointValue({
     base: 'xs',
-    sm: 'xs',
     md: 'sm',
-    lg: 'sm',
-    xl: 'sm',
     '2xl': 'md',
   });
   return (

@@ -22,7 +22,7 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
   if (!data)
     return (
-      <Box w="48%">
+      <Box w={{ base: '45%', md: '48%' }}>
         <SkeletonText mt={2} noOfLines={2} pr={4} w="100%" />
         <Text color="gray.500" fontSize="md" mt={1}>
           {props.numberType === 'raw' ? 'personas' : 'de la población'}
@@ -42,8 +42,8 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   }
 
   return (
-    <Box w={['45%', '45%', '48%', '48%', '48%']}>
-      <Text as="h4" fontSize={['3xl', '3xl', '4xl', '4xl', '4xl']} mt={0}>
+    <Box w={{ base: '45%', md: '48%' }}>
+      <Text as="h4" fontSize={{ base: '3xl', md: '4xl' }} mt={0}>
         {props.numberType === 'raw'
           ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], 'number')
           : formatNumbers(vaccines[props.dose === 1 ? 0 : 1] / population, 'percentage')}

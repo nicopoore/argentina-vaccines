@@ -87,7 +87,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
       direction="column"
       grow={1}
       p={8}
-      w={['97.5%', '100%', '100%', '100%', 500]}
+      w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
     >
       {allCharts.map((chart, index) => (
         <BarChart
