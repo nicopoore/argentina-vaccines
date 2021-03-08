@@ -1,10 +1,11 @@
-import { Flex, Stack } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import React, { useContext } from 'react';
 import MotionBox from '../../utils/MotionBox';
 import MotionStack from '../../utils/MotionStack';
 import { SelectionContext } from '../../utils/SelectionContext';
 import BarChartsSection from './BarChartsSection';
+import HistogramSection from './HistogramSection';
 import NumbersSection from './NumbersSection';
 import VaccineTypeSection from './VaccineTypeSection';
 
@@ -32,7 +33,7 @@ const Data: React.FC = (): JSX.Element => {
             <NumbersSection />
             <MotionStack layout>
               <BarChartsSection />
-              <Flex bgColor="gray.900" direction="column" grow={1} minH={200} w="100%" />
+              <HistogramSection />
             </MotionStack>
           </MotionStack>
 

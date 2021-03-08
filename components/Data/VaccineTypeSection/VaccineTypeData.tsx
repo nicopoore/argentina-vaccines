@@ -46,8 +46,7 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
   );
   const fullVaccineArray = [...vaccineTypes, totalNumbers];
 
-  type ActiveDataType = FullVaccineTypeItem;
-  const activeData: ActiveDataType = fullVaccineArray.filter(
+  const activeData: FullVaccineTypeItem = fullVaccineArray.filter(
     vaccineType => vaccineType.name === props.activeType
   )[0];
 
