@@ -1,4 +1,4 @@
-import { ButtonGroup, Button } from '@chakra-ui/react';
+import { ButtonGroup, Button, useBreakpointValue } from '@chakra-ui/react';
 import React from 'react';
 import { RawVaccineTypeItem } from '../../../utils/types';
 
@@ -9,8 +9,16 @@ interface Props {
 }
 
 const VaccineTypeButtons: React.FC<Props> = (props): JSX.Element => {
+  const buttonSize = useBreakpointValue({
+    base: 'xs',
+    sm: 'xs',
+    md: 'sm',
+    lg: 'sm',
+    xl: 'sm',
+    '2xl': 'md',
+  });
   return (
-    <ButtonGroup isAttached my={3}>
+    <ButtonGroup isAttached my={3} size={buttonSize}>
       {props.vaccines.map(vaccineType => (
         <Button
           key={`${vaccineType.name}-button`}

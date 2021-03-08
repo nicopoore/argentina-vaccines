@@ -30,7 +30,7 @@ const Home = (): JSX.Element => {
   return (
     <Stack>
       <Title />
-      <Stack direction="row">
+      <Stack direction="row" wrap={['wrap', 'wrap', 'nowrap', 'nowrap', 'nowrap']}>
         <DataContextProvider data={data?.data}>
           <SelectionContextProvider selectedProvince={selectedProvince}>
             <Map setSelectedProvince={setSelectedProvince} />

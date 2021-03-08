@@ -9,7 +9,14 @@ interface Props {
 
 const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
   return (
-    <Box minW={400} pb={2} position="relative">
+    <Box
+      align="center"
+      mb={[4, 0, 0, 0, 0]}
+      minW={['70%', 300, 300, 320, 400]}
+      mx="auto"
+      pb={2}
+      position="relative"
+    >
       <ComposableMap
         height={1730}
         projection="geoMercator"
@@ -17,7 +24,12 @@ const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
       >
         <GeographyItem setSelectedProvince={setSelectedProvince} />
       </ComposableMap>
-      <Box left={320} position="absolute" top={250} w="60px">
+      <Box
+        position="absolute"
+        right={[0, 0, 2, 2, 5]}
+        top={['25%', '25%', 180, 195, 250]}
+        w={['15%', '15%', '50px', '50px', '60px']}
+      >
         <ComposableMap
           height={800}
           projection="geoMercator"

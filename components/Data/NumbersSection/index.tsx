@@ -14,11 +14,13 @@ const NumbersSection: React.FC = (): JSX.Element => {
       layout
       bgColor="gray.900"
       direction="column"
-      grow={1}
       justify="center"
+      mb={[2, 2, 2, 2, 0]}
       minH={300}
-      minW={400}
+      minW={[0, 0, 400, 400, 400]}
+      ml={[0, 0, 2, 2, 0]}
       p={8}
+      w={['95%', '97.5%', '100%', '100%', 'initial']}
     >
       <Text as="h5" fontSize="2xl">
         {selectedProvince}

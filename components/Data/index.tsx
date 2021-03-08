@@ -13,13 +13,26 @@ const Data: React.FC = (): JSX.Element => {
 
   return (
     <Stack alignItems="center" flexGrow={1} justify="center" overflow="hidden">
-      <Stack alignItems="center" direction="row" justify="center" wrap="wrap">
+      <Stack
+        alignItems="center"
+        direction="row"
+        justify="center"
+        w={['100%', '60%', '60%', '60%', 'initial']}
+        wrap="wrap"
+      >
         <AnimateSharedLayout>
-          <MotionStack key="top-sections" layout direction="row" mb={6}>
+          <MotionStack
+            key="top-sections"
+            layout
+            direction="row"
+            justify="center"
+            mb={6}
+            wrap="wrap"
+          >
             <NumbersSection />
             <MotionStack layout>
               <BarChartsSection />
-              <Flex bgColor="gray.900" direction="column" grow={1} minH={200} minW={300} w="100%" />
+              <Flex bgColor="gray.900" direction="column" grow={1} minH={200} w="100%" />
             </MotionStack>
           </MotionStack>
 

@@ -81,7 +81,14 @@ const BarChartsSection: React.FC = (): JSX.Element => {
   ];
 
   return (
-    <MotionFlex layout bgColor="gray.900" direction="column" grow={1} p={8} w={500}>
+    <MotionFlex
+      layout
+      bgColor="gray.900"
+      direction="column"
+      grow={1}
+      p={8}
+      w={['97.5%', '100%', '100%', '100%', 500]}
+    >
       {allCharts.map((chart, index) => (
         <BarChart
           key={`${chart.name}-bar-chart`}
