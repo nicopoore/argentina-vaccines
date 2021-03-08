@@ -27,7 +27,12 @@ const BarChartsSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
   if (!data)
     return (
-      <Flex bgColor="gray.900" direction="column" p={8} w={500}>
+      <Flex
+        bgColor="gray.900"
+        direction="column"
+        p={8}
+        w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
+      >
         {chartNames.map((chartName, index) => (
           <BarChart
             key={`${chartName}-bar-chart`}
