@@ -63,6 +63,8 @@ const HistogramSection: React.FC = (): JSX.Element => {
         grow={1}
         minH={200}
         p={8}
+        pb={2}
+        pl={0}
         w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
       >
         <ResponsiveContainer height="100%" width="100%">
