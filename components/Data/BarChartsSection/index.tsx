@@ -7,7 +7,7 @@ import {
 } from '../../../utils/population.json';
 import BarChart from '../BarChart';
 import {
-  formatVaccineData,
+  formatVaccineDataItem,
   formatVaccineOrigin,
   getCurrentProvince,
   getProvincePopulation,
@@ -53,7 +53,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     filteredData = getCurrentProvince(data, selectedProvince);
   }
 
-  const vaccineData = formatVaccineData(filteredData);
+  const vaccineData = formatVaccineDataItem(filteredData);
   const vaccineNames = vaccineTypes.map(vaccineType => vaccineType.name);
   const vaccineOrigin = formatVaccineOrigin(filteredData, vaccineNames);
 
