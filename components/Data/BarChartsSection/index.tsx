@@ -4,7 +4,7 @@ import {
   countryPopulation,
   provincePopulation,
   vaccineTypes,
-} from '../../../utils/population.json';
+} from '../../../utils/staticData.json';
 import BarChart from '../BarChart';
 import {
   formatVaccineDataItem,

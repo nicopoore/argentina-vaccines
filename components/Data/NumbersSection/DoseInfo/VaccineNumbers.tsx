@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { provincePopulation, countryPopulation } from '../../../../utils/population.json';
+import { provincePopulation, countryPopulation } from '../../../../utils/staticData.json';
 import { VaccineDataItem } from '../../../../utils/types';
 import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';

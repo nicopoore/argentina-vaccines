@@ -1,21 +1,22 @@
 import { Button, Flex } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import {
+  fetcher,
   formatVaccineData,
   formatVaccineDataItem,
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../utils/functions';
 import { SelectionContext } from '../../../utils/Context/SelectionContext';
-import { DataContext } from '../../../utils/Context/DataContext';
-import rawData from './rawData.json';
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { countryPopulation, provincePopulation } from '../../../utils/population.json';
+import { countryPopulation, provincePopulation } from '../../../utils/staticData.json';
+import useSWR from 'swr';
 
 const HistogramSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
-  const data = useContext(DataContext);
+  const { data, error } = useSWR('/api/historic_data', fetcher);
   const [YAxisIsScaled, setYAxisIsScaled] = useState(false);
+  if (error) return <p>Error fetching historical data</p>;
   if (!data) return <></>;
 
   const population =
@@ -23,9 +24,9 @@ const HistogramSection: React.FC = (): JSX.Element => {
       ? countryPopulation
       : getProvincePopulation(provincePopulation, selectedProvince);
 
-  const fullCurrentVaccineData = formatVaccineData(data);
+  const fullCurrentVaccineData = formatVaccineData(data[data.length - 1].data);
 
-  const histogramData = rawData.map(rawDataItem => {
+  const histogramData = data.map(rawDataItem => {
     const filteredData =
       selectedProvince === 'Argentina'
         ? rawDataItem.data
@@ -61,7 +62,7 @@ const HistogramSection: React.FC = (): JSX.Element => {
       <Flex
         bgColor="gray.900"
         grow={1}
-        minH={200}
+        minH={120}
         p={8}
         pb={2}
         pl={0}

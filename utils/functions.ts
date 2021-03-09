@@ -75,3 +75,14 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
 export const postCurrentData = async (): Promise<void> => {
   axios.post('/api/historic_data')
 }
+
+export const fetcher = async (url: string): Promise<any> => {
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+    cache: 'default',
+  }).then(res => res.json())
+}
