@@ -5,7 +5,7 @@ import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
 import MotionBox from '../../../utils/MotionComponents/MotionBox';
 import { FullVaccineTypeItem } from '../../../utils/types';
 import BarChart from '../BarChart';
-import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
+import { vaccineTypes as rawVaccineTypes } from '../../../utils/staticData.json';
 import { DataContext } from '../../../utils/Context/DataContext';
 
 interface Props {
