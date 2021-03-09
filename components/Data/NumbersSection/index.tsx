@@ -1,7 +1,7 @@
 import { Divider, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import MotionFlex from '../../../utils/MotionFlex';
-import { SelectionContext } from '../../../utils/SelectionContext';
+import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
+import { SelectionContext } from '../../../utils/Context/SelectionContext';
 import DoseInfo from './DoseInfo';
 import MoreInfoButton from './MoreInfoButton/index';
 

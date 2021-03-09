@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import { AnimateSharedLayout } from 'framer-motion';
 import React, { useState } from 'react';
-import MotionFlex from '../../../utils/MotionFlex';
+import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
 import VaccineTypeData from './VaccineTypeData';
 import VaccineTypeButtons from './VaccineTypeButtons';

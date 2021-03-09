@@ -1,7 +1,7 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import provinceData from '../../../../utils/population.json';
-import { SelectionContext } from '../../../../utils/SelectionContext';
+import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 import { PopulationDataItem } from '../../../../utils/types';
 import TierraDelFuegoModal from './TierraDelFuegoModal';
 

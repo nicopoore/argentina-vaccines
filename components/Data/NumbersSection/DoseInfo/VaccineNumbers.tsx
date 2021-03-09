@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { provincePopulation, countryPopulation } from '../../../../utils/population.json';
 import { VaccineDataItem } from '../../../../utils/types';
-import { SelectionContext } from '../../../../utils/SelectionContext';
+import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';
 import {
   formatNumbers,
@@ -9,7 +9,7 @@ import {
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../../utils/functions';
-import { DataContext } from '../../../../utils/DataContext';
+import { DataContext } from '../../../../utils/Context/DataContext';
 
 interface VaccineNumbersProps {
   vaccine?: string;

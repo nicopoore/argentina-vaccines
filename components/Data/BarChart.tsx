@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/layout';
 import { Box, Skeleton, Tooltip } from '@chakra-ui/react';
 import { AnimateSharedLayout } from 'framer-motion';
 import React from 'react';
-import MotionBox from '../../utils/MotionBox';
+import MotionBox from '../../utils/MotionComponents/MotionBox';
 
 interface LoadedProps {
   data: { name: string; value: number }[];

@@ -12,10 +12,10 @@ import {
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../utils/functions';
-import { SelectionContext } from '../../../utils/SelectionContext';
-import MotionFlex from '../../../utils/MotionFlex';
+import { SelectionContext } from '../../../utils/Context/SelectionContext';
+import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
 import { Flex } from '@chakra-ui/layout';
-import { DataContext } from '../../../utils/DataContext';
+import { DataContext } from '../../../utils/Context/DataContext';
 
 const BarChartsSection: React.FC = (): JSX.Element => {
   const chartNames = [
