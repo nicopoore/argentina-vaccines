@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { VaccineDataItem } from './types';
+import { VaccineDataItem } from '../types';
 
 export const DataContext = createContext(undefined);
 

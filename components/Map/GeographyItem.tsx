@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Geographies, Geography } from 'react-simple-maps';
-import { SelectionContext } from '../../utils/SelectionContext';
+import { SelectionContext } from '../../utils/Context/SelectionContext';
 
 const geoUrl =
   'https://raw.githubusercontent.com/deldersveld/topojson/master/countries/argentina/argentina-provinces.json';

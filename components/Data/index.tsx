@@ -1,9 +1,9 @@
 import { Stack } from '@chakra-ui/react';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import React, { useContext } from 'react';
-import MotionBox from '../../utils/MotionBox';
-import MotionStack from '../../utils/MotionStack';
-import { SelectionContext } from '../../utils/SelectionContext';
+import MotionBox from '../../utils/MotionComponents/MotionBox';
+import MotionStack from '../../utils/MotionComponents/MotionStack';
+import { SelectionContext } from '../../utils/Context/SelectionContext';
 import BarChartsSection from './BarChartsSection';
 import HistogramSection from './HistogramSection';
 import NumbersSection from './NumbersSection';

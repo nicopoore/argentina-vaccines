@@ -2,11 +2,11 @@ import { Box, Text, Image, SkeletonText, Skeleton } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import React, { useContext } from 'react';
 import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
-import MotionBox from '../../../utils/MotionBox';
+import MotionBox from '../../../utils/MotionComponents/MotionBox';
 import { FullVaccineTypeItem } from '../../../utils/types';
 import BarChart from '../BarChart';
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
-import { DataContext } from '../../../utils/DataContext';
+import { DataContext } from '../../../utils/Context/DataContext';
 
 interface Props {
   activeType: string;

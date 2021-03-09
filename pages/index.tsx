@@ -1,9 +1,9 @@
 import { Map, Data, Title } from '../components';
 import React, { useState } from 'react';
-import SelectionContextProvider from '../utils/SelectionContext';
+import SelectionContextProvider from '../utils/Context/SelectionContext';
 import { Stack, Text } from '@chakra-ui/react';
 import useSWR from 'swr';
-import DataContextProvider from '../utils/DataContext';
+import DataContextProvider from '../utils/Context/DataContext';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
