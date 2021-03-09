@@ -12,12 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       })
       res.send(JSON.stringify(result))
       return res.status(200).end()
-    case 'POST':
-      break
     default:
       return res.status(405).end()
-
   }
-
-
 }

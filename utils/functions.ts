@@ -1,3 +1,4 @@
+import axios from "axios";
 import { PopulationDataItem, VaccineDataItem } from "./types";
 
 export const formatNumbers = (num: number, type: string): string => {
@@ -70,3 +71,7 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
   });
   return vaccineArray;
 };
+
+export const postCurrentData = async (): Promise<void> => {
+  axios.post('/api/historic_data')
+}

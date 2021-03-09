@@ -1,9 +1,10 @@
 import { Map, Data, Title } from '../components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SelectionContextProvider from '../utils/Context/SelectionContext';
 import { Stack, Text } from '@chakra-ui/react';
 import useSWR from 'swr';
 import DataContextProvider from '../utils/Context/DataContext';
+import { postCurrentData } from '../utils/functions';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
@@ -17,6 +18,7 @@ const Home = (): JSX.Element => {
       mode: 'cors',
       cache: 'default',
     }).then(res => res.json());
+
   const { data, error } = useSWR('/api/data', fetcher);
 
   if (error)
@@ -27,6 +29,11 @@ const Home = (): JSX.Element => {
         <Text>Message: {error.message}</Text>
       </Stack>
     );
+
+  useEffect(() => {
+    postCurrentData();
+  }, []);
+
   return (
     <Stack>
       <Title />

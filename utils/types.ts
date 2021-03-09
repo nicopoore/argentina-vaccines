@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 export interface VaccineDataItem {
   jurisdiccion_codigo_indec: string | number,
   jurisdiccion_nombre: string,
@@ -30,4 +32,10 @@ export interface RawVaccineTypeItem {
   countryProduced?: string; 
   purchased?: number; 
   arrived?: number;
+}
+
+export interface DatabaseDateItem {
+  _id: ObjectId,
+  date: string,
+  data: VaccineDataItem[]
 }
