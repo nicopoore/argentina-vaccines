@@ -2,6 +2,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import {
   formatVaccineData,
+  formatVaccineDataItem,
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../utils/functions';
@@ -14,7 +15,7 @@ import { countryPopulation, provincePopulation } from '../../../utils/population
 const HistogramSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
   const data = useContext(DataContext);
-  const [maxYAxis, setMaxYAxis] = useState(false);
+  const [YAxisIsScaled, setYAxisIsScaled] = useState(false);
   if (!data) return <></>;
 
   const population =
@@ -22,12 +23,14 @@ const HistogramSection: React.FC = (): JSX.Element => {
       ? countryPopulation
       : getProvincePopulation(provincePopulation, selectedProvince);
 
+  const fullCurrentVaccineData = formatVaccineData(data);
+
   const histogramData = rawData.map(rawDataItem => {
     const filteredData =
       selectedProvince === 'Argentina'
         ? rawDataItem.data
         : getCurrentProvince(rawDataItem.data, selectedProvince);
-    const vaccineData = formatVaccineData(filteredData);
+    const vaccineData = formatVaccineDataItem(filteredData);
     const toPercentage = (vaccineData: number): number =>
       parseFloat(((vaccineData / population) * 100).toFixed(2));
 
@@ -40,8 +43,17 @@ const HistogramSection: React.FC = (): JSX.Element => {
     };
   });
 
+  const maxQuantity = Math.max(
+    ...Object.keys(fullCurrentVaccineData).reduce((acc, item) => {
+      acc.push(
+        (fullCurrentVaccineData[item][0] / getProvincePopulation(provincePopulation, item)) * 100
+      );
+      return acc;
+    }, [])
+  );
+
   const handleClick = (): void => {
-    setMaxYAxis(maxYAxis => !maxYAxis);
+    setYAxisIsScaled(YAxisIsScaled => !YAxisIsScaled);
   };
 
   return (
@@ -51,6 +63,8 @@ const HistogramSection: React.FC = (): JSX.Element => {
         grow={1}
         minH={200}
         p={8}
+        pb={2}
+        pl={0}
         w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
       >
         <ResponsiveContainer height="100%" width="100%">
@@ -58,7 +72,10 @@ const HistogramSection: React.FC = (): JSX.Element => {
             <Tooltip />
             <XAxis dataKey={'date'} />
             <YAxis
-              domain={[0, maxYAxis ? (maxValue: number) => Math.ceil(maxValue) : 5]}
+              domain={[
+                0,
+                YAxisIsScaled ? (maxValue: number) => Math.ceil(maxValue) : Math.ceil(maxQuantity),
+              ]}
               type="number"
             />
             <Area dataKey="secondDose" fill="#82ca9d" type="monotone" />
@@ -66,7 +83,9 @@ const HistogramSection: React.FC = (): JSX.Element => {
           </AreaChart>
         </ResponsiveContainer>
       </Flex>
-      <Button onClick={handleClick}>Change Y Axis</Button>
+      <Button onClick={handleClick}>
+        {YAxisIsScaled ? `Normalizar eje Y (0-${Math.ceil(maxQuantity)}%)` : 'Ajustar eje Y'}
+      </Button>
     </>
   );
 };

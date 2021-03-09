@@ -5,7 +5,7 @@ import { SelectionContext } from '../../../../utils/SelectionContext';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';
 import {
   formatNumbers,
-  formatVaccineData,
+  formatVaccineDataItem,
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../../utils/functions';
@@ -34,11 +34,11 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
   let vaccines = [0, 0];
   if (selectedProvince === 'Argentina') {
     population = countryPopulation;
-    vaccines = formatVaccineData(data);
+    vaccines = formatVaccineDataItem(data);
   } else {
     population = getProvincePopulation(provincePopulation, selectedProvince);
     const filteredData: VaccineDataItem[] = getCurrentProvince(data, selectedProvince);
-    vaccines = formatVaccineData(filteredData);
+    vaccines = formatVaccineDataItem(filteredData);
   }
 
   return (
