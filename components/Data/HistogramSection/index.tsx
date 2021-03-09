@@ -11,7 +11,6 @@ import { DataContext } from '../../../utils/Context/DataContext';
 import rawData from './rawData.json';
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { countryPopulation, provincePopulation } from '../../../utils/population.json';
-import axios from 'axios';
 
 const HistogramSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
@@ -54,15 +53,7 @@ const HistogramSection: React.FC = (): JSX.Element => {
   );
 
   const handleClick = async (): Promise<void> => {
-    // setYAxisIsScaled(YAxisIsScaled => !YAxisIsScaled);
-    rawData.forEach(rawDataItem => {});
-    const postData = {
-      place_id: placeId,
-      category_name: categoryName,
-      category_id: categoryId,
-    };
-
-    await axios.post('/api/data', postData);
+    setYAxisIsScaled(YAxisIsScaled => !YAxisIsScaled);
   };
 
   return (

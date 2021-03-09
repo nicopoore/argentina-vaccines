@@ -85,8 +85,6 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     },
   ];
 
-  console.log(allCharts);
-
   return (
     <MotionFlex
       layout
