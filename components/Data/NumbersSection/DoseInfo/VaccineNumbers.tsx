@@ -1,23 +1,25 @@
+// Dependencies
 import React, { useContext } from 'react';
-import { provincePopulation, countryPopulation } from '../../../../utils/staticData.json';
-import { VaccineDataItem } from '../../../../utils/types';
-import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';
+
+// Utils
+import { VaccineDataItem } from '../../../../utils/types';
+import { provincePopulation, countryPopulation } from '../../../../utils/staticData.json';
 import {
   formatNumbers,
   formatVaccineDataItem,
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../../utils/functions';
-import { DataContext } from '../../../../utils/Context/DataContext';
-
-interface VaccineNumbersProps {
+import { SelectionContext, DataContext } from '../../../../utils/Context';
+// Components
+interface Props {
   vaccine?: string;
   dose?: 1 | 2;
   numberType: 'raw' | 'percentage';
 }
 
-const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
+const VaccineNumbers: React.FC<Props> = (props): JSX.Element => {
   const data = useContext(DataContext);
   const selectedProvince = useContext(SelectionContext);
   if (!data)

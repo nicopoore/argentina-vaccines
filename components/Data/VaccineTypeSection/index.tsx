@@ -1,10 +1,15 @@
+// Dependencies
+import React, { useState } from 'react';
 import { Text } from '@chakra-ui/react';
 import { AnimateSharedLayout } from 'framer-motion';
-import React, { useState } from 'react';
-import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
-import { vaccineTypes as rawVaccineTypes } from '../../../utils/staticData.json';
+
+// Components
 import VaccineTypeData from './VaccineTypeData';
 import VaccineTypeButtons from './VaccineTypeButtons';
+
+// Utils
+import { vaccineTypes as rawVaccineTypes } from '../../../utils/staticData.json';
+import { MotionFlex } from '../../../utils/MotionComponents';
 
 const VaccineTypeSection: React.FC = (): JSX.Element => {
   const [activeType, setActiveType] = useState('Sputnik V COVID19 Instituto Gamaleya');

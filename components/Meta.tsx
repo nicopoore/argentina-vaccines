@@ -1,5 +1,6 @@
-import Head from 'next/head';
+// Dependencies
 import React from 'react';
+import Head from 'next/head';
 
 const Meta: React.FC = (): JSX.Element => {
   const metaTitle = 'Argentina Vacunada';

@@ -1,6 +1,9 @@
-import { Box } from '@chakra-ui/react';
+// Dependencies
 import React, { memo } from 'react';
+import { Box } from '@chakra-ui/react';
 import { ComposableMap } from 'react-simple-maps';
+
+// Components
 import GeographyItem from './GeographyItem';
 
 interface Props {

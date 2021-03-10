@@ -1,9 +1,14 @@
-import { Divider, Text } from '@chakra-ui/react';
+// Dependencies
 import React, { useContext } from 'react';
-import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
-import { SelectionContext } from '../../../utils/Context/SelectionContext';
+import { Divider, Text } from '@chakra-ui/react';
+
+// Components
 import DoseInfo from './DoseInfo';
-import MoreInfoButton from './MoreInfoButton/index';
+import MoreInfoButton from './MoreInfoButton';
+
+// Utils
+import { SelectionContext } from '../../../utils/Context';
+import { MotionFlex } from '../../../utils/MotionComponents';
 
 const NumbersSection: React.FC = (): JSX.Element => {
   const doses = [1, 2];

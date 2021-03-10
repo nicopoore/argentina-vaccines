@@ -1,9 +1,14 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+// Dependencies
 import React, { useContext, useState } from 'react';
-import provinceData from '../../../../utils/staticData.json';
-import { SelectionContext } from '../../../../utils/Context/SelectionContext';
-import { PopulationDataItem } from '../../../../utils/types';
+import { Box, Button, Text } from '@chakra-ui/react';
+
+// Components
 import TierraDelFuegoModal from './TierraDelFuegoModal';
+
+// Utils
+import { PopulationDataItem } from '../../../../utils/types';
+import { provincePopulation } from '../../../../utils/staticData.json';
+import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 
 const MoreInfoButton: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
@@ -23,7 +28,7 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
   const url =
     selectedProvince === 'Argentina'
       ? 'https://www.argentina.gob.ar/coronavirus/vacuna/preguntas-frecuentes'
-      : getCurrentProvince(provinceData.provincePopulation)[0].info_website;
+      : getCurrentProvince(provincePopulation)[0].info_website;
 
   return (
     <Box w={300}>

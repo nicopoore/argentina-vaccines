@@ -1,8 +1,11 @@
-import { Flex, Text } from '@chakra-ui/layout';
-import { Box, Skeleton, Tooltip } from '@chakra-ui/react';
-import { AnimateSharedLayout } from 'framer-motion';
+// Dependencies
 import React from 'react';
-import MotionBox from '../../utils/MotionComponents/MotionBox';
+import { Box, Skeleton, Tooltip } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/layout';
+import { AnimateSharedLayout } from 'framer-motion';
+
+// Utils
+import { MotionBox } from '../../utils/MotionComponents';
 
 interface LoadedProps {
   data: { name: string; value: number }[];
@@ -17,7 +20,9 @@ interface LoadingProps {
   lastItem?: boolean;
 }
 
-const BarChart: React.FC<LoadedProps | LoadingProps> = (props): JSX.Element => {
+type Props = LoadedProps | LoadingProps;
+
+const BarChart: React.FC<Props> = (props): JSX.Element => {
   let total: number;
   if ('data' in props) {
     total = props.data.reduce((acc, item) => {
