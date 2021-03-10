@@ -1,5 +1,11 @@
-import { Button, Flex } from '@chakra-ui/react';
+// Dependencies
 import React, { useContext, useState } from 'react';
+import { Button, Flex } from '@chakra-ui/react';
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import useSWR from 'swr';
+
+// Utils
+import { countryPopulation, provincePopulation } from '../../../utils/staticData.json';
 import {
   fetcher,
   formatVaccineData,
@@ -7,10 +13,7 @@ import {
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../utils/functions';
-import { SelectionContext } from '../../../utils/Context/SelectionContext';
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { countryPopulation, provincePopulation } from '../../../utils/staticData.json';
-import useSWR from 'swr';
+import { SelectionContext } from '../../../utils/Context';
 
 const HistogramSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
