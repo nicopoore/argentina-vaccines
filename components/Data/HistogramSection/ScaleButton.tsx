@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react';
-import { Box, Icon, IconButton } from '@chakra-ui/react';
+import { Box, Icon, IconButton, Tooltip } from '@chakra-ui/react';
 
 interface Props {
   YAxisIsScaled: boolean;
@@ -28,12 +28,14 @@ const ZoomOutIcon = (props: { [key: string]: string | number }): JSX.Element => 
 const ScaleButton: React.FC<Props> = (props): JSX.Element => {
   return (
     <Box position="absolute" right={2} top={2}>
-      <IconButton
-        aria-label={props.YAxisIsScaled ? 'Zoom out' : 'Zoom in'}
-        icon={props.YAxisIsScaled ? <ZoomOutIcon /> : <ZoomInIcon />}
-        size="sm"
-        onClick={props.handleClick}
-      />
+      <Tooltip label={props.YAxisIsScaled ? 'Normalizar eje Y' : 'Ajustar eje Y'} placement="top">
+        <IconButton
+          aria-label={props.YAxisIsScaled ? 'Normalizar eje Y' : 'Ajustar eje Y'}
+          icon={props.YAxisIsScaled ? <ZoomOutIcon /> : <ZoomInIcon />}
+          size="sm"
+          onClick={props.handleClick}
+        />
+      </Tooltip>
     </Box>
   );
 };

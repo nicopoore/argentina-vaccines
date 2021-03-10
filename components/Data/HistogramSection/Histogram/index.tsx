@@ -1,17 +1,29 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import { format } from 'date-fns';
+
+// Components
+import CustomTooltip from './Tooltip';
 
 // Utils
-import { DatabaseDateItem } from '../../../utils/types';
-import { countryPopulation, provincePopulation } from '../../../utils/staticData.json';
-import { SelectionContext } from '../../../utils/Context';
+import { DatabaseDateItem } from '../../../../utils/types';
+import { countryPopulation, provincePopulation } from '../../../../utils/staticData.json';
+import { SelectionContext } from '../../../../utils/Context';
 import {
   formatVaccineData,
   formatVaccineDataItem,
   getCurrentProvince,
   getProvincePopulation,
-} from '../../../utils/functions';
+} from '../../../../utils/functions';
 
 interface Props {
   YAxisIsScaled: boolean;
@@ -40,7 +52,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
     const firstDose = toPercentage(vaccineData[0]);
     const secondDose = toPercentage(vaccineData[1]);
     return {
-      date: rawDataItem.date,
+      date: Date.parse(rawDataItem.date) + 10800000,
       firstDose: firstDose,
       secondDose: secondDose,
     };
@@ -55,11 +67,20 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
     }, [])
   );
 
+  const XAxisTickFormatter = (date: Date): string => {
+    return format(date, 'dd/MM');
+  };
+
+  const YAxisTickFormatter = (num: number): string => {
+    return `${num}%`;
+  };
+
   return (
     <ResponsiveContainer height="100%" width="100%">
       <AreaChart data={histogramData}>
-        <Tooltip />
-        <XAxis dataKey={'date'} />
+        <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
+        <Tooltip content={<CustomTooltip />} />
+        <XAxis dataKey="date" minTickGap={10} tickFormatter={XAxisTickFormatter} />
         <YAxis
           domain={[
             0,
@@ -67,10 +88,11 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
               ? (maxValue: number) => Math.ceil(maxValue)
               : Math.ceil(maxQuantity),
           ]}
+          tickFormatter={YAxisTickFormatter}
           type="number"
         />
-        <Area dataKey="secondDose" fill="#82ca9d" type="monotone" />
-        <Area dataKey="firstDose" fill="#8884d8" type="monotone" />
+        <Area color="#00C49F" dataKey="firstDose" fill="#00C49F" stroke="#00C49F" />
+        <Area color="#FF7722" dataKey="secondDose" fill="#FF7722" stroke="#FF7722" />
       </AreaChart>
     </ResponsiveContainer>
   );

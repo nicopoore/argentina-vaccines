@@ -4,7 +4,7 @@ import { CircularProgress, Flex } from '@chakra-ui/react';
 import useSWR from 'swr';
 
 // Components
-import Histogram from './Histogram';
+import Histogram from './Histogram/index';
 
 // Utils
 import { fetcher } from '../../../utils/functions';
@@ -45,7 +45,7 @@ const HistogramSection: React.FC = (): JSX.Element => {
       bgColor="gray.900"
       grow={1}
       minH={180}
-      p="2rem 1.5rem 0 0.5rem"
+      p="2rem 1.5rem 0.5rem 0"
       position="relative"
       w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
     >
