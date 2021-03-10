@@ -1,13 +1,17 @@
+// Dependencies
+import React, { useContext } from 'react';
 import { Stack } from '@chakra-ui/react';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
-import React, { useContext } from 'react';
-import MotionBox from '../../utils/MotionComponents/MotionBox';
-import MotionStack from '../../utils/MotionComponents/MotionStack';
-import { SelectionContext } from '../../utils/Context/SelectionContext';
+
+// Components
 import BarChartsSection from './BarChartsSection';
 import HistogramSection from './HistogramSection';
 import NumbersSection from './NumbersSection';
 import VaccineTypeSection from './VaccineTypeSection';
+
+// Utils
+import { MotionBox, MotionStack } from '../../utils/MotionComponents';
+import { SelectionContext } from '../../utils/Context';
 
 const Data: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);

@@ -1,21 +1,25 @@
+// Dependencies
 import React, { useContext } from 'react';
+import { Flex } from '@chakra-ui/layout';
+
+// Components
+import BarChart from '../BarChart';
+
+// Utils
 import { VaccineDataItem } from '../../../utils/types';
 import {
   countryPopulation,
   provincePopulation,
   vaccineTypes,
 } from '../../../utils/staticData.json';
-import BarChart from '../BarChart';
 import {
   formatVaccineDataItem,
   formatVaccineOrigin,
   getCurrentProvince,
   getProvincePopulation,
 } from '../../../utils/functions';
-import { SelectionContext } from '../../../utils/Context/SelectionContext';
-import MotionFlex from '../../../utils/MotionComponents/MotionFlex';
-import { Flex } from '@chakra-ui/layout';
-import { DataContext } from '../../../utils/Context/DataContext';
+import { SelectionContext, DataContext } from '../../../utils/Context';
+import { MotionFlex } from '../../../utils/MotionComponents';
 
 const BarChartsSection: React.FC = (): JSX.Element => {
   const chartNames = [

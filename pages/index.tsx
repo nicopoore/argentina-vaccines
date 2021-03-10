@@ -1,10 +1,14 @@
-import { Map, Data, Title } from '../components';
+// Dependencies
 import React, { useEffect, useState } from 'react';
-import SelectionContextProvider from '../utils/Context/SelectionContext';
 import { Stack, Text } from '@chakra-ui/react';
 import useSWR, { mutate } from 'swr';
-import DataContextProvider from '../utils/Context/DataContext';
+
+// Components
+import { Map, Data, Title } from '../components';
+
+// Utils
 import { fetcher, postCurrentData } from '../utils/functions';
+import { SelectionContextProvider, DataContextProvider } from '../utils/Context';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
