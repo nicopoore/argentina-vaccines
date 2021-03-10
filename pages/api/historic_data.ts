@@ -15,7 +15,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       return res.status(200).end()
 
     case 'POST':
-      const currentDate = new Date();
+      let currentDate = new Date();
+
+      // Account for Argentinian timezone and average time of daily data upload
+      currentDate.setHours(currentDate.getHours() - 16)
       const formattedDate = currentDate.toISOString().slice(0, 10);
 
       const latestDate = await getLatestRecordDate(db)

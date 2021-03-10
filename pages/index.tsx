@@ -15,15 +15,6 @@ const Home = (): JSX.Element => {
 
   const { data, error } = useSWR('/api/data', fetcher);
 
-  if (error)
-    return (
-      <Stack>
-        <Text>Error al recolectar datos</Text>
-        <Text>Error: {error.name}</Text>
-        <Text>Message: {error.message}</Text>
-      </Stack>
-    );
-
   useEffect(() => {
     const postDataAndMutate = async (): Promise<void> => {
       await postCurrentData();
@@ -32,6 +23,23 @@ const Home = (): JSX.Element => {
 
     postDataAndMutate();
   }, []);
+
+  if (error)
+    return (
+      <Stack>
+        <Title />
+        <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
+          <SelectionContextProvider selectedProvince={selectedProvince}>
+            <Map setSelectedProvince={setSelectedProvince} />
+          </SelectionContextProvider>
+          <Stack alignItems="center" flexGrow={1} justify="center">
+            <Text>Error al buscar datos</Text>
+            <Text>Error: {error.name}</Text>
+            <Text>Mensaje: {error.message}</Text>
+          </Stack>
+        </Stack>
+      </Stack>
+    );
 
   return (
     <Stack>

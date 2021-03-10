@@ -33,7 +33,7 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
   return (
     <Box w={300}>
       <Text fontSize="md" mb={4} wordBreak="normal">
-        Consultá la información oficial de vacunación en {selectedProvince}
+        Consultá la información oficial sobre vacunación en {selectedProvince}
       </Text>
       {selectedProvince === 'Tierra del Fuego' ? (
         <>

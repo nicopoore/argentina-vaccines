@@ -65,8 +65,8 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     {
       name: '% de la población vacunada (1 o más dosis)',
       values: [
-        { name: 'Vacunadas', value: vaccineData[0] },
-        { name: 'No vacunadas', value: population - vaccineData[0] },
+        { name: 'Vacunades', value: vaccineData[0] },
+        { name: 'No vacunades', value: population - vaccineData[0] },
       ],
       colors: ['#00C49F', '#FF8042'],
     },
@@ -83,7 +83,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
       values: [
         { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
         { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
-        { name: 'Sinopharma', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
+        { name: 'Sinopharm', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
       ],
       colors: ['#0088FE', '#22D4DF', '#FF8042'],
     },
