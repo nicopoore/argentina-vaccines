@@ -14,7 +14,7 @@ const Tooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>):
           {format(label, "d 'de' MMMM", { locale: es })}
         </Text>
         <Stack direction="row" spacing={6}>
-          {payload.map(payloadItem => (
+          {payload.reverse().map(payloadItem => (
             <Stack direction="row">
               <Box bgColor={payloadItem.color} h="100%" w={1} />
               <Flex direction="column">
