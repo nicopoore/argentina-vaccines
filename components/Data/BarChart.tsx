@@ -35,7 +35,7 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
     value.toLocaleString('es-AR', { maximumFractionDigits: 2 });
 
   return (
-    <Box mb={props.lastItem ? 0 : 8}>
+    <Box mb={props.lastItem ? 0 : 6}>
       <Flex borderRadius={2} h={4} mb={1} overflow="hidden" w="100%">
         {!('data' in props) ? (
           <Skeleton h="100%" w="100%" />
