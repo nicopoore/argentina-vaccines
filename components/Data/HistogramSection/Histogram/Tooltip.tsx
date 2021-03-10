@@ -22,7 +22,7 @@ const Tooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>):
                   {typeof payloadItem.value === 'number' && payloadItem.value.toFixed(2)} %
                 </Text>
                 <Text color="gray.400" fontSize="sm">
-                  {payload.indexOf(payloadItem) === 0 ? '1ra dosis' : 'Ambas dosis'}
+                  {payload.indexOf(payloadItem) === 0 ? 'Ambas dosis' : '1ra dosis'}
                 </Text>
               </Flex>
             </Stack>

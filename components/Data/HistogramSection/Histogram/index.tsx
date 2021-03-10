@@ -91,8 +91,8 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
           tickFormatter={YAxisTickFormatter}
           type="number"
         />
-        <Area color="#00C49F" dataKey="firstDose" fill="#00C49F" stroke="#00C49F" />
-        <Area color="#FF7722" dataKey="secondDose" fill="#FF7722" stroke="#FF7722" />
+        <Area color="#ffa14f" dataKey="firstDose" fill="#ffa14f" stroke="#ffa14f" />
+        <Area color="#00C49F" dataKey="secondDose" fill="#00C49F" stroke="#00C49F" />
       </AreaChart>
     </ResponsiveContainer>
   );
