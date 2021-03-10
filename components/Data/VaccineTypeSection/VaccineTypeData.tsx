@@ -1,12 +1,17 @@
+// Dependencies
+import React, { useContext } from 'react';
 import { Box, Text, Image, SkeletonText, Skeleton } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
-import React, { useContext } from 'react';
-import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
-import MotionBox from '../../../utils/MotionBox';
-import { FullVaccineTypeItem } from '../../../utils/types';
+
+// Components
 import BarChart from '../BarChart';
-import { vaccineTypes as rawVaccineTypes } from '../../../utils/population.json';
-import { DataContext } from '../../../utils/DataContext';
+
+// Utils
+import { FullVaccineTypeItem } from '../../../utils/types';
+import { vaccineTypes as rawVaccineTypes } from '../../../utils/staticData.json';
+import { formatNumbers, formatVaccineOrigin } from '../../../utils/functions';
+import { DataContext } from '../../../utils/Context';
+import { MotionBox } from '../../../utils/MotionComponents';
 
 interface Props {
   activeType: string;

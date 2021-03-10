@@ -1,5 +1,8 @@
-import { ButtonGroup, Button, useBreakpointValue } from '@chakra-ui/react';
+// Dependencies
 import React from 'react';
+import { ButtonGroup, Button, useBreakpointValue } from '@chakra-ui/react';
+
+// Utils
 import { RawVaccineTypeItem } from '../../../utils/types';
 
 interface Props {

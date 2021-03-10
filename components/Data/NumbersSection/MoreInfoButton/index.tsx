@@ -1,9 +1,14 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+// Dependencies
 import React, { useContext, useState } from 'react';
-import provinceData from '../../../../utils/population.json';
-import { SelectionContext } from '../../../../utils/SelectionContext';
-import { PopulationDataItem } from '../../../../utils/types';
+import { Box, Button, Text } from '@chakra-ui/react';
+
+// Components
 import TierraDelFuegoModal from './TierraDelFuegoModal';
+
+// Utils
+import { PopulationDataItem } from '../../../../utils/types';
+import { provincePopulation } from '../../../../utils/staticData.json';
+import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 
 const MoreInfoButton: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
@@ -23,12 +28,12 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
   const url =
     selectedProvince === 'Argentina'
       ? 'https://www.argentina.gob.ar/coronavirus/vacuna/preguntas-frecuentes'
-      : getCurrentProvince(provinceData.provincePopulation)[0].info_website;
+      : getCurrentProvince(provincePopulation)[0].info_website;
 
   return (
     <Box w={300}>
       <Text fontSize="md" mb={4} wordBreak="normal">
-        Consultá la información oficial de vacunación en {selectedProvince}
+        Consultá la información oficial sobre vacunación en {selectedProvince}
       </Text>
       {selectedProvince === 'Tierra del Fuego' ? (
         <>

@@ -1,6 +1,9 @@
+// Dependencies
 import React from 'react';
-import VaccineNumbers from './VaccineNumbers';
 import { Flex, Text } from '@chakra-ui/react';
+
+// Components
+import VaccineNumbers from './VaccineNumbers';
 
 interface DoseInfoProps {
   dose: 1 | 2;

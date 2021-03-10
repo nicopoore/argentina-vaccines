@@ -1,32 +1,46 @@
-import { Map, Data, Title } from '../components';
-import React, { useState } from 'react';
-import SelectionContextProvider from '../utils/SelectionContext';
+// Dependencies
+import React, { useEffect, useState } from 'react';
 import { Stack, Text } from '@chakra-ui/react';
-import useSWR from 'swr';
-import DataContextProvider from '../utils/DataContext';
+import useSWR, { mutate } from 'swr';
+
+// Components
+import { Map, Data, Title } from '../components';
+
+// Utils
+import { fetcher, postCurrentData } from '../utils/functions';
+import { SelectionContextProvider, DataContextProvider } from '../utils/Context';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
 
-  const fetcher = async (url: string): Promise<any> =>
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      mode: 'cors',
-      cache: 'default',
-    }).then(res => res.json());
   const { data, error } = useSWR('/api/data', fetcher);
+
+  useEffect(() => {
+    const postDataAndMutate = async (): Promise<void> => {
+      await postCurrentData();
+      mutate('/api/historic_data');
+    };
+
+    postDataAndMutate();
+  }, []);
 
   if (error)
     return (
       <Stack>
-        <Text>Error al recolectar datos</Text>
-        <Text>Error: {error.name}</Text>
-        <Text>Message: {error.message}</Text>
+        <Title />
+        <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
+          <SelectionContextProvider selectedProvince={selectedProvince}>
+            <Map setSelectedProvince={setSelectedProvince} />
+          </SelectionContextProvider>
+          <Stack alignItems="center" flexGrow={1} justify="center">
+            <Text>Error al buscar datos</Text>
+            <Text>Error: {error.name}</Text>
+            <Text>Mensaje: {error.message}</Text>
+          </Stack>
+        </Stack>
       </Stack>
     );
+
   return (
     <Stack>
       <Title />

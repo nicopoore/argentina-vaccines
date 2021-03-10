@@ -1,3 +1,5 @@
+// Dependencies
+import React from 'react';
 import {
   Box,
   Link,
@@ -9,7 +11,6 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
 
 interface Props {
   isOpen: boolean;
