@@ -17,7 +17,7 @@ const Data: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
 
   return (
-    <Stack alignItems="center" justify="center" overflow="hidden">
+    <Stack alignItems="center" flexGrow={1} justify="center" overflow="hidden">
       <Stack
         alignItems="center"
         direction="row"
