@@ -17,6 +17,7 @@ const Map: React.FC<Props> = ({ setSelectedProvince }): JSX.Element => {
       maxW={['70%', 300, null, 320, 400]}
       mb={{ base: 4, sm: 0 }}
       minW={['70%', 300, null, 320, 400]}
+      mt={-3}
       pb={2}
       position="relative"
     >
