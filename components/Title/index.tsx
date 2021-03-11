@@ -12,7 +12,12 @@ import {
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
 import InfoModal from './InfoModal/index';
 
-const Title: React.FC = (): JSX.Element => {
+interface Props {
+  isSimplified: boolean;
+  setIsSimplified: (_) => void;
+}
+
+const Title: React.FC<Props> = (props): JSX.Element => {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
 
   const handleOpen = (): void => {
@@ -30,8 +35,18 @@ const Title: React.FC = (): JSX.Element => {
           Argentina vacunada
         </Text>
         <ButtonGroup isAttached>
-          <Button>Vista simplificada</Button>
-          <Button>Vista completa</Button>
+          <Button
+            colorScheme={props.isSimplified ? 'blue' : undefined}
+            onClick={() => props.setIsSimplified(() => true)}
+          >
+            Vista simplificada
+          </Button>
+          <Button
+            colorScheme={props.isSimplified ? undefined : 'blue'}
+            onClick={() => props.setIsSimplified(() => false)}
+          >
+            Vista completa
+          </Button>
         </ButtonGroup>
         <Stack alignItems="center" direction="row">
           <Link isExternal color="gray.500" href="https://github.com/nicopoore/argentina-vaccines">

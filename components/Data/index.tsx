@@ -13,7 +13,11 @@ import VaccineTypeSection from './VaccineTypeSection';
 import { MotionBox, MotionStack } from '../../utils/MotionComponents';
 import { SelectionContext } from '../../utils/Context';
 
-const Data: React.FC = (): JSX.Element => {
+interface Props {
+  isSimplified: boolean;
+}
+
+const Data: React.FC<Props> = (props): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
 
   return (
@@ -35,15 +39,25 @@ const Data: React.FC = (): JSX.Element => {
             wrap="wrap"
           >
             <NumbersSection />
-            <MotionStack layout>
-              <BarChartsSection />
-              <HistogramSection />
-            </MotionStack>
+            <AnimatePresence>
+              {!props.isSimplified && (
+                <MotionStack
+                  layout
+                  animate="visible"
+                  exit="hidden"
+                  initial="hidden"
+                  variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+                >
+                  <BarChartsSection />
+                  <HistogramSection />
+                </MotionStack>
+              )}
+            </AnimatePresence>
           </MotionStack>
 
           <MotionBox layout id="flexLineBreak" w="100%" />
           <AnimatePresence>
-            {selectedProvince === 'Argentina' && <VaccineTypeSection />}
+            {selectedProvince === 'Argentina' && !props.isSimplified && <VaccineTypeSection />}
           </AnimatePresence>
         </AnimateSharedLayout>
       </Stack>
