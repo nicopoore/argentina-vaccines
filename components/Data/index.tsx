@@ -31,7 +31,7 @@ const Data: React.FC = (): JSX.Element => {
             layout
             direction="row"
             justify="center"
-            mb={6}
+            mb={4}
             wrap="wrap"
           >
             <NumbersSection />
