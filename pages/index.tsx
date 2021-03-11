@@ -26,7 +26,7 @@ const Home = (): JSX.Element => {
 
   if (error)
     return (
-      <Stack>
+      <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
         <Title />
         <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
           <SelectionContextProvider selectedProvince={selectedProvince}>
@@ -42,9 +42,9 @@ const Home = (): JSX.Element => {
     );
 
   return (
-    <Stack>
+    <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
       <Title />
-      <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
+      <Stack direction="row" justify="space-between" wrap={{ base: 'wrap', md: 'nowrap' }}>
         <DataContextProvider data={data?.data}>
           <SelectionContextProvider selectedProvince={selectedProvince}>
             <Map setSelectedProvince={setSelectedProvince} />
