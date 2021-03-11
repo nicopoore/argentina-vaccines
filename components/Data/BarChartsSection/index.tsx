@@ -68,7 +68,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'Vacunades', value: vaccineData[0] },
         { name: 'No vacunades', value: population - vaccineData[0] },
       ],
-      colors: ['#00C49F', '#FF8042'],
+      colors: ['#40F66A', '#F56257'],
     },
     {
       name: 'Parcial vs. totalmente vacunades',
@@ -76,7 +76,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'Ambas dosis', value: vaccineData[1] },
         { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
       ],
-      colors: ['#00C49F', '#FFBB28'],
+      colors: ['#3CF096', '#F07624'],
     },
     {
       name: '% de vacunades por tipo (1 o más dosis)',
@@ -85,7 +85,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
         { name: 'Sinopharm', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
       ],
-      colors: ['#0088FE', '#22D4DF', '#FF8042'],
+      colors: ['#4CBDF5', '#9551F5', '#F5EF33'],
     },
   ];
 
