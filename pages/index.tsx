@@ -12,6 +12,7 @@ import { SelectionContextProvider, DataContextProvider } from '../utils/Context'
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
+  const [isSimplified, setIsSimplified] = useState(true);
 
   const { data, error } = useSWR('/api/data', fetcher);
 
@@ -27,7 +28,7 @@ const Home = (): JSX.Element => {
   if (error)
     return (
       <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
-        <Title />
+        <Title isSimplified={isSimplified} setIsSimplified={setIsSimplified} />
         <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
           <SelectionContextProvider selectedProvince={selectedProvince}>
             <Map setSelectedProvince={setSelectedProvince} />
@@ -43,12 +44,12 @@ const Home = (): JSX.Element => {
 
   return (
     <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
-      <Title />
+      <Title isSimplified={isSimplified} setIsSimplified={setIsSimplified} />
       <Stack direction="row" justify="space-between" wrap={{ base: 'wrap', md: 'nowrap' }}>
         <DataContextProvider data={data?.data}>
           <SelectionContextProvider selectedProvince={selectedProvince}>
             <Map setSelectedProvince={setSelectedProvince} />
-            <Data />
+            <Data isSimplified={isSimplified} />
           </SelectionContextProvider>
         </DataContextProvider>
       </Stack>
