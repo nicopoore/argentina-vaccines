@@ -8,9 +8,10 @@ import {
   Text,
   Link,
   Tooltip,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
-import InfoModal from './InfoModal/index';
+import InfoModal from './InfoModal';
 
 interface Props {
   isSimplified: boolean;
@@ -28,13 +29,19 @@ const Title: React.FC<Props> = (props): JSX.Element => {
     setInfoIsOpen(() => false);
   };
 
+  const responsiveSizes = useBreakpointValue({
+    base: 'xs',
+    md: 'sm',
+    '2xl': 'md',
+  });
+
   return (
     <>
-      <Flex alignItems="center" justify="space-between" m="auto" w="90%">
+      <Flex alignItems="center" justify="space-between" m="auto" w="90%" wrap="wrap">
         <Text as="h1" fontSize="3xl" fontWeight="bold" m={2}>
           Argentina vacunada
         </Text>
-        <ButtonGroup isAttached>
+        <ButtonGroup isAttached size={responsiveSizes}>
           <Button
             colorScheme={props.isSimplified ? 'blue' : undefined}
             onClick={() => props.setIsSimplified(() => true)}
@@ -48,12 +55,23 @@ const Title: React.FC<Props> = (props): JSX.Element => {
             Vista completa
           </Button>
         </ButtonGroup>
-        <Stack alignItems="center" direction="row">
-          <Link isExternal color="gray.500" href="https://github.com/nicopoore/argentina-vaccines">
-            Creado por Nicolás Poore
+        <Stack alignItems="center" direction="row" justify="flex-end">
+          <Link
+            isExternal
+            color="gray.500"
+            fontSize={responsiveSizes}
+            href="https://github.com/nicopoore/argentina-vaccines"
+            textAlign="right"
+          >
+            Nicolás Poore
           </Link>
           <Tooltip label="Ayuda">
-            <IconButton aria-label="Help" icon={<QuestionOutlineIcon />} onClick={handleOpen} />
+            <IconButton
+              aria-label="Help"
+              icon={<QuestionOutlineIcon />}
+              size={responsiveSizes}
+              onClick={handleOpen}
+            />
           </Tooltip>
         </Stack>
       </Flex>

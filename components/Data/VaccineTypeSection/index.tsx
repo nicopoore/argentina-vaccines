@@ -28,7 +28,7 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
         exit="hidden"
         initial="hidden"
         mb={{ base: 6, md: 12, '2xl': 0 }}
-        minW={[300, 350, 400, 0]}
+        minW={[300, 350, 400]}
         overflow="hidden"
         p={8}
         variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}

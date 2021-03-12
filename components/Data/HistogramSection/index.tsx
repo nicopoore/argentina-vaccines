@@ -45,9 +45,10 @@ const HistogramSection: React.FC = (): JSX.Element => {
       bgColor="gray.900"
       grow={1}
       minH={180}
+      minW={{ '2xl': 500 }}
       p="2rem 1.5rem 0.5rem 0"
       position="relative"
-      w={{ base: '97.5%', sm: '100%', '2xl': 500 }}
+      w={{ base: '97.5%', sm: '100%' }}
     >
       <Histogram YAxisIsScaled={YAxisIsScaled} data={data} />
       <ScaleButton YAxisIsScaled={YAxisIsScaled} handleClick={handleClick} />
