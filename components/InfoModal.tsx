@@ -9,6 +9,7 @@ import {
   Box,
   Link,
   chakra,
+  Flex,
 } from '@chakra-ui/react';
 import React from 'react';
 import { outsideLinks, instructions } from '../utils/staticData.json';
@@ -26,7 +27,7 @@ const InfoModal: React.FC<Props> = (props): JSX.Element => {
         <ModalHeader>Argentina Vacunada</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box mb={3}>
+          <Box mb={6}>
             <Text fontWeight="bold">Instrucciones</Text>
             {instructions.map(instructionsItem => (
               <Text key={instructions.indexOf(instructionsItem)} mt={2}>
@@ -38,18 +39,20 @@ const InfoModal: React.FC<Props> = (props): JSX.Element => {
               </Text>
             ))}
           </Box>
-          {outsideLinks.map(outsideLinksObject => (
-            <Box key={outsideLinksObject.name} mb={3}>
-              <Text fontWeight="bold">{outsideLinksObject.name}</Text>
-              {outsideLinksObject.links.map(outsideLink => (
-                <Text key={outsideLink.name}>
-                  <Link isExternal color="teal.400" href={outsideLink.href}>
-                    {outsideLink.name}
-                  </Link>
-                </Text>
-              ))}
-            </Box>
-          ))}
+          <Flex wrap="wrap">
+            {outsideLinks.map(outsideLinksObject => (
+              <Box key={outsideLinksObject.name} mb={3} w="50%">
+                <Text fontWeight="bold">{outsideLinksObject.name}</Text>
+                {outsideLinksObject.links.map(outsideLink => (
+                  <Text key={outsideLink.name}>
+                    <Link isExternal color="teal.400" href={outsideLink.href}>
+                      {outsideLink.name}
+                    </Link>
+                  </Text>
+                ))}
+              </Box>
+            ))}
+          </Flex>
         </ModalBody>
       </ModalContent>
     </Modal>
