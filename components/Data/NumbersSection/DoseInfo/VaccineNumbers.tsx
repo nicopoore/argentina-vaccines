@@ -45,7 +45,7 @@ const VaccineNumbers: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <Box w={{ base: '45%', md: '48%' }}>
-      <Text as="h4" fontSize={{ base: '3xl', md: '4xl' }} mt={0}>
+      <Text as="h4" fontSize={{ base: '2xl', md: '4xl' }} mt={0}>
         {props.numberType === 'raw'
           ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], 'number')
           : formatNumbers(vaccines[props.dose === 1 ? 0 : 1] / population, 'percentage')}

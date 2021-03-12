@@ -22,7 +22,7 @@ const NumbersSection: React.FC = (): JSX.Element => {
       justify="center"
       mb={{ base: 2, '2xl': 0 }}
       minH={300}
-      minW={{ base: 400, md: 400 }}
+      minW={{ base: 0, md: 400 }}
       ml={{ base: 0, md: 2, '2xl': 0 }}
       p={8}
       w={['95%', '97.5%', '100%', null, 'initial']}
