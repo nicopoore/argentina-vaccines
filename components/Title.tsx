@@ -65,7 +65,7 @@ const Title: React.FC<Props> = (props): JSX.Element => {
           >
             Nicolás Poore
           </Link>
-          <Tooltip label="Ayuda">
+          <Tooltip label="Ayuda / Más información">
             <IconButton
               aria-label="Help"
               icon={<QuestionOutlineIcon />}

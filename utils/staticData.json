@@ -234,24 +234,6 @@
       ]
     },
     {
-      "name": "Código",
-      "links": [
-        {
-          "name": "Github",
-          "href": "https://github.com/nicopoore/argentina-vaccines"
-        }
-      ]
-    },
-    {
-      "name": "Licencia",
-      "links": [
-        {
-          "name": "GNU Affero GPL 3.0",
-          "href": "https://github.com/nicopoore/argentina-vaccines/blob/main/LICENSE"
-        }
-      ]
-    },
-    {
       "name": "Contacto",
       "links": [
         {
@@ -269,6 +251,24 @@
         {
           "name": "Twitter",
           "href": "https://twitter.com/nicopoore"
+        }
+      ]
+    },
+    {
+      "name": "Código",
+      "links": [
+        {
+          "name": "Github",
+          "href": "https://github.com/nicopoore/argentina-vaccines"
+        }
+      ]
+    },
+    {
+      "name": "Licencia",
+      "links": [
+        {
+          "name": "GNU Affero GPL 3.0",
+          "href": "https://github.com/nicopoore/argentina-vaccines/blob/main/LICENSE"
         }
       ]
     }
