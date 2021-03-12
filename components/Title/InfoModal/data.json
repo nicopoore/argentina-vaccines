@@ -68,6 +68,27 @@
           "href": "https://github.com/nicopoore/argentina-vaccines/blob/main/LICENSE"
         }
       ]
+    },
+    {
+      "name": "Contacto",
+      "links": [
+        {
+          "name": "Email",
+          "href": "mailto:nicolaspoore@gmail.com"
+        },
+        {
+          "name": "Github",
+          "href": "https://github.com/nicopoore"
+        },
+        {
+          "name": "LinkedIn",
+          "href": "https://www.linkedin.com/in/nicolas-poore/"
+        },
+        {
+          "name": "Twitter",
+          "href": "https://twitter.com/nicopoore"
+        }
+      ]
     }
   ]
 }
