@@ -29,7 +29,7 @@ const InfoModal: React.FC<Props> = (props): JSX.Element => {
           <Box mb={3}>
             <Text fontWeight="bold">Instrucciones</Text>
             {instructions.map(instructionsItem => (
-              <Text mt={2}>
+              <Text key={instructions.indexOf(instructionsItem)} mt={2}>
                 {instructionsItem[0]}
                 <chakra.span color="cyan.400" fontWeight="bold">
                   {instructionsItem[1]}
@@ -39,10 +39,10 @@ const InfoModal: React.FC<Props> = (props): JSX.Element => {
             ))}
           </Box>
           {outsideLinks.map(outsideLinksObject => (
-            <Box mb={3}>
+            <Box key={outsideLinksObject.name} mb={3}>
               <Text fontWeight="bold">{outsideLinksObject.name}</Text>
               {outsideLinksObject.links.map(outsideLink => (
-                <Text>
+                <Text key={outsideLink.name}>
                   <Link isExternal color="teal.400" href={outsideLink.href}>
                     {outsideLink.name}
                   </Link>
