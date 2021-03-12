@@ -12,7 +12,7 @@ import {
   getProvincePopulation,
 } from '../../../../utils/functions';
 import { SelectionContext, DataContext } from '../../../../utils/Context';
-// Components
+
 interface Props {
   vaccine?: string;
   dose?: 1 | 2;

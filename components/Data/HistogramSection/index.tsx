@@ -5,10 +5,10 @@ import useSWR from 'swr';
 
 // Components
 import Histogram from './Histogram/index';
+import ScaleButton from './ScaleButton';
 
 // Utils
 import { fetcher } from '../../../utils/functions';
-import ScaleButton from './ScaleButton';
 
 const HistogramSection: React.FC = (): JSX.Element => {
   const { data, error } = useSWR('/api/historic_data', fetcher);
