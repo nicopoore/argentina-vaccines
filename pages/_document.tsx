@@ -8,8 +8,8 @@ class Document extends NextDocument {
   render(): JSX.Element {
     return (
       <Html lang="en">
-        <Meta />
         <body>
+          <Meta />
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
