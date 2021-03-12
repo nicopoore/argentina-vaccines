@@ -11,7 +11,6 @@ class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          <title>{metaTitle}</title>
           <link href="/favicon.ico" rel="icon" />
           <meta content={metaTitle} name="title" />
           <meta content={metaDesc} name="description" />
