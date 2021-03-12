@@ -27,19 +27,22 @@ const Home = (): JSX.Element => {
 
   if (error)
     return (
-      <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
-        <Title isSimplified={isSimplified} setIsSimplified={setIsSimplified} />
-        <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
-          <SelectionContextProvider selectedProvince={selectedProvince}>
-            <Map setSelectedProvince={setSelectedProvince} />
-          </SelectionContextProvider>
-          <Stack alignItems="center" flexGrow={1} justify="center">
-            <Text>Error al buscar datos</Text>
-            <Text>Error: {error.name}</Text>
-            <Text>Mensaje: {error.message}</Text>
+      <>
+        <Meta />
+        <Stack m="auto" w={{ base: '100%', xl: '80%' }}>
+          <Title isSimplified={isSimplified} setIsSimplified={setIsSimplified} />
+          <Stack direction="row" wrap={{ base: 'wrap', md: 'nowrap' }}>
+            <SelectionContextProvider selectedProvince={selectedProvince}>
+              <Map setSelectedProvince={setSelectedProvince} />
+            </SelectionContextProvider>
+            <Stack alignItems="center" flexGrow={1} justify="center">
+              <Text>Error al buscar datos</Text>
+              <Text>Error: {error.name}</Text>
+              <Text>Mensaje: {error.message}</Text>
+            </Stack>
           </Stack>
         </Stack>
-      </Stack>
+      </>
     );
 
   return (
