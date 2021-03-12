@@ -119,7 +119,7 @@
         "jurisdiccion_codigo_indec": 78,
         "jurisdiccion_nombre": "Santa Cruz",
         "poblacion_estimada_2021": 374756,
-        "info_website": ""
+        "info_website": "https://www.santacruz.gob.ar/vacunarparaprevenir"
       },
       {
         "jurisdiccion_codigo_indec": 82,
@@ -210,7 +210,7 @@
     [
       "El botón ",
       "'Conocé más'",
-      " en la sección de números sirve para encontrar más información sobre la campaña de vacunación de la jurisdicción seleccionada."
+      " sirve para encontrar más información sobre la campaña de vacunación de la provincia seleccionada."
     ]
   ],
   "outsideLinks": [
