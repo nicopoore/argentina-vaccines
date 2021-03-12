@@ -1,3 +1,4 @@
+// Dependencies
 import React, { useState } from 'react';
 import {
   Stack,
@@ -11,6 +12,8 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { QuestionOutlineIcon } from '@chakra-ui/icons';
+
+// Components
 import InfoModal from './InfoModal';
 
 interface Props {

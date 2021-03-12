@@ -1,3 +1,5 @@
+// Dependencies
+import React from 'react';
 import {
   Modal,
   Text,
@@ -11,7 +13,8 @@ import {
   chakra,
   Flex,
 } from '@chakra-ui/react';
-import React from 'react';
+
+// Utils
 import { outsideLinks, instructions } from '../utils/staticData.json';
 
 interface Props {
