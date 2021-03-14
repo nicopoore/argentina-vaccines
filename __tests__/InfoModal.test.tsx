@@ -76,12 +76,12 @@ it('renders close button', () => {
   expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument();
 });
 
-it('closes modal on close button click', async () => {
+it('calls handleClose on close button click', async () => {
   userEvent.click(screen.getByRole('button', { name: /close/i }));
   expect(mockHandleClose).toHaveBeenCalledTimes(1);
 });
 
-it('does not close modal on modal click', () => {
+it('does not call handleClose on modal click', () => {
   userEvent.click(screen.getByRole('dialog', { name: /argentina vacunada/i }));
   expect(mockHandleClose).not.toHaveBeenCalled();
 });
