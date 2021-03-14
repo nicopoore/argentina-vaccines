@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 // Utils
-import { outsideLinks, instructions } from '../utils/staticData.json';
+import { outsideLinks, instructions } from '../../utils/staticData.json';
 
 interface Props {
   isOpen: boolean;
