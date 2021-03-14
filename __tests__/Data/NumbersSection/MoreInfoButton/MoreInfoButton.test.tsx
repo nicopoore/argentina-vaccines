@@ -4,31 +4,42 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import MoreInfoButton from '../../../../components/Data/NumbersSection/MoreInfoButton';
 import { SelectionContextProvider } from '../../../../utils/Context';
+import provinceNames from '../../../../__mocks__/provinceNames';
 
 describe('unit', () => {
-  const renderWithContexts = (ui: JSX.Element): RenderResult => {
+  const renderWithContexts = (ui: JSX.Element, selectedProvince: string): RenderResult => {
     return render(
-      <SelectionContextProvider selectedProvince="Argentina">{ui}</SelectionContextProvider>
+      <SelectionContextProvider selectedProvince={selectedProvince}>{ui}</SelectionContextProvider>
     );
   };
 
-  it('renders text with correct province name', () => {
-    renderWithContexts(<MoreInfoButton />);
+  provinceNames.map(provinceName => {
+    describe('renders text', () => {
+      it(`renders text with ${provinceName}`, () => {
+        renderWithContexts(<MoreInfoButton />, provinceName);
 
-    expect(screen.getByText(/consultá la información/i)).toHaveTextContent(/argentina/i);
-  });
+        expect(screen.getByText(/consultá la información/i)).toHaveTextContent(
+          RegExp(provinceName, 'i')
+        );
+      });
+    });
 
-  it('renders link', () => {
-    renderWithContexts(<MoreInfoButton />);
+    describe('renders link or button', () => {
+      if (provinceName !== 'Tierra del Fuego') {
+        it(`renders link in ${provinceName}`, () => {
+          renderWithContexts(<MoreInfoButton />, provinceName);
 
-    expect(screen.getByRole('link', { name: /conocé más/i })).toBeInTheDocument();
-  });
+          expect(screen.getByRole('link', { name: /conocé más/i })).toHaveAttribute('href');
+          expect(screen.getByRole('link', { name: /conocé más/i })).not.toHaveAttribute('href', '');
+        });
+      } else {
+        it('renders button in Tierra del Fuego', () => {
+          renderWithContexts(<MoreInfoButton />, provinceName);
 
-  it('renders link with non-empty href', () => {
-    renderWithContexts(<MoreInfoButton />);
-
-    expect(screen.getByRole('link', { name: /conocé más/i })).toHaveAttribute('href');
-    expect(screen.getByRole('link', { name: /conocé más/i })).not.toHaveAttribute('href', '');
+          expect(screen.getByRole('button', { name: /conocé más/i })).toBeInTheDocument();
+        });
+      }
+    });
   });
 });
 
