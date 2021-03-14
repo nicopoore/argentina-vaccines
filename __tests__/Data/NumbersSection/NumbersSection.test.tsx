@@ -3,12 +3,12 @@ import { RenderResult, render, screen } from '@testing-library/react';
 import React from 'react';
 import NumbersSection from '../../../components/Data/NumbersSection';
 import { DataContextProvider, SelectionContextProvider } from '../../../utils/Context';
-import dataMock from '../../../__mocks__/dataMock';
+import { rawData } from '../../../__mocks__/data/dataMock.json';
 
 const renderWithContexts = (ui: JSX.Element): RenderResult => {
   return render(
     <SelectionContextProvider selectedProvince="Argentina">
-      <DataContextProvider data={dataMock}>{ui}</DataContextProvider>
+      <DataContextProvider data={rawData}>{ui}</DataContextProvider>
     </SelectionContextProvider>
   );
 };
