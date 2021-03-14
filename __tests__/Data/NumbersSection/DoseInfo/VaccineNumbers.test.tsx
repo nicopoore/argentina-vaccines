@@ -4,7 +4,14 @@ import { render, RenderResult, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import VaccineNumbers from '../../../../components/Data/NumbersSection/DoseInfo/VaccineNumbers';
 import { DataContextProvider, SelectionContextProvider } from '../../../../utils/Context';
-import dataMock from '../../../../__mocks__/dataMock';
+import {
+  rawData,
+  firstDoseNumbers,
+  firstDosePercentages,
+  secondDoseNumbers,
+  secondDosePercentages,
+} from '../../../../__mocks__/data/dataMock.json';
+import provinceNames from '../../../../__mocks__/provinceNames';
 
 describe('loading state', () => {
   it('renders raw component without crashing', () => {
@@ -32,43 +39,53 @@ describe('loading state', () => {
 });
 
 describe('loaded state', () => {
-  const renderWithContexts = (ui: JSX.Element): RenderResult => {
+  const renderWithContexts = (ui: JSX.Element, selectedProvince: string): RenderResult => {
     return render(
-      <SelectionContextProvider selectedProvince="Argentina">
-        <DataContextProvider data={dataMock}>{ui}</DataContextProvider>
+      <SelectionContextProvider selectedProvince={selectedProvince}>
+        <DataContextProvider data={rawData}>{ui}</DataContextProvider>
       </SelectionContextProvider>
     );
   };
 
-  it('renders first dose raw numbers correctly', () => {
-    renderWithContexts(<VaccineNumbers dose={1} numberType="raw" />);
+  describe('first dose', () => {
+    provinceNames.map(provinceName => {
+      it(`renders ${provinceName} first dose raw numbers`, () => {
+        renderWithContexts(<VaccineNumbers dose={1} numberType="raw" />, provinceName);
 
-    const numbers = screen.getByRole('heading', { name: /1\.932\.696/ });
-    expect(numbers).toBeInTheDocument();
-    expect(numbers.nextSibling).toHaveTextContent(/personas/i);
+        const numbers = screen.getByRole('heading', { name: firstDoseNumbers[provinceName] });
+        expect(numbers).toBeInTheDocument();
+        expect(numbers.nextSibling).toHaveTextContent(/personas/i);
+      });
+      it(`renders ${provinceName} first dose percentage`, () => {
+        renderWithContexts(<VaccineNumbers dose={1} numberType="percentage" />, provinceName);
+
+        const numbers = screen.getByRole('heading', {
+          name: RegExp(firstDosePercentages[provinceName]),
+        });
+        expect(numbers).toBeInTheDocument();
+        expect(numbers.nextSibling).toHaveTextContent(/de la población/i);
+      });
+    });
   });
 
-  it('renders second dose raw numbers correctly', () => {
-    renderWithContexts(<VaccineNumbers dose={2} numberType="raw" />);
+  describe('second dose', () => {
+    provinceNames.map(provinceName => {
+      it(`renders ${provinceName} second dose raw numbers`, () => {
+        renderWithContexts(<VaccineNumbers dose={2} numberType="raw" />, provinceName);
 
-    const numbers = screen.getByRole('heading', { name: /448\.733/ });
-    expect(numbers).toBeInTheDocument();
-    expect(numbers.nextSibling).toHaveTextContent(/personas/i);
-  });
+        const numbers = screen.getByRole('heading', { name: secondDoseNumbers[provinceName] });
+        expect(numbers).toBeInTheDocument();
+        expect(numbers.nextSibling).toHaveTextContent(/personas/i);
+      });
+      it(`renders ${provinceName} second dose percentage`, () => {
+        renderWithContexts(<VaccineNumbers dose={2} numberType="percentage" />, provinceName);
 
-  it('renders first dose percentages correctly', () => {
-    renderWithContexts(<VaccineNumbers dose={1} numberType="percentage" />);
-
-    const numbers = screen.getByRole('heading', { name: /4,22/ });
-    expect(numbers).toBeInTheDocument();
-    expect(numbers.nextSibling).toHaveTextContent(/de la población/i);
-  });
-
-  it('renders second dose percentages correctly', () => {
-    renderWithContexts(<VaccineNumbers dose={2} numberType="percentage" />);
-
-    const numbers = screen.getByRole('heading', { name: /0,98/ });
-    expect(numbers).toBeInTheDocument();
-    expect(numbers.nextSibling).toHaveTextContent(/de la población/i);
+        const numbers = screen.getByRole('heading', {
+          name: RegExp(secondDosePercentages[provinceName]),
+        });
+        expect(numbers).toBeInTheDocument();
+        expect(numbers.nextSibling).toHaveTextContent(/de la población/i);
+      });
+    });
   });
 });
