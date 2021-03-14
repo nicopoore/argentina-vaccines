@@ -1,9 +1,9 @@
 import React from 'react';
-import '../utils/matchMedia.mock';
+import '../../utils/matchMedia.mock';
 import { render, waitFor, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import { Title } from '../components';
+import { Title } from '../../components';
 
 const mockSetIsSimplified = jest.fn();
 
@@ -71,15 +71,14 @@ describe('integration with InfoModal', () => {
     expect(screen.getByRole('dialog', { name: /argentina vacunada/i })).toBeInTheDocument();
   });
 
-  it('closes modal when clickaway', async () => {
-    userEvent.click(document.body);
-
-    expect(screen.queryByRole('dialog', { name: /argentina vacunada/i })).not.toBeInTheDocument();
-  });
-
   it('closes modal on close button click', async () => {
+    userEvent.click(screen.getByRole('button', { name: /help/i }));
+    await waitFor(() => screen.getByRole('dialog', { name: /argentina vacunada/i }));
+
     userEvent.click(screen.getByRole('button', { name: /close/i }));
 
-    expect(screen.queryByRole('dialog', { name: /argentina vacunada/i })).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByRole('dialog', { name: /argentina vacunada/i })).not.toBeInTheDocument()
+    );
   });
 });
