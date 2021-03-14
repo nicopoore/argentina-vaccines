@@ -5,11 +5,11 @@ import { Flex, Text } from '@chakra-ui/react';
 // Components
 import VaccineNumbers from './VaccineNumbers';
 
-interface DoseInfoProps {
+interface Props {
   dose: 1 | 2;
 }
 
-const DoseInfo: React.FC<DoseInfoProps> = (props): JSX.Element => {
+const DoseInfo: React.FC<Props> = (props): JSX.Element => {
   return (
     <>
       <Text as="h6" fontSize="xl" mt={4}>
