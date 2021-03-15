@@ -64,3 +64,5 @@ describe('loaded state', () => {
     expect(screen.getByTestId('barChartItem-4')).toHaveStyle('width: 48.148148148148145%');
   });
 });
+
+// TODO: Test tooltip on hover
