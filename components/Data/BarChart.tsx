@@ -38,7 +38,7 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
     <Box mb={props.lastItem ? 0 : 6}>
       <Flex borderRadius={2} h={4} mb={1} overflow="hidden" w="100%">
         {!('data' in props) ? (
-          <Skeleton h="100%" w="100%" />
+          <Skeleton data-testid="barChartSkeleton" h="100%" w="100%" />
         ) : (
           <AnimateSharedLayout>
             {props.data.map((chartItem, index) => {
@@ -55,6 +55,7 @@ const BarChart: React.FC<Props> = (props): JSX.Element => {
                     key={`${chartItem.name}-box`}
                     layout
                     bgColor={props.colors[index]}
+                    data-testid={`barChartItem-${index}`}
                     h="100%"
                     layoutId={chartItem.name}
                     w={`${percentage}%`}

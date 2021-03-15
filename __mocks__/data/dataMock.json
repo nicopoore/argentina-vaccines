@@ -612,5 +612,66 @@
     "Tierra del Fuego": "1,19",
     "Tucumán": "0,83",
     "Argentina": "0,98"
-  }
+  },
+  "barChartMockData": [
+    {
+      "data": [
+        {
+          "name": "test-chart-b-1",
+          "value": 2
+        }
+      ],
+      "name": "test-chart-b",
+      "colors": ["red", "blue"]
+    },
+    {
+      "data": [
+        {
+          "name": "test-chart-c-1",
+          "value": 3
+        },
+        {
+          "name": "test-chart-c-2",
+          "value": 10
+        }
+      ],
+      "name": "test-chart-c",
+      "colors": ["white", "black"]
+    },
+    {
+      "data": [
+        {
+          "name": "test-chart-d-1",
+          "value": 1
+        },
+        {
+          "name": "test-chart-d-2",
+          "value": 8
+        },
+        {
+          "name": "test-chart-d-3",
+          "value": 2
+        },
+        {
+          "name": "test-chart-d-4",
+          "value": 3
+        },
+        {
+          "name": "test-chart-d-5",
+          "value": 13
+        }
+      ],
+      "name": "test-chart-d",
+      "colors": ["red", "green", "blue"]
+    },
+    {
+      "data": [
+        {
+          "name": "test-chart-e-1",
+          "value": 4
+        }
+      ],
+      "colors": ["#fd02d9"]
+    }
+  ]
 }
