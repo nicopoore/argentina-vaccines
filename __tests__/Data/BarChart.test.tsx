@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import BarChart from '../../components/Data/BarChart';
 import { barChartMockData } from '../../__mocks__/data/dataMock.json';
+import userEvent from '@testing-library/user-event';
 
 describe('loading state', () => {
   it('renders skeleton alone', () => {
@@ -48,13 +49,13 @@ describe('loaded state', () => {
     });
   });
 
-  it('renders barchart-b with correct values', () => {
+  it('renders barchart 0 with correct values', () => {
     render(<BarChart colors={barChartMockData[0].colors} data={barChartMockData[0].data} />);
 
     expect(screen.getByTestId('barChartItem-0')).toHaveStyle('width: 100%');
   });
 
-  it('renders barchart-d with correct values', () => {
+  it('renders barchart 2 with correct values', () => {
     render(<BarChart colors={barChartMockData[2].colors} data={barChartMockData[2].data} />);
 
     expect(screen.getByTestId('barChartItem-0')).toHaveStyle('width: 3.7037037037037033%');
@@ -63,6 +64,26 @@ describe('loaded state', () => {
     expect(screen.getByTestId('barChartItem-3')).toHaveStyle('width: 11.11111111111111%');
     expect(screen.getByTestId('barChartItem-4')).toHaveStyle('width: 48.148148148148145%');
   });
-});
 
-// TODO: Test tooltip on hover
+  it('shows tooltip on hover in barchart 0', async () => {
+    render(<BarChart colors={barChartMockData[0].colors} data={barChartMockData[0].data} />);
+
+    userEvent.hover(screen.getByTestId('barChartItem-0'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-b-1/i }));
+  });
+
+  it('shows tooltips on hover in barchart 2', async () => {
+    render(<BarChart colors={barChartMockData[2].colors} data={barChartMockData[2].data} />);
+
+    userEvent.hover(screen.getByTestId('barChartItem-0'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-d-1/i }));
+    userEvent.hover(screen.getByTestId('barChartItem-1'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-d-2/i }));
+    userEvent.hover(screen.getByTestId('barChartItem-2'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-d-3/i }));
+    userEvent.hover(screen.getByTestId('barChartItem-3'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-d-4/i }));
+    userEvent.hover(screen.getByTestId('barChartItem-4'));
+    await waitFor(() => screen.getByRole('tooltip', { name: /test-chart-d-5/i }));
+  });
+});
