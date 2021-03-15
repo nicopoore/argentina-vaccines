@@ -63,21 +63,18 @@ describe('unit', () => {
     });
 
     describe('total selected', () => {
-      it('renders title', () => {
+      beforeEach(() => {
         renderWithContexts(<VaccineTypeData activeType="Total" />);
-
+      });
+      it('renders title', () => {
         expect(screen.getByText('Total')).toBeInTheDocument();
       });
 
       it(`renders number tag`, () => {
-        renderWithContexts(<VaccineTypeData activeType="Total" />);
-
         expect(screen.getByText(/vacunas comprometidas/i)).toBeInTheDocument();
       });
 
       it(`renders correct number`, () => {
-        renderWithContexts(<VaccineTypeData activeType="Total" />);
-
         expect(screen.getByText(/47\.591\.000/)).toBeInTheDocument();
       });
     });

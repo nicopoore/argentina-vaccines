@@ -50,9 +50,11 @@ describe('integration with TierraDelFuegoModal', () => {
     );
   };
 
-  it('opens modal on tierra del fuego button click', async () => {
+  beforeEach(() => {
     renderWithContexts(<MoreInfoButton />);
+  });
 
+  it('opens modal on tierra del fuego button click', async () => {
     userEvent.click(screen.getByRole('button', { name: /conocé más/i }));
 
     await waitFor(() => screen.getByRole('dialog', { name: /podés sacar turno/i }));
@@ -60,14 +62,10 @@ describe('integration with TierraDelFuegoModal', () => {
   });
 
   it('closes modal on close button click', async () => {
-    renderWithContexts(<MoreInfoButton />);
-
     userEvent.click(screen.getByRole('button', { name: /conocé más/i }));
-
     await waitFor(() => screen.getByRole('dialog', { name: /podés sacar turno/i }));
 
     userEvent.click(screen.getByRole('button', { name: /close/i }));
-
     await waitFor(() =>
       expect(screen.queryByRole('dialog', { name: /podés sacar turno/i })).not.toBeInTheDocument()
     );
