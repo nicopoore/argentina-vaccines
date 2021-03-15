@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, RenderResult, screen, waitFor } from '@testing-library/react';
+import { render, RenderResult, screen } from '@testing-library/react';
 import '../../../utils/matchMedia.mock';
 import '@testing-library/jest-dom/extend-expect';
 import VaccineTypeData from '../../../components/Data/VaccineTypeSection/VaccineTypeData';
@@ -30,35 +30,56 @@ describe('unit', () => {
       expect(screen.getByText(/1\.160\.000/)).toBeInTheDocument();
     });
 
-    vaccineTypes.map(vaccineType => {
-      it(`renders name and manufacturer on ${vaccineType.shortName}`, () => {
-        renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+    describe('vaccine selected', () => {
+      vaccineTypes.map(vaccineType => {
+        it(`renders name and manufacturer on ${vaccineType.shortName}`, () => {
+          renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
 
-        expect(screen.getByText(vaccineType.shortName)).toBeInTheDocument();
+          expect(screen.getByText(vaccineType.shortName)).toBeInTheDocument();
+        });
+
+        it(`renders number tag on ${vaccineType.shortName}`, () => {
+          renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+
+          expect(screen.getByText(/vacunas comprometidas/i)).toBeInTheDocument();
+        });
+
+        it(`renders correct number on ${vaccineType.shortName}`, () => {
+          renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+
+          const formattedNumber = formatNumbers(vaccineType.purchased, 'number');
+
+          expect(screen.getByText(formattedNumber)).toBeInTheDocument();
+        });
+
+        it(`renders image with flag code on ${vaccineType.shortName}`, async () => {
+          renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+
+          expect(
+            screen.getByRole('img', { name: vaccineType.countryProduced })
+          ).toBeInTheDocument();
+        });
+      });
+    });
+
+    describe('total selected', () => {
+      it('renders title', () => {
+        renderWithContexts(<VaccineTypeData activeType="Total" />);
+
+        expect(screen.getByText('Total')).toBeInTheDocument();
       });
 
-      it(`renders number tag on ${vaccineType.shortName}`, () => {
-        renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+      it(`renders number tag`, () => {
+        renderWithContexts(<VaccineTypeData activeType="Total" />);
 
         expect(screen.getByText(/vacunas comprometidas/i)).toBeInTheDocument();
       });
 
-      it(`renders correct number on ${vaccineType.shortName}`, () => {
-        renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
+      it(`renders correct number`, () => {
+        renderWithContexts(<VaccineTypeData activeType="Total" />);
 
-        const formattedNumber = formatNumbers(vaccineType.purchased, 'number');
-
-        expect(screen.getByText(formattedNumber)).toBeInTheDocument();
+        expect(screen.getByText(/47\.591\.000/)).toBeInTheDocument();
       });
-
-      // TODO: Test country flag
-
-      // it(`renders country flag correctly on ${vaccineType.shortName}`, async () => {
-      //   renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
-
-      //   const img = screen.getByRole('img', { name: vaccineType.countryProduced });
-      //   console.log(img);
-      // });
     });
   });
 });
@@ -72,15 +93,25 @@ describe('integration with BarChart', () => {
         expect(screen.getByTestId('barChartSkeleton')).toBeInTheDocument();
       });
     });
+    it(`renders BarChart skeleton on Total`, () => {
+      render(<VaccineTypeData activeType="Total" />);
+
+      expect(screen.getByTestId('barChartSkeleton')).toBeInTheDocument();
+    });
   });
 
   describe('loaded state', () => {
     vaccineTypes.map(vaccineType => {
-      it(`renders barchart on ${vaccineType.shortName}`, () => {
+      it(`renders BarChart on ${vaccineType.shortName}`, () => {
         renderWithContexts(<VaccineTypeData activeType={vaccineType.name} />);
 
         expect(screen.getAllByTestId(/barChartItem-/)).toHaveLength(3);
       });
+    });
+    it(`renders BarChart on Total`, () => {
+      renderWithContexts(<VaccineTypeData activeType="Total" />);
+
+      expect(screen.getAllByTestId(/barChartItem-/)).toHaveLength(3);
     });
   });
 });
