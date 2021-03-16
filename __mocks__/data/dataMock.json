@@ -707,5 +707,13 @@
       "purchased": 22431000,
       "arrived": 0
     }
-  ]
+  ],
+  "tooltipMock": {
+    "active": true,
+    "payload": [
+      {"value": "0.60%"},
+      {"value": "1.32%"}
+    ],
+    "label": "2021-03-10"
+  }
 }
