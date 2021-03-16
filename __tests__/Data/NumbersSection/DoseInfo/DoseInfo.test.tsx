@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../../utils/matchMedia.mock';
+import '../../../../__mocks__/matchMedia.mock';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import DoseInfo from '../../../../components/Data/NumbersSection/DoseInfo';

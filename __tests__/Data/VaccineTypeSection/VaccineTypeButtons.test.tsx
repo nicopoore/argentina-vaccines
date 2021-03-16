@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
-import '../../../utils/matchMedia.mock';
+import '../../../__mocks__/matchMedia.mock';
 import '@testing-library/jest-dom/extend-expect';
 import VaccineTypeButtons from '../../../components/Data/VaccineTypeSection/VaccineTypeButtons';
 import { vaccineTypes } from '../../../__mocks__/data/dataMock.json';
