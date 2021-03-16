@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Tooltip from '../../../../components/Data/HistogramSection/Histogram/Tooltip';
 import { tooltipMock } from '../../../../__mocks__/data/dataMock.json';
