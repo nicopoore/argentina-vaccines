@@ -1,20 +1,23 @@
 // Dependencies
 import React, { useState } from 'react';
 import { CircularProgress, Flex } from '@chakra-ui/react';
-import useSWR from 'swr';
 
 // Components
 import Histogram from './Histogram/index';
 import ScaleButton from './ScaleButton';
 
 // Utils
-import { fetcher } from '../../../utils/functions';
+import { DatabaseDateItem } from '../../../utils/types';
 
-const HistogramSection: React.FC = (): JSX.Element => {
-  const { data, error } = useSWR('/api/historic_data', fetcher);
+interface Props {
+  data: DatabaseDateItem[];
+  error: boolean;
+}
+
+const HistogramSection: React.FC<Props> = (props): JSX.Element => {
   const [YAxisIsScaled, setYAxisIsScaled] = useState(true);
 
-  if (!data)
+  if (!props.data)
     return (
       <Flex
         alignItems="center"
@@ -24,7 +27,7 @@ const HistogramSection: React.FC = (): JSX.Element => {
         justify="center"
         minH={200}
       >
-        {error ? (
+        {props.error ? (
           'Error buscando datos históricos'
         ) : (
           <>
@@ -50,7 +53,7 @@ const HistogramSection: React.FC = (): JSX.Element => {
       position="relative"
       w={{ base: '97.5%', sm: '100%' }}
     >
-      <Histogram YAxisIsScaled={YAxisIsScaled} data={data} />
+      <Histogram YAxisIsScaled={YAxisIsScaled} data={props.data} />
       <ScaleButton YAxisIsScaled={YAxisIsScaled} handleClick={handleClick} />
     </Flex>
   );
