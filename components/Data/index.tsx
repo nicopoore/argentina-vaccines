@@ -12,6 +12,8 @@ import VaccineTypeSection from './VaccineTypeSection';
 // Utils
 import { MotionBox, MotionStack } from '../../utils/MotionComponents';
 import { SelectionContext } from '../../utils/Context';
+import useSWR from 'swr';
+import { fetcher } from '../../utils/functions';
 
 interface Props {
   isSimplified: boolean;
@@ -19,6 +21,8 @@ interface Props {
 
 const Data: React.FC<Props> = (props): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
+
+  const { data: historicData, error } = useSWR('/api/historic_data', fetcher);
 
   return (
     <Stack alignItems="center" flexGrow={1} justify="center" overflow="hidden">
@@ -49,7 +53,7 @@ const Data: React.FC<Props> = (props): JSX.Element => {
                   variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
                 >
                   <BarChartsSection />
-                  <HistogramSection />
+                  <HistogramSection data={historicData} error={error} />
                 </MotionStack>
               )}
             </AnimatePresence>
