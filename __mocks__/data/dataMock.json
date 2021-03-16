@@ -708,12 +708,46 @@
       "arrived": 0
     }
   ],
-  "tooltipMock": {
-    "active": true,
-    "payload": [
-      {"value": 0.60, "name": "test-1"},
-      {"value": 1.32, "name": "test-2"}
-    ],
-    "label": "2021-03-10"
-  }
+  "histogramMock": [
+    {
+      "active": true,
+      "payload": [
+        {"value": 0.60, "name": "test-1"},
+        {"value": 1.32, "name": "test-2"}
+      ],
+      "label": "2021-03-10"
+    },
+    {
+      "active": true,
+      "payload": [
+        {"value": 0.64, "name": "test-1"},
+        {"value": 1.39, "name": "test-2"}
+      ],
+      "label": "2021-03-11"
+    },
+    {
+      "active": true,
+      "payload": [
+        {"value": 0.75, "name": "test-1"},
+        {"value": 1.58, "name": "test-2"}
+      ],
+      "label": "2021-03-12"
+    },
+    {
+      "active": true,
+      "payload": [
+        {"value": 0.92, "name": "test-1"},
+        {"value": 1.81, "name": "test-2"}
+      ],
+      "label": "2021-03-13"
+    },
+    {
+      "active": true,
+      "payload": [
+        {"value": 1.03, "name": "test-1"},
+        {"value": 1.88, "name": "test-2"}
+      ],
+      "label": "2021-03-14"
+    }
+  ]
 }
