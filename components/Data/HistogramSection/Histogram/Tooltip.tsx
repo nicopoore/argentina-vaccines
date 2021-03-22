@@ -15,7 +15,7 @@ const Tooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>):
         </Text>
         <Stack direction="row" spacing={6}>
           {payload.map(payloadItem => (
-            <Stack direction="row">
+            <Stack key={payloadItem.name} direction="row">
               <Box bgColor={payloadItem.color} h="100%" w={1} />
               <Flex direction="column">
                 <Text fontSize="xl" fontWeight="bold">
