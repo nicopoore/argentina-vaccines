@@ -14,7 +14,6 @@ import {
 import { SelectionContext, DataContext } from '../../../../utils/Context';
 
 interface Props {
-  vaccine?: string;
   dose?: 1 | 2;
   numberType: 'raw' | 'percentage';
 }
@@ -25,7 +24,7 @@ const VaccineNumbers: React.FC<Props> = (props): JSX.Element => {
   if (!data)
     return (
       <Box w={{ base: '45%', md: '48%' }}>
-        <SkeletonText mt={2} noOfLines={2} pr={4} w="100%" />
+        <SkeletonText data-testid="vaccineNumbersSkeleton" mt={2} noOfLines={2} pr={4} w="100%" />
         <Text color="gray.500" fontSize="md" mt={1}>
           {props.numberType === 'raw' ? 'personas' : 'de la población'}
         </Text>

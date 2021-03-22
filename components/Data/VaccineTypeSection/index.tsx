@@ -34,7 +34,9 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
         variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
         w={{ base: '100%', '2xl': 550 }}
       >
-        <Text fontSize="2xl">Vacunas en la Argentina</Text>
+        <Text as="h2" fontSize="2xl">
+          Vacunas en la Argentina
+        </Text>
         <VaccineTypeButtons
           activeType={activeType}
           handleChange={handleChange}

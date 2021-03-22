@@ -24,12 +24,12 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
     return (
       <Box key="bottom-section" px={6}>
         <Box mb={4} mt={4}>
-          <SkeletonText noOfLines={2} w={32} />
-          <Skeleton h="20px" mt={2} w="24px" />
+          <SkeletonText data-testid="VaccineTypeDataSkeleton-a" noOfLines={2} w={32} />
+          <Skeleton data-testid="VaccineTypeDataSkeleton-b" h="20px" mt={2} w="24px" />
         </Box>
         <MotionBox layout>
           <BarChart lastItem />
-          <SkeletonText mt={4} noOfLines={2} w={48} />
+          <SkeletonText data-testid="VaccineTypeDataSkeleton-c" mt={4} noOfLines={2} w={48} />
         </MotionBox>
       </Box>
     );
@@ -74,7 +74,9 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
   return (
     <Box key="bottom-section" px={6}>
       <Box mb={4}>
-        <Text fontSize="xl">{activeData.shortName}</Text>
+        <Text as="h5" fontSize="xl">
+          {activeData.shortName}
+        </Text>
         <AnimatePresence>
           {activeData.shortName !== 'Total' && (
             <MotionBox
@@ -98,7 +100,7 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
       </Box>
       <MotionBox layout mt={activeData.shortName === 'Total' ? 4 : 0}>
         <BarChart lastItem colors={chart.colors} data={chart.values} variant="vaccineType" />
-        <Text fontSize="3xl" mt={2}>
+        <Text as="h4" fontSize="3xl" mt={2}>
           {formatNumbers(activeData.purchased, 'number')}
         </Text>
         <Text color="gray.500" fontSize="sm">
