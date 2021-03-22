@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import BarChart from '../../components/Data/BarChart';
-import { barChartMockData } from '../../__mocks__/data/dataMock.json';
+import { barChartMockData } from '../../__mocks__/dataMock.json';
 import userEvent from '@testing-library/user-event';
 
 describe('loading state', () => {

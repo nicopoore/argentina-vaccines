@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react';
 import '../../../__mocks__/matchMedia.mock';
 import '@testing-library/jest-dom/extend-expect';
 import VaccineTypeButtons from '../../../components/Data/VaccineTypeSection/VaccineTypeButtons';
-import { vaccineTypes } from '../../../__mocks__/data/dataMock.json';
+import { vaccineTypes } from '../../../__mocks__/dataMock.json';
 import userEvent from '@testing-library/user-event';
 
 const handleChange = jest.fn();

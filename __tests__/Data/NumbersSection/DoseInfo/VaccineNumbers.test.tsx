@@ -10,7 +10,7 @@ import {
   firstDosePercentages,
   secondDoseNumbers,
   secondDosePercentages,
-} from '../../../../__mocks__/data/dataMock.json';
+} from '../../../../__mocks__/dataMock.json';
 import provinceNames from '../../../../__mocks__/provinceNames';
 
 describe('loading state', () => {

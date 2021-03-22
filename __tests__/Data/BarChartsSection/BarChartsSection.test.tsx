@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import BarChartsSection from '../../../components/Data/BarChartsSection';
 import { DataContextProvider, SelectionContextProvider } from '../../../utils/Context';
-import { rawData } from '../../../__mocks__/data/dataMock.json';
+import { rawData } from '../../../__mocks__/dataMock.json';
 
 describe('loading state', () => {
   const renderWithSelectionContext = (ui: JSX.Element, selectedProvince: string): RenderResult => {

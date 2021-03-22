@@ -3,7 +3,7 @@ import { render, RenderResult, screen, waitFor } from '@testing-library/react';
 import '../../../__mocks__/matchMedia.mock';
 import '@testing-library/jest-dom/extend-expect';
 import VaccineTypeData from '../../../components/Data/VaccineTypeSection/VaccineTypeData';
-import { vaccineTypes, rawData } from '../../../__mocks__/data/dataMock.json';
+import { vaccineTypes, rawData } from '../../../__mocks__/dataMock.json';
 import { DataContextProvider } from '../../../utils/Context';
 import { formatNumbers } from '../../../utils/functions';
 import userEvent from '@testing-library/user-event';
