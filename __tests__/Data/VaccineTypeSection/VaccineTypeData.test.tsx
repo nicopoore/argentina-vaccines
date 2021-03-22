@@ -88,7 +88,7 @@ describe('unit', () => {
       });
 
       it(`renders correct number`, () => {
-        expect(screen.getByRole('heading', { name: /47\.591\.000/ })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /57\.591\.000/ })).toBeInTheDocument();
       });
 
       it('does not render manufacturer', () => {

@@ -34,7 +34,7 @@ describe('integration with inner components', () => {
       renderWithContexts(<VaccineTypeSection />);
 
       expect(screen.getByRole('heading', { name: /sputnik v/i })).toBeInTheDocument();
-      expect(screen.getByRole('heading', { name: /20\.000\.000/ })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /30\.000\.000/ })).toBeInTheDocument();
     });
 
     it('renders barchart', () => {
@@ -46,7 +46,7 @@ describe('integration with inner components', () => {
     it('renders barchart with correct values', () => {
       renderWithContexts(<VaccineTypeSection />);
 
-      expect(screen.getByTestId(/barChartItem-2/)).toHaveStyle('width: 88%');
+      expect(screen.getByTestId(/barChartItem-2/)).toHaveStyle('width: 90.9%');
     });
   });
 

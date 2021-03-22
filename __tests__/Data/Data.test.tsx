@@ -40,6 +40,7 @@ provinceNames.map(provinceName => {
 
   // FIXME - Error with await and SWR, haven't found solution yet.
   //         Also prevents any other Data test with loaded state.
+  //         Triggers act(...) console.error since changes are being made and not tested.
 
   // it(`renders ${provinceName} simplified loaded state correctly`, async () => {
   // renderWithContexts(<Data isSimplified testing />, provinceName);
