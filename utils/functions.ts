@@ -1,5 +1,9 @@
 import axios from "axios";
 import { PopulationDataItem, VaccineDataItem } from "./types";
+import {
+  countryPopulation,
+  provincePopulations,
+} from './staticData.json';
 
 export const formatNumbers = (num: number, type: string): string => {
   return type === 'percentage'
@@ -10,11 +14,11 @@ export const formatNumbers = (num: number, type: string): string => {
     : num.toLocaleString('es-AR');
 };
 
-export const getCurrentProvince = <T extends VaccineDataItem | PopulationDataItem>(data: T[], selectedProvince: string): T[] =>
+export const getCurrentProvinceData = <T extends VaccineDataItem | PopulationDataItem>(data: T[], selectedProvince: string): T[] =>
   data.filter(province => province.jurisdiccion_nombre === selectedProvince);
 
 export const getProvincePopulation = (provincePopulation: PopulationDataItem[], selectedProvince: string): number => {
-  const result = getCurrentProvince(provincePopulation, selectedProvince);
+  const result = getCurrentProvinceData(provincePopulation, selectedProvince);
   if (!result[0]) return 0;
   return result[0].poblacion_estimada_2021;
 };
@@ -33,8 +37,7 @@ export const formatVaccineDataItem = (data: VaccineDataItem[]): [number, number]
 
 export const formatVaccineData = (data: VaccineDataItem[]): {[data: string]: [number, number]} => {
   return data.reduce((acc, province: VaccineDataItem) => {
-    if (province.jurisdiccion_codigo_indec === null) return acc;
-    if (province.jurisdiccion_codigo_indec === 0) return acc;
+    if (province.jurisdiccion_codigo_indec === null || province.jurisdiccion_codigo_indec === 0) return acc;
     if (!acc[province.jurisdiccion_nombre]) {
       acc[province.jurisdiccion_nombre] = [province.primera_dosis_cantidad, province.segunda_dosis_cantidad];
     } else {
@@ -85,4 +88,18 @@ export const fetcher = async (url: string): Promise<any> => {
     mode: 'cors',
     cache: 'default',
   }).then(res => res.json())
+}
+
+export const getFilteredData = (data: VaccineDataItem[], selectedProvince: string): [number, VaccineDataItem[]] => {
+  let population: number;
+  let filteredData: VaccineDataItem[];
+  if (selectedProvince === 'Argentina') {
+    population = countryPopulation;
+    filteredData = data;
+  } else {
+    population = getProvincePopulation(provincePopulations, selectedProvince);
+    filteredData = getCurrentProvinceData(data, selectedProvince);
+  }
+
+  return [population, filteredData]
 }

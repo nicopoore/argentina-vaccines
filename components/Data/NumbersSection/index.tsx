@@ -11,9 +11,9 @@ import { SelectionContext } from '../../../utils/Context';
 import { MotionFlex } from '../../../utils/MotionComponents';
 
 const NumbersSection: React.FC = (): JSX.Element => {
-  const doses = [1, 2];
-
   const selectedProvince = useContext(SelectionContext);
+
+  const doses = [1, 2];
   return (
     <MotionFlex
       layout

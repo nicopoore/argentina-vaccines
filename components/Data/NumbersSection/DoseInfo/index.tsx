@@ -16,9 +16,8 @@ const DoseInfo: React.FC<Props> = (props): JSX.Element => {
         {props.dose === 1 ? 'Primera dosis' : 'Ambas dosis'}
       </Text>
       <Flex justify="space-between">
-        {['raw', 'percentage'].map((numberType: 'raw' | 'percentage') => (
-          <VaccineNumbers key={`vaccine-${numberType}`} dose={props.dose} numberType={numberType} />
-        ))}
+        <VaccineNumbers dose={props.dose} numberType="raw" />
+        <VaccineNumbers dose={props.dose} numberType="percentage" />
       </Flex>
     </>
   );

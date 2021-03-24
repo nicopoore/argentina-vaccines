@@ -3,18 +3,11 @@ import React, { useContext } from 'react';
 import { Box, SkeletonText, Text } from '@chakra-ui/react';
 
 // Utils
-import { VaccineDataItem } from '../../../../utils/types';
-import { provincePopulation, countryPopulation } from '../../../../utils/staticData.json';
-import {
-  formatNumbers,
-  formatVaccineDataItem,
-  getCurrentProvince,
-  getProvincePopulation,
-} from '../../../../utils/functions';
+import { formatNumbers, formatVaccineDataItem, getFilteredData } from '../../../../utils/functions';
 import { SelectionContext, DataContext } from '../../../../utils/Context';
 
 interface Props {
-  dose?: 1 | 2;
+  dose: 1 | 2;
   numberType: 'raw' | 'percentage';
 }
 
@@ -31,23 +24,16 @@ const VaccineNumbers: React.FC<Props> = (props): JSX.Element => {
       </Box>
     );
 
-  let population = 0;
-  let vaccines = [0, 0];
-  if (selectedProvince === 'Argentina') {
-    population = countryPopulation;
-    vaccines = formatVaccineDataItem(data);
-  } else {
-    population = getProvincePopulation(provincePopulation, selectedProvince);
-    const filteredData: VaccineDataItem[] = getCurrentProvince(data, selectedProvince);
-    vaccines = formatVaccineDataItem(filteredData);
-  }
+  const [population, filteredData] = getFilteredData(data, selectedProvince);
+  const [firstDose, secondDose] = formatVaccineDataItem(filteredData);
+  const activeDose = props.dose === 1 ? firstDose : secondDose;
 
   return (
     <Box w={{ base: '45%', md: '48%' }}>
       <Text as="h4" fontSize={{ base: '2xl', md: '4xl' }} mt={0}>
         {props.numberType === 'raw'
-          ? formatNumbers(vaccines[props.dose === 1 ? 0 : 1], 'number')
-          : formatNumbers(vaccines[props.dose === 1 ? 0 : 1] / population, 'percentage')}
+          ? formatNumbers(activeDose, 'number')
+          : formatNumbers(activeDose / population, 'percentage')}
       </Text>
       <Text color="gray.500" fontSize="md" mt={0}>
         {props.numberType === 'raw' ? 'personas' : 'de la población'}

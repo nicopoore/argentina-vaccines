@@ -14,12 +14,12 @@ const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
   const [isSimplified, setIsSimplified] = useState(true);
 
-  useEffect(() => {
-    const postDataAndMutate = async (): Promise<void> => {
-      await postCurrentData();
-      mutate('/api/historic_data');
-    };
+  const postDataAndMutate = async (): Promise<void> => {
+    await postCurrentData();
+    mutate('/api/historic_data');
+  };
 
+  useEffect(() => {
     postDataAndMutate();
   }, []);
 

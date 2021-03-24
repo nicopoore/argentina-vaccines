@@ -18,21 +18,21 @@ import InfoModal from './InfoModal';
 
 interface Props {
   isSimplified: boolean;
-  setIsSimplified: (_) => void;
+  setIsSimplified: (_: boolean) => void;
 }
 
 const Title: React.FC<Props> = (props): JSX.Element => {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
 
   const handleOpen = (): void => {
-    setInfoIsOpen(() => true);
+    setInfoIsOpen(true);
   };
 
   const handleClose = (): void => {
-    setInfoIsOpen(() => false);
+    setInfoIsOpen(false);
   };
 
-  const responsiveSizes = useBreakpointValue({
+  const responsiveSize = useBreakpointValue({
     base: 'xs',
     md: 'sm',
     '2xl': 'md',
@@ -44,16 +44,16 @@ const Title: React.FC<Props> = (props): JSX.Element => {
         <Text as="h1" fontSize="3xl" fontWeight="bold" m={2}>
           Argentina vacunada
         </Text>
-        <ButtonGroup isAttached size={responsiveSizes}>
+        <ButtonGroup isAttached size={responsiveSize}>
           <Button
             colorScheme={props.isSimplified ? 'blue' : undefined}
-            onClick={() => props.setIsSimplified(() => true)}
+            onClick={() => props.setIsSimplified(true)}
           >
             Vista simplificada
           </Button>
           <Button
             colorScheme={props.isSimplified ? undefined : 'blue'}
-            onClick={() => props.setIsSimplified(() => false)}
+            onClick={() => props.setIsSimplified(false)}
           >
             Vista completa
           </Button>
@@ -62,7 +62,7 @@ const Title: React.FC<Props> = (props): JSX.Element => {
           <Link
             isExternal
             color="gray.500"
-            fontSize={responsiveSizes}
+            fontSize={responsiveSize}
             href="https://github.com/nicopoore/argentina-vaccines"
             textAlign="right"
           >
@@ -72,7 +72,7 @@ const Title: React.FC<Props> = (props): JSX.Element => {
             <IconButton
               aria-label="Help"
               icon={<QuestionOutlineIcon />}
-              size={responsiveSizes}
+              size={responsiveSize}
               onClick={handleOpen}
             />
           </Tooltip>

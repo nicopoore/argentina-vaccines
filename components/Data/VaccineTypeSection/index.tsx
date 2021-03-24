@@ -15,7 +15,7 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
   const [activeType, setActiveType] = useState('Sputnik V COVID19 Instituto Gamaleya');
 
   const handleChange = (vaccineName: string): void => {
-    setActiveType(() => vaccineName);
+    setActiveType(vaccineName);
   };
 
   return (

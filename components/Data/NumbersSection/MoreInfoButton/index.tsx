@@ -7,7 +7,7 @@ import TierraDelFuegoModal from './TierraDelFuegoModal';
 
 // Utils
 import { PopulationDataItem } from '../../../../utils/types';
-import { provincePopulation } from '../../../../utils/staticData.json';
+import { provincePopulations } from '../../../../utils/staticData.json';
 import { SelectionContext } from '../../../../utils/Context/SelectionContext';
 
 const MoreInfoButton: React.FC = (): JSX.Element => {
@@ -15,20 +15,20 @@ const MoreInfoButton: React.FC = (): JSX.Element => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleCloseModal = (): void => {
-    setModalIsOpen(() => false);
+    setModalIsOpen(false);
   };
 
   const handleOpenModal = (): void => {
-    setModalIsOpen(() => true);
+    setModalIsOpen(true);
   };
 
-  const getCurrentProvince = <T extends PopulationDataItem>(data: T[]): T[] =>
-    data.filter(province => province.jurisdiccion_nombre === selectedProvince);
+  const getCurrentProvince = <T extends PopulationDataItem>(data: T[]): T =>
+    data.filter(province => province.jurisdiccion_nombre === selectedProvince)[0];
 
   const url =
     selectedProvince === 'Argentina'
       ? 'https://www.argentina.gob.ar/coronavirus/vacuna/preguntas-frecuentes'
-      : getCurrentProvince(provincePopulation)[0].info_website;
+      : getCurrentProvince(provincePopulations).info_website;
 
   return (
     <Box w={300}>

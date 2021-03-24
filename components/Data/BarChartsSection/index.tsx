@@ -6,17 +6,11 @@ import { Flex } from '@chakra-ui/layout';
 import BarChart from '../BarChart';
 
 // Utils
-import { VaccineDataItem } from '../../../utils/types';
-import {
-  countryPopulation,
-  provincePopulation,
-  vaccineTypes,
-} from '../../../utils/staticData.json';
+import { vaccineTypes } from '../../../utils/staticData.json';
 import {
   formatVaccineDataItem,
   formatVaccineOrigin,
-  getCurrentProvince,
-  getProvincePopulation,
+  getFilteredData,
 } from '../../../utils/functions';
 import { SelectionContext, DataContext } from '../../../utils/Context';
 import { MotionFlex } from '../../../utils/MotionComponents';
@@ -47,15 +41,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
       </Flex>
     );
 
-  let population = 0;
-  let filteredData: VaccineDataItem[];
-  if (selectedProvince === 'Argentina') {
-    population = countryPopulation;
-    filteredData = data;
-  } else {
-    population = getProvincePopulation(provincePopulation, selectedProvince);
-    filteredData = getCurrentProvince(data, selectedProvince);
-  }
+  const [population, filteredData] = getFilteredData(data, selectedProvince);
 
   const vaccineData = formatVaccineDataItem(filteredData);
   const vaccineNames = vaccineTypes.map(vaccineType => vaccineType.name);

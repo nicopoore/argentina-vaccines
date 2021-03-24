@@ -31,7 +31,6 @@ const GeographyItem: React.FC<Props> = ({ setSelectedProvince, caba }): JSX.Elem
             const displayProvince =
               geo.properties.NAME_1 === 'Ciudad de Buenos Aires' ? 'CABA' : geo.properties.NAME_1;
             const isSelected = displayProvince === selectedProvince ? true : false;
-            // const d = data.
             return (
               <Geography
                 key={geo.rsmKey}
@@ -45,9 +44,7 @@ const GeographyItem: React.FC<Props> = ({ setSelectedProvince, caba }): JSX.Elem
                   pressed: { fill: isSelected ? '#8cb4f5' : '#DADADC', outline: 'none' },
                 }}
                 onClick={() => {
-                  isSelected
-                    ? setSelectedProvince('Argentina')
-                    : setSelectedProvince(displayProvince);
+                  setSelectedProvince(isSelected ? 'Argentina' : displayProvince);
                 }}
               />
             );

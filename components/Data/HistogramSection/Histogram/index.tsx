@@ -16,12 +16,12 @@ import CustomTooltip from './Tooltip';
 
 // Utils
 import { DatabaseDateItem } from '../../../../utils/types';
-import { countryPopulation, provincePopulation } from '../../../../utils/staticData.json';
+import { countryPopulation, provincePopulations } from '../../../../utils/staticData.json';
 import { SelectionContext } from '../../../../utils/Context';
 import {
   formatVaccineData,
   formatVaccineDataItem,
-  getCurrentProvince,
+  getCurrentProvinceData,
   getProvincePopulation,
 } from '../../../../utils/functions';
 
@@ -36,7 +36,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
   const population =
     selectedProvince === 'Argentina'
       ? countryPopulation
-      : getProvincePopulation(provincePopulation, selectedProvince);
+      : getProvincePopulation(provincePopulations, selectedProvince);
 
   const fullCurrentVaccineData = formatVaccineData(props.data[props.data.length - 1].data);
 
@@ -44,24 +44,23 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
     const filteredData =
       selectedProvince === 'Argentina'
         ? rawDataItem.data
-        : getCurrentProvince(rawDataItem.data, selectedProvince);
-    const vaccineData = formatVaccineDataItem(filteredData);
+        : getCurrentProvinceData(rawDataItem.data, selectedProvince);
+
+    const [firstDose, secondDose] = formatVaccineDataItem(filteredData);
     const toPercentage = (vaccineData: number): number =>
       parseFloat(((vaccineData / population) * 100).toFixed(2));
 
-    const firstDose = toPercentage(vaccineData[0]);
-    const secondDose = toPercentage(vaccineData[1]);
     return {
       date: Date.parse(rawDataItem.date) + 10800000,
-      firstDose: firstDose,
-      secondDose: secondDose,
+      firstDose: toPercentage(firstDose),
+      secondDose: toPercentage(secondDose),
     };
   });
 
   const maxQuantity = Math.max(
     ...Object.keys(fullCurrentVaccineData).reduce((acc, item) => {
       acc.push(
-        (fullCurrentVaccineData[item][0] / getProvincePopulation(provincePopulation, item)) * 100
+        (fullCurrentVaccineData[item][0] / getProvincePopulation(provincePopulations, item)) * 100
       );
       return acc;
     }, [])

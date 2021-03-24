@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { Stack, Text } from '@chakra-ui/react';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
+import useSWR from 'swr';
 
 // Components
 import BarChartsSection from './BarChartsSection';
@@ -12,7 +13,6 @@ import VaccineTypeSection from './VaccineTypeSection';
 // Utils
 import { MotionBox, MotionStack } from '../../utils/MotionComponents';
 import { DataContextProvider, SelectionContext } from '../../utils/Context';
-import useSWR from 'swr';
 import { fetcher } from '../../utils/functions';
 
 interface Props {
@@ -56,7 +56,7 @@ const Data: React.FC<Props> = (props): JSX.Element => {
             >
               <NumbersSection />
               <AnimatePresence>
-                {!props.isSimplified && (
+                {!props.isSimplified ? (
                   <MotionStack
                     layout
                     animate="visible"
@@ -65,17 +65,19 @@ const Data: React.FC<Props> = (props): JSX.Element => {
                     variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
                   >
                     <BarChartsSection />
-                    {!props.testing && (
+                    {!props.testing ? (
                       <HistogramSection data={historicData} error={historicDataError} />
-                    )}
+                    ) : null}
                   </MotionStack>
-                )}
+                ) : null}
               </AnimatePresence>
             </MotionStack>
 
             <MotionBox layout id="flexLineBreak" w="100%" />
             <AnimatePresence>
-              {selectedProvince === 'Argentina' && !props.isSimplified && <VaccineTypeSection />}
+              {selectedProvince === 'Argentina' && !props.isSimplified ? (
+                <VaccineTypeSection />
+              ) : null}
             </AnimatePresence>
           </AnimateSharedLayout>
         </Stack>
