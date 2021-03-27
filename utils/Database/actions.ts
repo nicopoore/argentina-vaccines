@@ -5,6 +5,7 @@ export const getHistoricData = async (db: Db): Promise<DatabaseDateItem[]> => {
   const historic_data = await db
     .collection('historic_data')
     .find()
+    .sort({date: 1})
     .toArray()
 
   return historic_data
