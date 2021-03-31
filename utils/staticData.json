@@ -179,6 +179,14 @@
       "countryProduced": "GB",
       "purchased": 22431000,
       "arrived": 0
+    },
+    {
+      "shortName": "AZ-SKBio",
+      "name": "AstraZeneca ChAdOx1 S recombinante",
+      "provider": "Oxford / AstraZeneca",
+      "countryProduced": "GB",
+      "purchased": 2000000,
+      "arrived": 218000
     }
   ],
   "instructions": [

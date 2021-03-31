@@ -32,7 +32,7 @@ const VaccineTypeSection: React.FC = (): JSX.Element => {
         overflow="hidden"
         p={8}
         variants={{ hidden: { y: -20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-        w={{ base: '100%', '2xl': 550 }}
+        w={{ base: '100%', '2xl': 600 }}
       >
         <Text as="h2" fontSize="2xl">
           Vacunas en la Argentina
