@@ -8,6 +8,8 @@ import userEvent from '@testing-library/user-event';
 import { DataContextProvider } from '../../../utils/Context';
 import { formatNumbers } from '../../../utils/functions';
 
+// FIXME: Update tests for dropdown
+
 const renderWithContexts = (ui: JSX.Element): RenderResult => {
   return render(<DataContextProvider data={rawData}>{ui}</DataContextProvider>);
 };

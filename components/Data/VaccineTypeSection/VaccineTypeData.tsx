@@ -52,7 +52,7 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
   const fullVaccineArray = [...vaccineTypes, totalNumbers];
 
   const activeData: FullVaccineTypeItem = fullVaccineArray.filter(
-    vaccineType => vaccineType.name === props.activeType
+    vaccineType => vaccineType.shortName === props.activeType
   )[0];
 
   const chart = {

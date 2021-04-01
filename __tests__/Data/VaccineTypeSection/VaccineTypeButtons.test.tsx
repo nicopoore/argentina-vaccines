@@ -2,11 +2,13 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import '../../../__mocks__/matchMedia.mock';
 import '@testing-library/jest-dom/extend-expect';
-import VaccineTypeButtons from '../../../components/Data/VaccineTypeSection/VaccineTypeButtons';
+import VaccineTypeButtons from '../../../components/Data/VaccineTypeSection/VaccineTypeDropdown';
 import { vaccineTypes } from '../../../__mocks__/dataMock.json';
 import userEvent from '@testing-library/user-event';
 
 const handleChange = jest.fn();
+
+// FIXME: Update tests for dropdown
 
 beforeEach(() => {
   render(

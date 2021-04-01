@@ -5,14 +5,14 @@ import { AnimateSharedLayout } from 'framer-motion';
 
 // Components
 import VaccineTypeData from './VaccineTypeData';
-import VaccineTypeButtons from './VaccineTypeButtons';
+import VaccineTypeButtons from './VaccineTypeDropdown';
 
 // Utils
 import { vaccineTypes as rawVaccineTypes } from '../../../utils/staticData.json';
 import { MotionFlex } from '../../../utils/MotionComponents';
 
 const VaccineTypeSection: React.FC = (): JSX.Element => {
-  const [activeType, setActiveType] = useState('Sputnik V COVID19 Instituto Gamaleya');
+  const [activeType, setActiveType] = useState('Sputnik V');
 
   const handleChange = (vaccineName: string): void => {
     setActiveType(vaccineName);
