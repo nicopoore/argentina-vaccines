@@ -70,7 +70,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
         { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
         { name: 'Sinopharm', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
-        { name: 'Oxford Covax', value: vaccineOrigin['AstraZeneca ChAdOx1 S recombinante'] },
+        { name: 'AZ-SKBio', value: vaccineOrigin['AstraZeneca ChAdOx1 S recombinante'] },
       ],
       colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8'],
     },
