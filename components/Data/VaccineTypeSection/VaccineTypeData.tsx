@@ -55,6 +55,11 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
     vaccineType => vaccineType.shortName === props.activeType
   )[0];
 
+  const actualPurchased =
+    activeData.administered > activeData.arrived
+      ? activeData.purchased - activeData.administered
+      : activeData.purchased - activeData.arrived;
+
   const chart = {
     name: `Vacunas ${activeData.shortName} aplicadas, entregadas y comprometidas`,
     values: [
@@ -65,7 +70,7 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
       },
       {
         name: 'Comprometidas (por entregar)',
-        value: activeData.purchased - activeData.arrived,
+        value: actualPurchased,
       },
     ],
     colors: ['#0088FE', '#22D4DF', '#FF8042'],
