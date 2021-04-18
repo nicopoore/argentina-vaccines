@@ -49,12 +49,13 @@ const BarChartsSection: React.FC = (): JSX.Element => {
 
   const allCharts = [
     {
-      name: '% de la población vacunada (1 o más dosis)',
+      name: '% de la población vacunada',
       values: [
-        { name: 'Vacunades', value: vaccineData[0] },
+        { name: 'Ambas dosis', value: vaccineData[1] },
+        { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
         { name: 'No vacunades', value: population - vaccineData[0] },
       ],
-      colors: ['#40F66A', '#F56257'],
+      colors: ['#018F40', '#40F66A', '#F56257'],
     },
     {
       name: 'Parcial vs. totalmente vacunades',
