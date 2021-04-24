@@ -95,9 +95,9 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
               </Text>
               <Image
                 alt={activeData.countryProduced}
-                boxSize="24px"
+                fallbackSrc={`https://www.countryflags.io/${activeData.countryProduced}/flat/48.png`}
                 mt={1}
-                src={`https://www.countryflags.io/${activeData.countryProduced}/flat/48.png`}
+                src={`https://flagcdn.com/20x15/${activeData.countryProduced.toLowerCase()}.png`}
               />
             </MotionBox>
           )}
