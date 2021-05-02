@@ -1,11 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Papa from 'papaparse'
+import unzipper from 'unzipper'
+import request from 'request'
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
 
   switch(req.method) {
     case 'GET':
-      const dataCsv = await fetch('https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv').then(res => res.text())
+      
+      const directory = await unzipper.Open.url(request, 'https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv.zip')
+      const file = directory.files.find(d => d.path === 'Covid19VacunasAgrupadas.csv')
+      const content = await file.buffer()
+      const dataCsv = content.toString()
+
       const result = Papa.parse(dataCsv, {
         header: true,
         dynamicTyping: true

@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": "RU",
       "purchased": 30000000,
-      "arrived": 5197745
+      "arrived": 6000000
     },
     {
       "shortName": "Covishield",
@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": "CN",
       "purchased": 4000000,
-      "arrived": 2000000
+      "arrived": 4000000
     },
     {
       "shortName": "AZD1222",
