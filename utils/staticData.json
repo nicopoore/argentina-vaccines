@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": "RU",
       "purchased": 30000000,
-      "arrived": 7000000
+      "arrived": 7609965
     },
     {
       "shortName": "Covishield",
@@ -178,15 +178,15 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": "GB",
       "purchased": 22431000,
-      "arrived": 0
+      "arrived": 843600
     },
     {
       "shortName": "AZ-SKBio",
       "name": "AstraZeneca ChAdOx1 S recombinante",
       "provider": "Oxford / AstraZeneca",
-      "countryProduced": "GB",
+      "countryProduced": "KR",
       "purchased": 2000000,
-      "arrived": 1082400
+      "arrived": 1286400
     }
   ],
   "instructions": [
