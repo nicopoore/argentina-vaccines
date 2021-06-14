@@ -51,7 +51,7 @@ describe('unit', () => {
   it('directs to repo on author link click', () => {
     expect(screen.getByRole('link', { name: /nicolás poore/i })).toHaveAttribute(
       'href',
-      'https://github.com/nicopoore/argentina-vaccines'
+      'https://www.linkedin.com/in/nicolas-poore/'
     );
   });
 
