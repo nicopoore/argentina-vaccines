@@ -63,7 +63,7 @@ const Title: React.FC<Props> = (props): JSX.Element => {
             isExternal
             color="gray.500"
             fontSize={responsiveSize}
-            href="https://github.com/nicopoore/argentina-vaccines"
+            href="https://www.linkedin.com/in/nicolas-poore/"
             textAlign="right"
           >
             Nicolás Poore
