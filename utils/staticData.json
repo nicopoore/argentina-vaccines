@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": "RU",
       "purchased": 30000000,
-      "arrived": 8428115
+      "arrived": 9415745
     },
     {
       "shortName": "Covishield",
@@ -169,7 +169,7 @@
       "name": "Sinopharm Vacuna SARSCOV 2 inactivada",
       "provider": "Sinopharm",
       "countryProduced": "CN",
-      "purchased": 4000000,
+      "purchased": 10000000,
       "arrived": 4000000
     },
     {
@@ -178,7 +178,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": "AR",
       "purchased": 22431000,
-      "arrived": 2962600
+      "arrived": 3803200
     },
     {
       "shortName": "AZ-SKBio",
@@ -186,7 +186,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": "KR",
       "purchased": 2000000,
-      "arrived": 1700000
+      "arrived": 1944000
     }
   ],
   "instructions": [
