@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { Box, Text, Image, SkeletonText, Skeleton } from '@chakra-ui/react';
+import { Box, Text, Image, SkeletonText, Skeleton, Flex } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 
 // Components
@@ -93,12 +93,18 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
               <Text color="gray.500" fontSize="md">
                 {activeData.provider}
               </Text>
-              <Image
-                alt={activeData.countryProduced}
-                fallbackSrc={`https://www.countryflags.io/${activeData.countryProduced}/flat/48.png`}
-                mt={1}
-                src={`https://flagcdn.com/20x15/${activeData.countryProduced.toLowerCase()}.png`}
-              />
+              <Flex>
+                {activeData.countryProduced.map((countryName, countryIdx) => (
+                  <Image
+                    key={countryName}
+                    alt={countryName}
+                    fallbackSrc={`https://www.countryflags.io/${countryName}/flat/48.png`}
+                    ml={countryIdx !== 0 ? 1 : 0}
+                    mt={1}
+                    src={`https://flagcdn.com/20x15/${countryName.toLowerCase()}.png`}
+                  />
+                ))}
+              </Flex>
             </MotionBox>
           )}
         </AnimatePresence>

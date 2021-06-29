@@ -19,7 +19,7 @@ export interface FullVaccineTypeItem {
   shortName?: string; 
   name: string; 
   provider?: string; 
-  countryProduced?: string; 
+  countryProduced?: string[]; 
   purchased?: number; 
   arrived?: number;
   administered?: number; 
