@@ -152,7 +152,7 @@
       "shortName": "Sputnik V",
       "name": "Sputnik V COVID19 Instituto Gamaleya",
       "provider": "Instituto Gamaleya",
-      "countryProduced": "RU",
+      "countryProduced": ["RU"],
       "purchased": 30000000,
       "arrived": 9415745
     },
@@ -160,7 +160,7 @@
       "shortName": "Covishield",
       "name": "COVISHIELD ChAdOx1nCoV COVID 19",
       "provider": "Oxford / AstraZeneca",
-      "countryProduced": "IN",
+      "countryProduced": ["IN"],
       "purchased": 1160000,
       "arrived": 580000
     },
@@ -168,10 +168,20 @@
       "shortName": "BBIBP-CorV",
       "name": "Sinopharm Vacuna SARSCOV 2 inactivada",
       "provider": "Sinopharm",
-      "countryProduced": "CN",
+      "countryProduced": ["CN"],
       "purchased": 10000000,
-      "arrived": 4000000
+      "arrived": 6000000
     },
+    {
+      "shortName": "ChAd0x1 S",
+      "name": "AstraZeneca ChAdOx1 S recombinante",
+      "provider": "Oxford / AstraZeneca",
+      "countryProduced": ["AR", "KR"],
+      "purchased": 24716200,
+      "arrived": 6886200
+    }
+  ],
+  "deprecatedVaccineTypes": [
     {
       "shortName": "AZD1222",
       "name": "AZD1222 ChAdOx1nCoV COVID 19",
