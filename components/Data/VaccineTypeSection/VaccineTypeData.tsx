@@ -94,16 +94,23 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
                 {activeData.provider}
               </Text>
               <Flex>
-                {activeData.countryProduced.map((countryName, countryIdx) => (
+                {activeData.countryProduced[0] ? (
                   <Image
-                    key={countryName}
-                    alt={countryName}
-                    fallbackSrc={`https://www.countryflags.io/${countryName}/flat/48.png`}
-                    ml={countryIdx !== 0 ? 1 : 0}
+                    alt={activeData.countryProduced[0]}
+                    fallbackSrc={`https://www.countryflags.io/${activeData.countryProduced[0]}/flat/48.png`}
                     mt={1}
-                    src={`https://flagcdn.com/20x15/${countryName.toLowerCase()}.png`}
+                    src={`https://flagcdn.com/20x15/${activeData.countryProduced[0].toLowerCase()}.png`}
                   />
-                ))}
+                ) : null}
+                {activeData.countryProduced[1] ? (
+                  <Image
+                    alt={activeData.countryProduced[1]}
+                    fallbackSrc={`https://www.countryflags.io/${activeData.countryProduced[1]}/flat/48.png`}
+                    ml={1}
+                    mt={1}
+                    src={`https://flagcdn.com/20x15/${activeData.countryProduced[1].toLowerCase()}.png`}
+                  />
+                ) : null}
               </Flex>
             </MotionBox>
           )}
