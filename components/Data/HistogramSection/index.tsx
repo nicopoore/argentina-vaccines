@@ -15,7 +15,7 @@ interface Props {
 }
 
 const HistogramSection: React.FC<Props> = (props): JSX.Element => {
-  const [YAxisIsScaled, setYAxisIsScaled] = useState(true);
+  const [YAxisIsScaled, setYAxisIsScaled] = useState(false);
 
   if (!props.data)
     return (
