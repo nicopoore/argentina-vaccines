@@ -69,7 +69,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
       name: '% de vacunades por tipo (1 o más dosis)',
       values: [
         { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
-        { name: 'Covishield', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
+        { name: 'Covishield AstraZeneca', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
         { name: 'Sinopharm', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
         { name: 'ChAd0x1 AstraZeneca', value: vaccineOrigin['AstraZeneca ChAdOx1 S recombinante'] },
         { name: 'Moderna', value: vaccineOrigin['Moderna mRNA-1273'] },
