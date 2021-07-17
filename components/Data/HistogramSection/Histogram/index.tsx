@@ -4,6 +4,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -75,6 +76,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
         />
         <Area color="#ffa14f" dataKey="firstDose" fill="#ffa14f" stroke="#ffa14f" />
         <Area color="#00C49F" dataKey="secondDose" fill="#00C49F" stroke="#00C49F" />
+        <ReferenceLine stroke="green" strokeDasharray="3 3" y={90} />
       </AreaChart>
     </ResponsiveContainer>
   );
