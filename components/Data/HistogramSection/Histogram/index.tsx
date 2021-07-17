@@ -19,7 +19,6 @@ import { DatabaseDateItem } from '../../../../utils/types';
 import { countryPopulation, provincePopulations } from '../../../../utils/staticData.json';
 import { SelectionContext } from '../../../../utils/Context';
 import {
-  formatVaccineData,
   formatVaccineDataItem,
   getCurrentProvinceData,
   getProvincePopulation,
@@ -38,8 +37,6 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
       ? countryPopulation
       : getProvincePopulation(provincePopulations, selectedProvince);
 
-  const fullCurrentVaccineData = formatVaccineData(props.data[props.data.length - 1].data);
-
   const histogramData = props.data.map(rawDataItem => {
     const filteredData =
       selectedProvince === 'Argentina'
@@ -57,15 +54,6 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
     };
   });
 
-  const maxQuantity = Math.max(
-    ...Object.keys(fullCurrentVaccineData).reduce((acc, item) => {
-      acc.push(
-        (fullCurrentVaccineData[item][0] / getProvincePopulation(provincePopulations, item)) * 100
-      );
-      return acc;
-    }, [])
-  );
-
   const XAxisTickFormatter = (date: Date): string => {
     return format(date, 'dd/MM');
   };
@@ -81,12 +69,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
         <Tooltip content={<CustomTooltip />} />
         <XAxis dataKey="date" minTickGap={10} tickFormatter={XAxisTickFormatter} />
         <YAxis
-          domain={[
-            0,
-            props.YAxisIsScaled
-              ? (maxValue: number) => Math.ceil(maxValue)
-              : Math.ceil(maxQuantity),
-          ]}
+          domain={[0, props.YAxisIsScaled ? (maxValue: number) => Math.ceil(maxValue) : 100]}
           tickFormatter={YAxisTickFormatter}
           type="number"
         />
