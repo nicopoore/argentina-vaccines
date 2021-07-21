@@ -68,6 +68,7 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
         .reduce((acc: number, province: VaccineDataItem) => {
           if (province['jurisdiccion_codigo_indec'] === null) return acc;
           acc += province['primera_dosis_cantidad'];
+          acc += province['segunda_dosis_cantidad']
           return acc;
         }, 0)
     );

@@ -66,7 +66,7 @@ const BarChartsSection: React.FC = (): JSX.Element => {
       colors: ['#3CF096', '#F07624'],
     },
     {
-      name: '% de vacunades por tipo (1 o más dosis)',
+      name: '% de dosis aplicadas por tipo',
       values: [
         { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
         { name: 'Covishield AstraZeneca', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },

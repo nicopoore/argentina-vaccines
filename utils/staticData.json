@@ -169,8 +169,8 @@
       "name": "Sinopharm Vacuna SARSCOV 2 inactivada",
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
-      "purchased": 10000000,
-      "arrived": 10608000
+      "purchased": 30000000,
+      "arrived": 11376000
     },
     {
       "shortName": "ChAd0x1 S",
@@ -178,7 +178,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
       "purchased": 24716200,
-      "arrived": 9734900
+      "arrived": 11084600
     },
     {
       "shortName": "mRNA-1273",
@@ -187,6 +187,14 @@
       "countryProduced": ["US"],
       "purchased": 20000000,
       "arrived": 3500000
+    },
+    {
+      "shortName": "Convidecia",
+      "name": "CanSino Biologics Convidecia",
+      "provider": "CanSino Biologics Inc.",
+      "countryProduced": ["CN"],
+      "purchased": 5400000,
+      "arrived": 0
     }
   ],
   "deprecatedVaccineTypes": [
