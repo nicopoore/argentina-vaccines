@@ -122,7 +122,7 @@ const VaccineTypeData: React.FC<Props> = (props): JSX.Element => {
           {formatNumbers(activeData.purchased, 'number')}
         </Text>
         <Text color="gray.500" fontSize="sm">
-          vacunas comprometidas
+          dosis comprometidas
         </Text>
       </MotionBox>
     </Box>
