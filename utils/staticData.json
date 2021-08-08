@@ -182,7 +182,7 @@
     },
     {
       "shortName": "mRNA-1273",
-      "name": "Moderna mRNA-1273",
+      "name": "Moderna ARNm",
       "provider": "Moderna",
       "countryProduced": ["US"],
       "purchased": 20000000,
