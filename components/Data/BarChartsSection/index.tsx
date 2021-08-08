@@ -72,9 +72,9 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'Covishield AstraZeneca', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
         { name: 'Sinopharm', value: vaccineOrigin['Sinopharm Vacuna SARSCOV 2 inactivada'] },
         { name: 'ChAd0x1 AstraZeneca', value: vaccineOrigin['AstraZeneca ChAdOx1 S recombinante'] },
-        { name: 'Moderna', value: vaccineOrigin['Moderna mRNA-1273'] },
+        { name: 'Moderna', value: vaccineOrigin['Moderna ARNm'] },
       ],
-      colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8'],
+      colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8', '#4CBDF5'],
     },
   ];
 

@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
       "purchased": 30000000,
-      "arrived": 14000000
+      "arrived": 14768000
     },
     {
       "shortName": "ChAd0x1 S",
@@ -182,7 +182,7 @@
     },
     {
       "shortName": "mRNA-1273",
-      "name": "Moderna mRNA-1273",
+      "name": "Moderna ARNm",
       "provider": "Moderna",
       "countryProduced": ["US"],
       "purchased": 20000000,
