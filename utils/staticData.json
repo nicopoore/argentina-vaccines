@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
       "purchased": 30000000,
-      "arrived": 14768000
+      "arrived": 3012800
     },
     {
       "shortName": "ChAd0x1 S",
@@ -178,7 +178,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
       "purchased": 24716200,
-      "arrived": 12415500
+      "arrived": 12796500
     },
     {
       "shortName": "mRNA-1273",
