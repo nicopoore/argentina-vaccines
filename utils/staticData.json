@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": ["RU"],
       "purchased": 30000000,
-      "arrived": 14816455
+      "arrived": 15000920
     },
     {
       "shortName": "Covishield",
@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
       "purchased": 30000000,
-      "arrived": 18696000
+      "arrived": 20606000
     },
     {
       "shortName": "ChAd0x1 S",
@@ -178,7 +178,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
       "purchased": 24716200,
-      "arrived": 13196500
+      "arrived": 15014200
     },
     {
       "shortName": "mRNA-1273",
