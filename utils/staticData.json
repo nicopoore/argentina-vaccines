@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
       "purchased": 30000000,
-      "arrived": 20606000
+      "arrived": 22912000
     },
     {
       "shortName": "ChAd0x1 S",
@@ -178,7 +178,7 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
       "purchased": 24716200,
-      "arrived": 15014200
+      "arrived": 15544500
     },
     {
       "shortName": "mRNA-1273",
@@ -194,7 +194,7 @@
       "provider": "CanSino Biologics Inc.",
       "countryProduced": ["CN"],
       "purchased": 5400000,
-      "arrived": 200000
+      "arrived": 400000
     }
   ],
   "deprecatedVaccineTypes": [
