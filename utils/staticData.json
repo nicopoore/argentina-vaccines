@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": ["RU"],
       "purchased": 30000000,
-      "arrived": 15000920
+      "arrived": 17363945
     },
     {
       "shortName": "Covishield",
@@ -170,7 +170,7 @@
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
       "purchased": 30000000,
-      "arrived": 22912000
+      "arrived": 28856000
     },
     {
       "shortName": "ChAd0x1 S",
@@ -178,14 +178,14 @@
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
       "purchased": 24716200,
-      "arrived": 15544500
+      "arrived": 16936500
     },
     {
       "shortName": "mRNA-1273",
       "name": "Moderna ARNm",
       "provider": "Moderna",
       "countryProduced": ["US"],
-      "purchased": 20000000,
+      "purchased": 23500000,
       "arrived": 3500000
     },
     {
@@ -194,7 +194,15 @@
       "provider": "CanSino Biologics Inc.",
       "countryProduced": ["CN"],
       "purchased": 5400000,
-      "arrived": 400000
+      "arrived": 600000
+    },
+    {
+      "shortName": "Pfizer BNT162b2",
+      "name": "Pfizer BioNTech Comirnaty",
+      "provider": "Pfizer / BioNTech",
+      "countryProduced": ["US"],
+      "purchased": 20000000,
+      "arrived": 582460
     }
   ],
   "deprecatedVaccineTypes": [
