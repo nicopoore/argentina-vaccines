@@ -74,8 +74,9 @@ const BarChartsSection: React.FC = (): JSX.Element => {
         { name: 'ChAd0x1 AstraZeneca', value: vaccineOrigin['AstraZeneca ChAdOx1 S recombinante'] },
         { name: 'Moderna', value: vaccineOrigin['Moderna ARNm'] },
         { name: 'Pfizer', value: vaccineOrigin['Pfizer BioNTech Comirnaty'] },
+        { name: 'Convidecia', value: vaccineOrigin['Cansino Ad5 nCoV'] },
       ],
-      colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8', '#4CBDF5', '#9551F5'],
+      colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8', '#4CBDF5', '#9551F5', '#F5EF33'],
     },
   ];
 
