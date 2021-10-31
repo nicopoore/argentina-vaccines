@@ -2,13 +2,15 @@ import { Db } from 'mongodb'
 import { DatabaseDateItem, VaccineDataItem } from '../types'
 
 export const getHistoricData = async (db: Db): Promise<DatabaseDateItem[]> => {
-  const historic_data = await db
+  const historic_data: DatabaseDateItem[] = await db
     .collection('historic_data')
     .find()
-    .sort({date: 1})
+    .sort({date: -1})
+    .limit(210)
     .toArray()
 
-  return historic_data
+  const reversedQuery = [...historic_data].reverse()
+  return reversedQuery
 }
 
 export const postLatestData = async (db: Db, currentData: VaccineDataItem, date: string): Promise<void> => {
