@@ -194,7 +194,7 @@
       "provider": "CanSino Biologics Inc.",
       "countryProduced": ["CN"],
       "purchased": 5400000,
-      "arrived": 1014000
+      "arrived": 1704000
     },
     {
       "shortName": "Pfizer BNT162b2",
@@ -202,7 +202,7 @@
       "provider": "Pfizer / BioNTech",
       "countryProduced": ["US"],
       "purchased": 20000000,
-      "arrived": 7080840
+      "arrived": 7977060
     }
   ],
   "deprecatedVaccineTypes": [
