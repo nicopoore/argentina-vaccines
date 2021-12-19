@@ -5,6 +5,9 @@ export interface VaccineDataItem {
   jurisdiccion_nombre: string,
   primera_dosis_cantidad: number,
   segunda_dosis_cantidad: number,
+  dosis_unica_cantidad: number,
+  dosis_adicional_cantidad: number,
+  dosis_refuerzo_cantidad: number,
   vacuna_nombre: string
 }
 
