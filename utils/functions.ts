@@ -23,26 +23,34 @@ export const getProvincePopulation = (provincePopulation: PopulationDataItem[], 
   return result[0].poblacion_estimada_2021;
 };
 
-export const formatVaccineDataItem = (data: VaccineDataItem[]): [number, number] => {
+export const formatVaccineDataItem = (data: VaccineDataItem[]): [number, number, number] => {
   return data.reduce(
-    (acc: [number, number], province: VaccineDataItem) => {
+    (acc: [number, number, number], province: VaccineDataItem) => {
       if (province.jurisdiccion_codigo_indec === null) return acc;
-      acc[0] += province.primera_dosis_cantidad;
-      acc[1] += province.segunda_dosis_cantidad;
+      const first = province.primera_dosis_cantidad
+      const second = province.segunda_dosis_cantidad + (province.dosis_unica_cantidad ? province.dosis_unica_cantidad : 0)
+      const third = (province?.dosis_refuerzo_cantidad ?province?.dosis_refuerzo_cantidad :0)+ (province.dosis_adicional_cantidad ? province.dosis_adicional_cantidad : 0)
+      acc[0] += first;
+      acc[1] += second;
+      acc[2] += third;
       return acc;
     },
-    [0, 0]
+    [0, 0, 0]
   );
 };
 
-export const formatVaccineData = (data: VaccineDataItem[]): {[data: string]: [number, number]} => {
+export const formatVaccineData = (data: VaccineDataItem[]): {[data: string]: [number, number, number]} => {
   return data.reduce((acc, province: VaccineDataItem) => {
     if (province.jurisdiccion_codigo_indec === null || province.jurisdiccion_codigo_indec === 0) return acc;
+      const first = province.primera_dosis_cantidad
+      const second = province.segunda_dosis_cantidad + province.dosis_unica_cantidad
+      const third = province.dosis_refuerzo_cantidad + province.dosis_adicional_cantidad
     if (!acc[province.jurisdiccion_nombre]) {
-      acc[province.jurisdiccion_nombre] = [province.primera_dosis_cantidad, province.segunda_dosis_cantidad];
+      acc[province.jurisdiccion_nombre] = [first, second, third];
     } else {
-      acc[province.jurisdiccion_nombre][0] += province.primera_dosis_cantidad;
-      acc[province.jurisdiccion_nombre][1] += province.segunda_dosis_cantidad;
+      acc[province.jurisdiccion_nombre][0] += first;
+      acc[province.jurisdiccion_nombre][1] += second;
+      acc[province.jurisdiccion_nombre][2] += third;
     }
     return acc;
   }, {})
@@ -67,12 +75,11 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
         .filter(row => row.vacuna_nombre === vaccineName)
         .reduce((acc: number, province: VaccineDataItem) => {
           if (province['jurisdiccion_codigo_indec'] === null) return acc;
-          if (vaccineName === 'Cansino Ad5 nCoV') {
-            acc += province['dosis_unica_cantidad']
-          } else {
-            acc += province['primera_dosis_cantidad'];
-            acc += province['segunda_dosis_cantidad']
-          }
+          acc += province['primera_dosis_cantidad'];
+          acc += province['segunda_dosis_cantidad']
+          acc += province['dosis_unica_cantidad']
+          acc += province['dosis_refuerzo_cantidad']
+          acc += province['dosis_adicional_cantidad']
           return acc;
         }, 0)
     );
