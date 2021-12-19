@@ -67,8 +67,12 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
         .filter(row => row.vacuna_nombre === vaccineName)
         .reduce((acc: number, province: VaccineDataItem) => {
           if (province['jurisdiccion_codigo_indec'] === null) return acc;
-          acc += province['primera_dosis_cantidad'];
-          acc += province['segunda_dosis_cantidad']
+          if (vaccineName === 'Cansino Ad5 nCoV') {
+            acc += province['dosis_unica_cantidad']
+          } else {
+            acc += province['primera_dosis_cantidad'];
+            acc += province['segunda_dosis_cantidad']
+          }
           return acc;
         }, 0)
     );
