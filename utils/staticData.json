@@ -153,7 +153,7 @@
       "name": "Sputnik V COVID19 Instituto Gamaleya",
       "provider": "Instituto Gamaleya",
       "countryProduced": ["RU"],
-      "purchased": 30000000,
+      "purchased": 30870381,
       "arrived": 19597710
     },
     {
@@ -169,16 +169,16 @@
       "name": "Sinopharm Vacuna SARSCOV 2 inactivada",
       "provider": "Sinopharm",
       "countryProduced": ["CN"],
-      "purchased": 30000000,
-      "arrived": 30000000
+      "purchased": 31672800,
+      "arrived": 31672800
     },
     {
       "shortName": "ChAd0x1 S",
       "name": "AstraZeneca ChAdOx1 S recombinante",
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
-      "purchased": 24716200,
-      "arrived": 24608400
+      "purchased": 27458600,
+      "arrived": 25944900
     },
     {
       "shortName": "mRNA-1273",
@@ -202,7 +202,7 @@
       "provider": "Pfizer / BioNTech",
       "countryProduced": ["US"],
       "purchased": 20000000,
-      "arrived": 8873260
+      "arrived": 10654020
     }
   ],
   "deprecatedVaccineTypes": [
