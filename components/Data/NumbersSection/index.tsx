@@ -33,8 +33,6 @@ const NumbersSection: React.FC = (): JSX.Element => {
       {doses.map((dose: 1 | 2) => (
         <DoseInfo key={`dose-${dose}`} dose={dose} />
       ))}
-      <Divider mx="auto" my={4} w="40%" />
-      <MoreInfoButton />
     </MotionFlex>
   );
 };
