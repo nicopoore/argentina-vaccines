@@ -44,14 +44,15 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
         ? rawDataItem.data
         : getCurrentProvinceData(rawDataItem.data, selectedProvince);
 
-    const [firstDose, secondDose] = formatVaccineDataItem(filteredData);
+    const { partialVax, fullVax, booster } = formatVaccineDataItem(filteredData);
     const toPercentage = (vaccineData: number): number =>
       parseFloat(((vaccineData / population) * 100).toFixed(2));
 
     return {
       date: Date.parse(rawDataItem.date) + 10800000,
-      firstDose: toPercentage(firstDose),
-      secondDose: toPercentage(secondDose),
+      firstDose: toPercentage(partialVax),
+      secondDose: toPercentage(fullVax),
+      thirdDose: toPercentage(booster),
     };
   });
 
@@ -76,6 +77,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
         />
         <Area color="#ffa14f" dataKey="firstDose" fill="#ffa14f" stroke="#ffa14f" />
         <Area color="#00C49F" dataKey="secondDose" fill="#00C49F" stroke="#00C49F" />
+        <Area color="#0C6DA5" dataKey="thirdDose" fill="#0C6DA5" stroke="#0C6DA5" />
         <ReferenceLine stroke="green" strokeDasharray="3 3" y={90} />
       </AreaChart>
     </ResponsiveContainer>

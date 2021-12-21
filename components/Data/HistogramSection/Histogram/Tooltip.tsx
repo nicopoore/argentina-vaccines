@@ -14,19 +14,26 @@ const Tooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>):
           {format(label, "d 'de' MMMM", { locale: es })}
         </Text>
         <Stack direction="row" spacing={6}>
-          {payload.map(payloadItem => (
-            <Stack key={payloadItem.name} direction="row">
-              <Box bgColor={payloadItem.color} h="100%" w={1} />
-              <Flex direction="column">
-                <Text fontSize="xl" fontWeight="bold">
-                  {typeof payloadItem.value === 'number' && payloadItem.value.toFixed(2)} %
-                </Text>
-                <Text color="gray.400" fontSize="sm">
-                  {payload.indexOf(payloadItem) === 0 ? '1ra dosis' : 'Ambas dosis'}
-                </Text>
-              </Flex>
-            </Stack>
-          ))}
+          {payload.map(payloadItem => {
+            if (payloadItem.value === 0) return null;
+            return (
+              <Stack key={payloadItem.name} direction="row">
+                <Box bgColor={payloadItem.color} h="100%" w={1} />
+                <Flex direction="column">
+                  <Text fontSize="xl" fontWeight="bold">
+                    {typeof payloadItem.value === 'number' && payloadItem.value.toFixed(2)} %
+                  </Text>
+                  <Text color="gray.400" fontSize="sm">
+                    {payload.indexOf(payloadItem) === 0
+                      ? 'Parcial'
+                      : payload.indexOf(payloadItem) === 1
+                      ? 'Total'
+                      : 'Refuerzo'}
+                  </Text>
+                </Flex>
+              </Stack>
+            );
+          })}
         </Stack>
       </Flex>
     );

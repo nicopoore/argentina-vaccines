@@ -1,10 +1,9 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { Divider, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 
 // Components
 import DoseInfo from './DoseInfo';
-import MoreInfoButton from './MoreInfoButton';
 
 // Utils
 import { SelectionContext } from '../../../utils/Context';
@@ -13,7 +12,7 @@ import { MotionFlex } from '../../../utils/MotionComponents';
 const NumbersSection: React.FC = (): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
 
-  const doses = [1, 2];
+  const doses = [1, 2, 3];
   return (
     <MotionFlex
       layout
@@ -30,7 +29,7 @@ const NumbersSection: React.FC = (): JSX.Element => {
       <Text as="h5" fontSize="2xl">
         {selectedProvince}
       </Text>
-      {doses.map((dose: 1 | 2) => (
+      {doses.map((dose: 1 | 2 | 3) => (
         <DoseInfo key={`dose-${dose}`} dose={dose} />
       ))}
     </MotionFlex>

@@ -51,22 +51,29 @@ const BarChartsSection: React.FC = (): JSX.Element => {
     {
       name: '% de la población vacunada',
       values: [
-        { name: 'Ambas dosis', value: vaccineData[1] },
-        { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
-        { name: 'No vacunades', value: population - vaccineData[0] },
+        { name: 'Refuerzo', value: vaccineData.booster },
+        { name: 'Vacunación total', value: vaccineData.fullVax - vaccineData.booster },
+        {
+          name: 'Sólo vacunación parcial',
+          value: vaccineData.partialVax - vaccineData.fullVax,
+        },
+        { name: 'No vacunades', value: population - vaccineData.partialVax },
       ],
-      colors: ['#018F40', '#40F66A', '#F56257'],
-    },
-    {
-      name: 'Parcial vs. totalmente vacunades',
-      values: [
-        { name: 'Ambas dosis', value: vaccineData[1] },
-        { name: 'Sólo 1ra dosis', value: vaccineData[0] - vaccineData[1] },
-      ],
-      colors: ['#3CF096', '#F07624'],
+      colors: ['#4CBDF5', '#018F40', '#40F66A', '#F56257'],
     },
     {
       name: '% de dosis aplicadas por tipo',
+      values: [
+        { name: 'Primera dosis', value: vaccineData.firstDose },
+        { name: 'Segunda dosis', value: vaccineData.secondDose },
+        { name: 'Unica dosis', value: vaccineData.onlyDose },
+        { name: 'Refuerzo', value: vaccineData.booster },
+        { name: 'Adicional', value: vaccineData.additional },
+      ],
+      colors: ['#4CBDF5', '#9551F5', '#F5EF33', '#62FCA8', '#4CBDF5'],
+    },
+    {
+      name: '% de dosis aplicadas por vacuna',
       values: [
         { name: 'Sputnik V', value: vaccineOrigin['Sputnik V COVID19 Instituto Gamaleya'] },
         { name: 'Covishield AstraZeneca', value: vaccineOrigin['COVISHIELD ChAdOx1nCoV COVID 19'] },
