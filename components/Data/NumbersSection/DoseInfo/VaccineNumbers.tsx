@@ -7,7 +7,7 @@ import { formatNumbers, formatVaccineDataItem, getFilteredData } from '../../../
 import { SelectionContext, DataContext } from '../../../../utils/Context';
 
 interface Props {
-  dose: 1 | 2;
+  dose: 1 | 2 | 3;
   numberType: 'raw' | 'percentage';
 }
 
@@ -25,8 +25,8 @@ const VaccineNumbers: React.FC<Props> = (props): JSX.Element => {
     );
 
   const [population, filteredData] = getFilteredData(data, selectedProvince);
-  const [firstDose, secondDose] = formatVaccineDataItem(filteredData);
-  const activeDose = props.dose === 1 ? firstDose : secondDose;
+  const { partialVax, fullVax, booster } = formatVaccineDataItem(filteredData);
+  const activeDose = props.dose === 1 ? partialVax : props.dose === 2 ? fullVax : booster;
 
   return (
     <Box w="45%">

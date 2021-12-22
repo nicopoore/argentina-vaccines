@@ -23,26 +23,34 @@ export const getProvincePopulation = (provincePopulation: PopulationDataItem[], 
   return result[0].poblacion_estimada_2021;
 };
 
-export const formatVaccineDataItem = (data: VaccineDataItem[]): [number, number] => {
-  return data.reduce(
-    (acc: [number, number], province: VaccineDataItem) => {
+export const formatVaccineDataItem = (data: VaccineDataItem[]): {firstDose: number, secondDose: number, onlyDose: number, booster: number, additional: number, partialVax: number, fullVax: number} => {
+  const initialList = data.reduce(
+    (acc: {firstDose: number, secondDose: number, onlyDose: number, booster: number, additional: number}, province: VaccineDataItem) => {
       if (province.jurisdiccion_codigo_indec === null) return acc;
-      acc[0] += province.primera_dosis_cantidad;
-      acc[1] += province.segunda_dosis_cantidad;
-      return acc;
+      const firstDose = acc.firstDose + province.primera_dosis_cantidad
+      const secondDose = acc.secondDose + province.segunda_dosis_cantidad 
+      const onlyDose = acc.onlyDose + (province.dosis_unica_cantidad ? province.dosis_unica_cantidad : 0)
+      const booster = acc.booster + (province.dosis_refuerzo_cantidad ? province.dosis_refuerzo_cantidad : 0)
+      const additional = acc.additional + (province.dosis_adicional_cantidad ? province.dosis_adicional_cantidad : 0)
+      return { firstDose, secondDose, onlyDose, booster, additional};
     },
-    [0, 0]
+    {firstDose: 0, secondDose: 0, onlyDose: 0, booster: 0, additional: 0}
   );
+  return {...initialList, partialVax: initialList.firstDose, fullVax: initialList.secondDose + initialList.onlyDose}
 };
 
-export const formatVaccineData = (data: VaccineDataItem[]): {[data: string]: [number, number]} => {
+export const formatVaccineData = (data: VaccineDataItem[]): {[data: string]: [number, number, number]} => {
   return data.reduce((acc, province: VaccineDataItem) => {
     if (province.jurisdiccion_codigo_indec === null || province.jurisdiccion_codigo_indec === 0) return acc;
+      const first = province.primera_dosis_cantidad
+      const second = province.segunda_dosis_cantidad + province.dosis_unica_cantidad
+      const third = province.dosis_refuerzo_cantidad 
     if (!acc[province.jurisdiccion_nombre]) {
-      acc[province.jurisdiccion_nombre] = [province.primera_dosis_cantidad, province.segunda_dosis_cantidad];
+      acc[province.jurisdiccion_nombre] = [first, second, third];
     } else {
-      acc[province.jurisdiccion_nombre][0] += province.primera_dosis_cantidad;
-      acc[province.jurisdiccion_nombre][1] += province.segunda_dosis_cantidad;
+      acc[province.jurisdiccion_nombre][0] += first;
+      acc[province.jurisdiccion_nombre][1] += second;
+      acc[province.jurisdiccion_nombre][2] += third;
     }
     return acc;
   }, {})
@@ -69,6 +77,9 @@ export const formatVaccineOrigin = (data: VaccineDataItem[], vaccineNameArray: s
           if (province['jurisdiccion_codigo_indec'] === null) return acc;
           acc += province['primera_dosis_cantidad'];
           acc += province['segunda_dosis_cantidad']
+          acc += province['dosis_unica_cantidad']
+          acc += province['dosis_refuerzo_cantidad']
+          acc += province['dosis_adicional_cantidad']
           return acc;
         }, 0)
     );
