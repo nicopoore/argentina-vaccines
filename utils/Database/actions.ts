@@ -6,7 +6,7 @@ export const getHistoricData = async (db: Db): Promise<DatabaseDateItem[]> => {
     .collection('historic_data')
     .find()
     .sort({ date: -1 })
-    .limit(180)
+    .limit(150)
     .toArray();
 
   const reversedQuery = [...historic_data].reverse();
