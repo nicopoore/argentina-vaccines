@@ -154,7 +154,7 @@
       "provider": "Instituto Gamaleya",
       "countryProduced": ["RU"],
       "purchased": 30870381,
-      "arrived": 19597710
+      "arrived": 20979335
     },
     {
       "shortName": "Covishield",
@@ -177,8 +177,8 @@
       "name": "AstraZeneca ChAdOx1 S recombinante",
       "provider": "Oxford / AstraZeneca",
       "countryProduced": ["AR", "KR"],
-      "purchased": 27458600,
-      "arrived": 25944900
+      "purchased": 28269600,
+      "arrived": 27966900
     },
     {
       "shortName": "mRNA-1273",
@@ -186,7 +186,7 @@
       "provider": "Moderna",
       "countryProduced": ["US"],
       "purchased": 23500000,
-      "arrived": 3500000
+      "arrived": 6143340
     },
     {
       "shortName": "Convidecia",
@@ -202,7 +202,7 @@
       "provider": "Pfizer / BioNTech",
       "countryProduced": ["US"],
       "purchased": 20000000,
-      "arrived": 10654020
+      "arrived": 14241240
     }
   ],
   "deprecatedVaccineTypes": [
