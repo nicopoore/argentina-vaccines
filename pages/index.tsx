@@ -7,17 +7,19 @@ import { mutate } from 'swr';
 import { Map, Data, Title } from '../components';
 
 // Utils
-import { postCurrentData } from '../utils/functions';
+import { getProvinceNo, postCurrentData } from '../utils/functions';
 import { SelectionContextProvider } from '../utils/Context';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
   const [isSimplified, setIsSimplified] = useState(true);
 
+  const provinceNo = getProvinceNo(selectedProvince);
+
   useEffect(() => {
     const postDataAndMutate = async (): Promise<void> => {
       await postCurrentData();
-      mutate('/api/historic_data');
+      mutate(`/api/historic_data/${provinceNo}`);
     };
 
     postDataAndMutate();

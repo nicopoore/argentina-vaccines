@@ -17,13 +17,9 @@ import CustomTooltip from './Tooltip';
 
 // Utils
 import { DatabaseDateItem } from '../../../../utils/types';
-import { countryPopulation, provincePopulations } from '../../../../utils/staticData.json';
+import { provincePopulations } from '../../../../utils/staticData.json';
 import { SelectionContext } from '../../../../utils/Context';
-import {
-  formatVaccineDataItem,
-  getCurrentProvinceData,
-  getProvincePopulation,
-} from '../../../../utils/functions';
+import { getProvincePopulation } from '../../../../utils/functions';
 
 interface Props {
   YAxisIsScaled: boolean;
@@ -33,26 +29,21 @@ interface Props {
 const Histogram: React.FC<Props> = (props): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
 
-  const population =
-    selectedProvince === 'Argentina'
-      ? countryPopulation
-      : getProvincePopulation(provincePopulations, selectedProvince);
-
   const histogramData = props.data.map(rawDataItem => {
-    const filteredData =
-      selectedProvince === 'Argentina'
-        ? rawDataItem.data
-        : getCurrentProvinceData(rawDataItem.data, selectedProvince);
-
-    const { partialVax, fullVax, booster } = formatVaccineDataItem(filteredData);
-    const toPercentage = (vaccineData: number): number =>
-      parseFloat(((vaccineData / population) * 100).toFixed(2));
+    const toPercentage = (vaccineData: number): number => {
+      return parseFloat(
+        (
+          (vaccineData / getProvincePopulation(provincePopulations, selectedProvince)) *
+          100
+        ).toFixed(2)
+      );
+    };
 
     return {
       date: Date.parse(rawDataItem.date) + 10800000,
-      firstDose: toPercentage(partialVax),
-      secondDose: toPercentage(fullVax),
-      thirdDose: toPercentage(booster),
+      firstDose: toPercentage(rawDataItem.data.partialVax),
+      secondDose: toPercentage(rawDataItem.data.fullVax),
+      thirdDose: toPercentage(rawDataItem.data.booster),
     };
   });
 

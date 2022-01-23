@@ -144,9 +144,14 @@
         "jurisdiccion_nombre": "Tucumán",
         "poblacion_estimada_2021": 1714487,
         "info_website": "https://www.tucuman.gob.ar/coronavirus/8545cead-253b-454a-92e8-97b40018f2c0"
+      },
+      {
+        "jurisdiccion_codigo_indec": 100,
+        "jurisdiccion_nombre": "Argentina",
+        "poblacion_estimada_2021": 45808747,
+        "info_website": ""
       }
     ],
-  "countryPopulation": 45808747,
   "vaccineTypes": [
     {
       "shortName": "Sputnik V",

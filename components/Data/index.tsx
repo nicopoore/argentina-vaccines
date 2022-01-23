@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Stack, Text } from '@chakra-ui/react';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import useSWR from 'swr';
@@ -13,7 +13,7 @@ import VaccineTypeSection from './VaccineTypeSection';
 // Utils
 import { MotionBox, MotionStack } from '../../utils/MotionComponents';
 import { DataContextProvider, SelectionContext } from '../../utils/Context';
-import { fetcher } from '../../utils/functions';
+import { fetcher, getProvinceNo } from '../../utils/functions';
 
 interface Props {
   isSimplified: boolean;
@@ -24,7 +24,12 @@ const Data: React.FC<Props> = (props): JSX.Element => {
   const selectedProvince = useContext(SelectionContext);
 
   const { data, error } = useSWR('/api/data', fetcher);
-  const { data: historicData, error: historicDataError } = useSWR('/api/historic_data', fetcher);
+  const { data: newHistoricData, error: historicDataError } = useSWR(
+    `/api/historic_data/${getProvinceNo(selectedProvince)}`,
+    fetcher
+  );
+
+  const historicData = useMemo(() => newHistoricData?.slice(), [selectedProvince, newHistoricData]);
 
   if (error)
     return (
