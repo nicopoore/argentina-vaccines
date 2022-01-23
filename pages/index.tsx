@@ -1,29 +1,16 @@
 // Dependencies
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Stack } from '@chakra-ui/react';
-import { mutate } from 'swr';
 
 // Components
 import { Map, Data, Title } from '../components';
 
 // Utils
-import { getProvinceNo, postCurrentData } from '../utils/functions';
 import { SelectionContextProvider } from '../utils/Context';
 
 const Home = (): JSX.Element => {
   const [selectedProvince, setSelectedProvince] = useState('Argentina');
   const [isSimplified, setIsSimplified] = useState(true);
-
-  const provinceNo = getProvinceNo(selectedProvince);
-
-  useEffect(() => {
-    const postDataAndMutate = async (): Promise<void> => {
-      await postCurrentData();
-      mutate(`/api/historic_data/${provinceNo}`);
-    };
-
-    postDataAndMutate();
-  }, []);
 
   return (
     <Stack m="auto" w={{ base: '100%', xl: '80%' }}>

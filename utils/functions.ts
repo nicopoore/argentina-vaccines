@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { PopulationDataItem, VaccineDataItem } from './types';
 import { provincePopulations } from './staticData.json';
 
@@ -120,10 +119,6 @@ export const formatVaccineOrigin = (
       }, 0);
   });
   return vaccineArray;
-};
-
-export const postCurrentData = async (): Promise<void> => {
-  axios.post('/api/historic_data');
 };
 
 export const fetcher = async (url: string): Promise<any> => {
