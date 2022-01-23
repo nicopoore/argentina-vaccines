@@ -1,13 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
+  getLatestDBData,
   getHistoricData,
-  getLatestRecordDate,
-  postLatestData,
+  postLatestDataToFormattedDB,
+  postLatestRawData,
 } from '../../../utils/Database/actions';
 import { connectToDatabase } from '../../../utils/Database/connect';
 import Papa from 'papaparse';
 import unzipper from 'unzipper';
 import request from 'request';
+import { isEqual } from 'lodash';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const { db } = await connectToDatabase();
@@ -21,13 +23,12 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     case 'POST':
       let currentDate = new Date();
 
-      // Account for Argentinian timezone and average time of daily data upload
-      currentDate.setHours(currentDate.getHours() - 16);
+      currentDate.setHours(currentDate.getHours() - 3); // Account for Argentinian timezone
       const formattedDate = currentDate.toISOString().slice(0, 10);
 
-      const latestDate = await getLatestRecordDate(db);
-      if (latestDate === formattedDate) {
-        res.send('Latest data already in database');
+      const latestDBData = await getLatestDBData(db);
+      if (latestDBData.date === formattedDate) {
+        res.send("Today's data already in database");
         return res.status(200).end();
       }
 
@@ -43,8 +44,18 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
         dynamicTyping: true,
       });
 
-      const insertedResponse = await postLatestData(db, result.data, formattedDate);
-      res.send(insertedResponse);
+      if (isEqual(result.data.data, latestDBData.data)) {
+        res.send("Today's data hasn't been uploaded to the official dataset yet");
+        return res.status(200).end();
+      }
+
+      const insertedFormattedRes = await postLatestDataToFormattedDB(
+        db,
+        result.data,
+        formattedDate
+      );
+      const insertedRawRes = await postLatestRawData(db, result.data, formattedDate);
+      res.send({ insertedFormattedRes, insertedRawRes });
       return res.status(200).end();
 
     default:

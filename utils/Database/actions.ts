@@ -11,7 +11,7 @@ export const getHistoricData = async (db: Db, provinceNo: number): Promise<Datab
   return historic_data;
 };
 
-export const postLatestData = async (
+export const postLatestDataToFormattedDB = async (
   db: Db,
   currentData: VaccineDataItem[],
   date: string
@@ -121,7 +121,19 @@ export const postLatestData = async (
 
   const latest = await db
     .collection('historic_data_new')
-    .insertOne(formatDataForDB(currentData, date));
+    .insertMany(formatDataForDB(currentData, date));
+
+  if (latest.insertedCount === 0)
+    return Promise.reject({ statusText: 'Failed to insert latest data', status: 404 });
+  return latest.insertedCount;
+};
+
+export const postLatestRawData = async (
+  db: Db,
+  data: VaccineDataItem[],
+  date: string
+): Promise<number> => {
+  const latest = await db.collection('historic_data').insertOne({ date, data });
 
   if (latest.insertedCount === 0)
     return Promise.reject({ statusText: 'Failed to insert latest data', status: 404 });
@@ -134,7 +146,7 @@ export const getLatestRecordDate = async (db: Db): Promise<string> => {
   return latest[0].date;
 };
 
-export const getCurrentData = async (db: Db): Promise<DatabaseDateItem> => {
+export const getLatestDBData = async (db: Db): Promise<DatabaseDateItem> => {
   const latest = await db.collection('historic_data').find().sort({ _id: -1 }).limit(1).toArray();
 
   return latest[0];

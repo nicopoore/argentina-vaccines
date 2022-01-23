@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Papa from 'papaparse';
 import unzipper from 'unzipper';
 import request from 'request';
-import { checkIfDatabaseIsUpdated, getCurrentData } from '../../utils/Database/actions';
+import { checkIfDatabaseIsUpdated, getLatestDBData } from '../../utils/Database/actions';
 import { connectToDatabase } from '../../utils/Database/connect';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       const databaseIsUpdated = await checkIfDatabaseIsUpdated(db, formattedDate);
 
       if (databaseIsUpdated) {
-        const latestData = await getCurrentData(db);
+        const latestData = await getLatestDBData(db);
         res.send(JSON.stringify(latestData));
         return res.status(200).end();
       }
