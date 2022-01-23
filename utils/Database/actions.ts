@@ -40,35 +40,56 @@ export const postLatestData = async (
         const existingEntryIndex = getExistingEntryIndex(newArray, date, dataItem);
 
         if (existingEntryIndex >= 0) {
-          const existingEntry = newArray[existingEntryIndex];
-          const newEntryData = {
-            ...existingEntry.data,
-            partialVax: existingEntry.data.partialVax + dataItem.primera_dosis_cantidad,
-            fullVax:
+          const updateEntry = (
+            existingEntry: Omit<DatabaseDateItem, '_id'>,
+            currentItem: VaccineDataItem,
+            array: Omit<DatabaseDateItem, '_id'>[],
+            index: number
+          ): void => {
+            const partialVax = existingEntry.data.partialVax + currentItem.primera_dosis_cantidad;
+            const fullVax =
               existingEntry.data.fullVax +
-              dataItem.segunda_dosis_cantidad +
-              (dataItem.dosis_unica_cantidad ? dataItem.dosis_unica_cantidad : 0),
-            booster:
+              currentItem.segunda_dosis_cantidad +
+              (currentItem.dosis_unica_cantidad ? currentItem.dosis_unica_cantidad : 0);
+            const booster =
               existingEntry.data.booster +
-              (dataItem.dosis_refuerzo_cantidad ? dataItem.dosis_refuerzo_cantidad : 0),
+              (currentItem.dosis_refuerzo_cantidad ? currentItem.dosis_refuerzo_cantidad : 0);
+
+            const newEntryData = {
+              ...existingEntry.data,
+              partialVax,
+              fullVax,
+              booster,
+            };
+            array[index] = { ...existingEntry, data: newEntryData };
           };
-          newArray[existingEntryIndex] = { ...existingEntry, data: newEntryData };
+
+          updateEntry(newArray[existingEntryIndex], dataItem, newArray, existingEntryIndex);
         } else {
-          newArray = [
-            ...newArray,
-            {
-              date: date,
-              jurisdiccion_codigo_indec: dataItem.jurisdiccion_codigo_indec,
-              jurisdiccion_nombre: dataItem.jurisdiccion_nombre,
-              data: {
-                partialVax: dataItem.primera_dosis_cantidad,
-                fullVax:
-                  dataItem.segunda_dosis_cantidad +
-                  (dataItem.dosis_unica_cantidad ? dataItem.dosis_unica_cantidad : 0),
-                booster: dataItem.dosis_refuerzo_cantidad ? dataItem.dosis_refuerzo_cantidad : 0,
+          const addEntryToArray = (
+            currentItem: VaccineDataItem,
+            array: Omit<DatabaseDateItem, '_id'>[]
+          ): Omit<DatabaseDateItem, '_id'>[] => {
+            return [
+              ...array,
+              {
+                date,
+                jurisdiccion_codigo_indec: currentItem.jurisdiccion_codigo_indec,
+                jurisdiccion_nombre: currentItem.jurisdiccion_nombre,
+                data: {
+                  partialVax: currentItem.primera_dosis_cantidad,
+                  fullVax:
+                    currentItem.segunda_dosis_cantidad +
+                    (currentItem.dosis_unica_cantidad ? currentItem.dosis_unica_cantidad : 0),
+                  booster: currentItem.dosis_refuerzo_cantidad
+                    ? currentItem.dosis_refuerzo_cantidad
+                    : 0,
+                },
               },
-            },
-          ];
+            ];
+          };
+
+          newArray = addEntryToArray(dataItem, newArray);
         }
 
         return newArray;
@@ -84,7 +105,7 @@ export const postLatestData = async (
         return arg;
       },
       {
-        date: date,
+        date,
         jurisdiccion_nombre: 'Argentina',
         jurisdiccion_codigo_indec: 100,
         data: {
