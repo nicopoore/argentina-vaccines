@@ -112,3 +112,9 @@ export const getLatestRecordDate = async (db: Db): Promise<string> => {
 
   return latest[0].date;
 };
+
+export const getCurrentData = async (db: Db): Promise<DatabaseDateItem> => {
+  const latest = await db.collection('historic_data').find().sort({ _id: -1 }).limit(1).toArray();
+
+  return latest[0];
+};
