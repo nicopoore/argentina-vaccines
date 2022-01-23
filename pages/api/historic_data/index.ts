@@ -18,7 +18,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       const historic_data = await getHistoricData(db, 100);
 
       res.send(JSON.stringify(historic_data));
-      return res.status(200).end();
+      res.status(200).end();
+      return;
 
     case 'POST':
       let currentDate = new Date();
@@ -29,7 +30,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       const latestDBData = await getLatestDBData(db);
       if (latestDBData.date === formattedDate) {
         res.send("Today's data already in database");
-        return res.status(200).end();
+        res.status(200).end();
+        return;
       }
 
       const directory = await unzipper.Open.url(
@@ -46,7 +48,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
       if (isEqual(result.data.data, latestDBData.data)) {
         res.send("Today's data hasn't been uploaded to the official dataset yet");
-        return res.status(200).end();
+        res.status(200).end();
+        return;
       }
 
       const insertedFormattedRes = await postLatestDataToFormattedDB(
@@ -56,9 +59,11 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       );
       const insertedRawRes = await postLatestRawData(db, result.data, formattedDate);
       res.send({ insertedFormattedRes, insertedRawRes });
-      return res.status(200).end();
+      res.status(200).end();
+      return;
 
     default:
-      return res.status(405).end();
+      res.status(405).end();
+      return;
   }
 };

@@ -19,7 +19,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       if (databaseIsUpdated) {
         const latestData = await getLatestDBData(db);
         res.send(JSON.stringify(latestData));
-        return res.status(200).end();
+        res.status(200).end();
+        return;
       }
       const directory = await unzipper.Open.url(
         request,
@@ -34,8 +35,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
         dynamicTyping: true,
       });
       res.send(JSON.stringify(result));
-      return res.status(200).end();
+      res.status(200).end();
+      return;
     default:
-      return res.status(405).end();
+      res.status(405).end();
+      return;
   }
 };

@@ -14,6 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       );
 
       res.send(JSON.stringify(historic_data));
-      return res.status(200).end();
+      res.status(200).end();
+      return;
   }
 };
