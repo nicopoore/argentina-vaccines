@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Papa from 'papaparse';
 import unzipper from 'unzipper';
 import request from 'request';
-import { getCurrentData } from '../../utils/Database/actions';
+import { checkIfDatabaseIsUpdated, getCurrentData } from '../../utils/Database/actions';
 import { connectToDatabase } from '../../utils/Database/connect';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
@@ -14,8 +14,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       currentDate.setHours(currentDate.getHours() - 16);
       const formattedDate = currentDate.toISOString().slice(0, 10);
 
-      const latestData = await getCurrentData(db);
-      if (latestData.date === formattedDate) {
+      const databaseIsUpdated = await checkIfDatabaseIsUpdated(db, formattedDate);
+
+      if (databaseIsUpdated) {
+        const latestData = await getCurrentData(db);
         res.send(JSON.stringify(latestData));
         return res.status(200).end();
       }

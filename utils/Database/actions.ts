@@ -118,3 +118,10 @@ export const getCurrentData = async (db: Db): Promise<DatabaseDateItem> => {
 
   return latest[0];
 };
+
+export const checkIfDatabaseIsUpdated = async (db: Db, date: string): Promise<boolean> => {
+  const databaseIsUpdated = await db
+    .collection('historic_data')
+    .countDocuments({ date: date }, { limit: 1 });
+  return databaseIsUpdated === 1;
+};
