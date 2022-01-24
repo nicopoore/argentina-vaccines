@@ -3,6 +3,7 @@ name: Post latest data every hour
 on:
   schedule:
     - cron: '0 10-23 * * *'
+  workflow_dispatch:
 jobs:
   post_latest_data:
     name: Post latest data to historic db
