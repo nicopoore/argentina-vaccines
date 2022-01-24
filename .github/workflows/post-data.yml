@@ -2,7 +2,7 @@ name: Post latest data every hour
 
 on:
   schedule:
-    - cron: '0 7-20 * * *'
+    - cron: '0 10-23 * * *'
 jobs:
   post_latest_data:
     name: Post latest data to historic db
