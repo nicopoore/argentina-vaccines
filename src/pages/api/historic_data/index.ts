@@ -46,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
         dynamicTyping: true,
       });
 
-      if (isEqual(result.data.data, latestDBData.data)) {
+      if (isEqual(result.data, latestDBData.data)) {
         res.send("Today's data hasn't been uploaded to the official dataset yet");
         res.status(200).end();
         return;
