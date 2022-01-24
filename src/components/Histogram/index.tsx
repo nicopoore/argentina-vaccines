@@ -7,19 +7,20 @@ import {
   ReferenceLine,
   ResponsiveContainer,
   TooltipProps,
+  Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { Box, Flex, Stack, Text } from '@chakra-ui/react';
+import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 // Utils
 import { DatabaseDateItem } from 'utils/types';
 import { provincePopulations } from 'utils/staticData.json';
 import { SelectionContext } from 'utils/Context';
 import { getProvincePopulation } from 'utils/functions';
-import { Box, Flex, Stack, Text } from '@chakra-ui/react';
-import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 const CustomTooltip = ({
   active,
@@ -98,7 +99,7 @@ const Histogram: React.FC<Props> = (props): JSX.Element => {
     <ResponsiveContainer height="100%" width="100%">
       <AreaChart data={histogramData}>
         <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
-        <CustomTooltip content={<CustomTooltip />} />
+        <Tooltip content={<CustomTooltip />} />
         <XAxis dataKey="date" minTickGap={10} tickFormatter={XAxisTickFormatter} />
         <YAxis
           domain={[0, props.YAxisIsScaled ? (maxValue: number) => Math.ceil(maxValue) : 100]}
