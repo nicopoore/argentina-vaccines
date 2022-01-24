@@ -1,8 +1,8 @@
-name: Post latest data every hour
+name: Post latest data
 
 on:
   schedule:
-    - cron: '0 10-23 * * *'
+    - cron: '0 9-22 * * *'
   workflow_dispatch:
 jobs:
   post_latest_data:
@@ -10,5 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: cURL request
-        # Hit the webhook endpoint to rebuild  from the "main" branch
         run: curl -X POST -d {} https://argentinavacunada.vercel.app/api/historic_data
