@@ -1,5 +1,6 @@
 import { PopulationDataItem, VaccineDataItem } from './types';
 import { provincePopulations } from './staticData.json';
+import numeral from 'numeral';
 
 export const formatNumbers = (num: number, type: string): string => {
   return type === 'percentage'
@@ -7,7 +8,7 @@ export const formatNumbers = (num: number, type: string): string => {
         style: 'percent',
         minimumFractionDigits: 2,
       })
-    : num.toLocaleString('es-AR');
+    : numeral(num).format('0.00a');
 };
 
 export const getCurrentProvinceData = <T extends VaccineDataItem | PopulationDataItem>(
