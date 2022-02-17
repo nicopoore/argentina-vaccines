@@ -3,12 +3,27 @@ import { provincePopulations } from './staticData.json';
 import numeral from 'numeral';
 
 export const formatNumbers = (num: number, type: string): string => {
+  if (numeral.locales.ar === undefined) {
+    numeral.register('locale', 'ar', {
+      delimiters: {
+        thousands: '.',
+        decimal: ',',
+      },
+      abbreviations: {
+        thousand: 'k',
+        million: 'm',
+      },
+    });
+  }
+  numeral.locale('ar');
   return type === 'percentage'
     ? num.toLocaleString('es-AR', {
         style: 'percent',
         minimumFractionDigits: 2,
       })
-    : numeral(num).format('0.00a');
+    : type === 'shortNumber'
+    ? numeral(num).format('0.00a')
+    : numeral(num).format('0,0');
 };
 
 export const getCurrentProvinceData = <T extends VaccineDataItem | PopulationDataItem>(
