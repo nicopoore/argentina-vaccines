@@ -1,6 +1,6 @@
 // Dependencies
 import React, { useContext } from 'react';
-import { Box, Flex, SkeletonText, Text } from '@chakra-ui/react';
+import { Box, Flex, SkeletonText, Text, Tooltip } from '@chakra-ui/react';
 
 // Components
 import { DataContext, SelectionContext } from 'utils/Context';
@@ -32,11 +32,17 @@ const VaccineNumbers: React.FC<VaccineNumbersProps> = (props): JSX.Element => {
 
   return (
     <Box w="45%">
-      <Text as="h4" fontSize={{ base: '2xl', md: '4xl' }} mt={0} overflowWrap="normal">
-        {props.numberType === 'raw'
-          ? formatNumbers(activeDose, 'number')
-          : formatNumbers(activeDose / population, 'percentage')}
-      </Text>
+      {props.numberType === 'raw' ? (
+        <Tooltip label={formatNumbers(activeDose, 'number')} placement="top">
+          <Text as="h4" fontSize={{ base: '2xl', md: '4xl' }} mt={0} overflowWrap="normal">
+            {formatNumbers(activeDose, 'shortNumber')}
+          </Text>
+        </Tooltip>
+      ) : (
+        <Text as="h4" fontSize={{ base: '2xl', md: '4xl' }} mt={0} overflowWrap="normal">
+          {formatNumbers(activeDose / population, 'percentage')}
+        </Text>
+      )}
       <Text color="gray.500" fontSize="md" mt={0}>
         {props.numberType === 'raw' ? 'personas' : 'de la población'}
       </Text>
